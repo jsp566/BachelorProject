@@ -1,0 +1,6 @@
+
+
+class State():
+    '''
+    State class
+    '''

@@ -7,4 +7,8 @@ class DemandFunction():
 
     Gives share for each product
     '''
-    pass
+    
+    def __init__(self, products):
+        self.products = products
+
+    

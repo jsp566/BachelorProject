@@ -4,8 +4,20 @@
 
 class Firm():
     '''
-    Takes list of products and stragegy
+    Takes list of products and strategy
 
     Can set new price for products
     '''
-    pass
+    
+    def __init__(self, products, strategy):
+        self.products = products
+        self.strategy = strategy
+    
+    def set_price(self):
+        '''
+        Takes state
+        Sets price for products
+        '''
+        pass
+
+    

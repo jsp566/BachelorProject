@@ -8,4 +8,8 @@ class Product():
 
     
     '''
-    pass
+    
+    def __init__(self, marginal_cost, quality):
+        self.marginal_cost = marginal_cost
+        self.quality = quality
+
