@@ -40,5 +40,4 @@ n = 10
 # Number of prices
 num_p = 10
 
-# Prices memory
-mem_p = 1
+# Given memory of prices = 1
