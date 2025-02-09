@@ -5,7 +5,7 @@ class DemandFunction():
     '''
     Takes function
 
-    Given prices and product, gives share for each product
+    Given prices and product (state), gives share for each product
     '''
     
     def __init__(self, fun):
@@ -13,7 +13,7 @@ class DemandFunction():
 
     def get_share(self, prices, product):
         '''
-        Takes prices and product
+        Takes prices and product (state)
         Gives share for product
         '''
         pass

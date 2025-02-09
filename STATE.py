@@ -5,4 +5,6 @@ class State():
     State class
     dict of products and their prices 
     '''
-    pass
+    
+    def __init__(self, prices):
+        self.prices = prices

@@ -9,7 +9,8 @@ class Firm():
     Can set new prices for products
     '''
     
-    def __init__(self, products, strategy):
+    def __init__(self, firmid, products, strategy):
+        self.firmid = firmid
         self.products = products
         self.strategy = strategy
     
