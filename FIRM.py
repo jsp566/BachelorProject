@@ -14,11 +14,11 @@ class Firm():
         self.products = products
         self.strategy = strategy
     
-    def set_prices(self, state):
+    def set_prices(self, state, market):
         '''
-        Takes state
+        Takes state and market
         Using strategy
-        Sets prices for products
+        Sets prices for own products
         '''
         pass
 
@@ -27,7 +27,12 @@ class Firm():
         Takes state
         Gives profit
         '''
-        pass
-
+        profit = 0
+        for product in state.products:
+            if product.firmid == self.firmid:
+                profit += (product.price - product.marginal_cost) * product.share
+        
+        return profit
+                
 
     

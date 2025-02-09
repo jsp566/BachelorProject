@@ -4,8 +4,8 @@
 class Market():
     '''
     Takes list of firms and a demand function
-
     
+    Simulates market
     '''
     
     def __init__(self, firms, demand_function):
@@ -17,6 +17,7 @@ class Market():
         Takes number of periods
         Simulates market
         '''
+        
         pass
+            
 
-    
