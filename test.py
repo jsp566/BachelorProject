@@ -6,7 +6,6 @@ def Share(P, A):
     '''
     P: Price matrix
     A: Observable attributes matrix
-    mu: parameter
     '''
     numer = np.exp((A-P)/mu)
     denom = 1 + np.sum(numer)

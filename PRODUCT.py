@@ -12,4 +12,5 @@ class Product():
         self.productid = productid
         self.marginal_cost = marginal_cost
         self.quality = quality
+        self.price = None
 

@@ -3,8 +3,8 @@
 class State():
     '''
     State class
-    dict of products and their prices 
+    list of products
     '''
     
-    def __init__(self, prices):
-        self.prices = prices
+    def __init__(self, products):
+        self.products = products
