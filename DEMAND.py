@@ -11,7 +11,7 @@ class DemandFunction():
     def __init__(self, fun):
         self.fun = fun
 
-    def get_share(self, state):
+    def update_shares(self, state):
         '''
         Takes prices and product (state)
         Gives share for product

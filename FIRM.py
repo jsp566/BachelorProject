@@ -35,4 +35,8 @@ class Firm():
         return profit
                 
 
-    
+    def get_action_space(self):
+        '''
+        Gives action space
+        '''
+        pass

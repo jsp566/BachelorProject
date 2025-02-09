@@ -25,7 +25,7 @@ class Qlearning():
             return np.argmax(self.Q[state])
 
 
-    def update_Q(self, state, action, next_state):
+    def update_strategy(self, state, action, next_state):
         '''
         Takes state, action, next state
         Updates Q values
