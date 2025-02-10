@@ -8,8 +8,9 @@ class State():
     Time period
     '''
     
-    def __init__(self, prices, shares, t=0):
+    def __init__(self, prices, shares, profits, t=1):
         self.prices = prices
         self.shares = shares
+        self.profits = profits
         self.t = t
         
