@@ -22,6 +22,7 @@ class Market():
         self.P = []
         self.A = []
 
+
     def add_firm(self, firm):
         '''
         Takes firm
@@ -115,3 +116,44 @@ class Market():
                 else:
                     product.pricerange = np.linspace(start[i], end[i], num_prices)
                 i += 1
+
+
+    def get_nash_prices(self):
+        '''
+        Gives Nash prices
+        '''
+        P0 = []
+        A = []
+        MC = []
+
+        for firm in self.firms:
+            for product in firm.products:
+                P0.append(0)
+                A.append(product.quality)
+                MC.append(product.marginal_cost)
+
+        P0 = np.array(P0)
+        A = np.array(A)
+        MC = np.array(MC)
+
+        return lib.Newton(P0, A, MC, self.demand_function.fun)
+    
+    def get_monopoly_prices(self):
+        '''
+        Gives monopoly prices
+        '''
+        P0 = []
+        A = []
+        MC = []
+
+        for firm in self.firms:
+            for product in firm.products:
+                P0.append(0)
+                A.append(product.quality)
+                MC.append(product.marginal_cost)
+
+        P0 = np.array(P0)
+        A = np.array(A)
+        MC = np.array(MC)
+
+        return lib.Monopoly_Prices(P0, A, MC, self.demand_function.fun)
