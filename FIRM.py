@@ -4,15 +4,26 @@ import itertools
 
 class Firm():
     '''
-    Takes list of products and a strategy
+    Takes a strategy
 
     Can set new prices for products
     '''
     
-    def __init__(self, firmid, products, strategy):
-        self.firmid = firmid
-        self.products = products
+    def __init__(self, strategy):
+        self.firmid = None
+        self.products = []
         self.strategy = strategy
+        self.next_productid = 0
+
+    def add_product(self, product):
+        '''
+        Takes product
+        Adds product to firm
+        '''
+        product.firmid = self.firmid
+        product.productid = self.next_productid
+        self.next_productid += 1
+        self.products.append(product)
     
     def set_prices(self, state, market):
         '''
