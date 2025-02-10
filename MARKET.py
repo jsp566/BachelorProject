@@ -102,7 +102,6 @@ class Market():
         Mono = lib.Monopoly_Prices(P0, A, MC, self.demand_function.fun)
 
         more = extra * (Mono-Nash)
-        print(more)
 
         start = Nash-more
         end = Mono+more

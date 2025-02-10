@@ -30,7 +30,9 @@ class Qlearning():
         Takes state
         Gives action
         '''
-        if np.random.uniform(0, 1) < self.exploration_rate(state.t):
+        explore = self.exploration_rate(state.t)
+
+        if np.random.uniform(0, 1) < explore:
             index = np.random.randint(0,len(self.Q[state.prices].keys())-1)
             return list(self.Q[state.prices].keys())[index]
         else:

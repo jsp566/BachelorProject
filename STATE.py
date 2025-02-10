@@ -9,7 +9,7 @@ class State():
     '''
     
     def __init__(self, prices, shares, t=0):
-        self.t = 0
         self.prices = prices
         self.shares = shares
+        self.t = t
         
