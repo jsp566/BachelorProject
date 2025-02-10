@@ -1,5 +1,6 @@
 
 import itertools
+import numpy as np
 
 
 class Firm():
@@ -9,8 +10,8 @@ class Firm():
     Can set new prices for products
     '''
     
-    def __init__(self, market, strategy):
-        self.market = market
+    def __init__(self, strategy):
+        self.market = None
         self.firmid = None
         self.products = []
         self.strategy = strategy
@@ -25,7 +26,12 @@ class Firm():
         product.firmid = self.firmid
         product.productid = self.market.next_productid
         self.market.next_productid += 1
+    
         self.products.append(product)
+        self.market.products.append(product)
+        
+        self.market.P.append(None)
+        self.market.A.append(product.quality)
     
     def set_prices(self, state):
         '''
@@ -38,17 +44,19 @@ class Firm():
 
         i = 0
         for product in self.products:
-            product.price = action[i]
+            self.market.P[product.productid] = action[i]
             i += 1
 
-    def get_profit(self):
+    def get_profit(self, state):
         '''
         Takes state
         Gives profit
         '''
         profit = 0
+
         for product in self.products:
-            profit += (product.price - product.marginal_cost) * product.share
+            index = product.productid
+            profit += (state.prices[index] - product.marginal_cost) * state.shares[index]
         
         return profit
                 
@@ -57,7 +65,7 @@ class Firm():
         Takes state, next state
         Updates strategy
         '''
-        profit = self.get_profit()
+        profit = self.get_profit(new_state)
         self.strategy.update_strategy(state, self.prev_action, new_state, profit)
 
     def set_action_space(self):
