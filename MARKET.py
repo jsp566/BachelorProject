@@ -100,8 +100,10 @@ class Market():
         Nash = lib.Newton(P0, A, MC, self.demand_function.fun)
         Mono = lib.Monopoly_Prices(P0, A, MC, self.demand_function.fun)
 
-        start = Nash*(1-extra)
-        end = Mono*(1+extra)
+        more = extra * (Nash-Mono)
+
+        start = Nash-more
+        end = Mono+more
 
         i = 0
         for firm in self.firms:
