@@ -81,13 +81,13 @@ class Market():
 
         for firm in self.firms:
             for product in firm.products:
-                MC.append(product.margin_cost)
+                MC.append(product.marginal_cost)
                 A.append(product.quality)
 
         MC = np.array(MC)
         A = np.array(A)
 
-        Nash = lib.newton(MC, A, MC, self.demand_function.fun)
+        Nash = lib.Newton(MC, A, MC, self.demand_function.fun)
         Mono = lib.monopoly_prices(MC, A, MC, self.demand_function.fun)
 
         start = Nash*(1-extra)

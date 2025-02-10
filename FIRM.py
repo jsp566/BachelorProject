@@ -56,4 +56,5 @@ class Firm():
             prices.append(product.pricerange)
 
         return list(itertools.product(*prices))
+    
 
