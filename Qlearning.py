@@ -31,15 +31,15 @@ class Qlearning():
         Gives action
         '''
         if np.random.uniform(0, 1) < self.exploration_rate(state.t):
-            index = np.random.randint(0,len(self.Q[state.state].keys())-1)
-            return list(self.Q[state.state].keys())[index]
+            index = np.random.randint(0,len(self.Q[state.prices].keys())-1)
+            return list(self.Q[state.prices].keys())[index]
         else:
             best_actions = []
 
-            max_val = np.max(self.Q[state.state].values())
+            max_val = np.max(self.Q[state.prices].values())
 
-            for action in self.Q[state.state].keys():
-                if self.Q[state.state][action] == max_val:
+            for action in self.Q[state.prices].keys():
+                if self.Q[state.prices][action] == max_val:
                     best_actions.append(action)
 
             return np.random.choice(best_actions)
@@ -51,4 +51,4 @@ class Qlearning():
         Updates Q values
         '''
         
-        self.Q[state.state][action] = (1 - self.learning_rate) * self.Q[state.state][action] + self.learning_rate * (profit + self.discount_factor * self.Q[next_state.state][self.get_action(next_state)])
+        self.Q[state.prices][action] = (1 - self.learning_rate) * self.Q[state.prices][action] + self.learning_rate * (profit + self.discount_factor * self.Q[next_state.prices][self.get_action(next_state)])

@@ -18,10 +18,9 @@ class Market():
         self.next_productid = 0
         self.state = None
         self.state_space = None
+        self.products = []
         self.P = []
         self.A = []
-        self.MC = []
-        self.shares = []
 
     def add_firm(self, firm):
         '''
@@ -29,6 +28,7 @@ class Market():
         Adds firm to market
         '''
         firm.firmid = self.next_firmid
+        firm.market = self
         self.next_firmid += 1
         self.firms.append(firm)
 
@@ -41,28 +41,19 @@ class Market():
         states = []
 
         if self.state == None:
-            
-            index = np.random.randint(0,len(self.state_space)-1)
-            state = self.state_space[index]
-            self.state = STATE.State(state)
+            for product in self.products:
+                self.P[product.productid] = np.random.choice(product.pricerange)
+            shares = self.demand_function.get_shares(self.P, self.A)
+            self.state = STATE.State(tuple(self.P), tuple(shares))
 
         for period in range(num_periods):
             for firm in self.firms:
                 firm.set_prices(self.state)
-
-            self.P = [product.price for firm in self.firms for product in firm.products]
-            self.A = [product.quality for firm in self.firms for product in firm.products]
-
+            
+            
             shares = self.demand_function.get_shares(self.P, self.A)
 
-            i = 0
-
-            for firm in self.firms:
-                for product in firm.products:
-                    product.share = shares[i]
-                    i += 1
-
-            new_state = STATE.State(tuple(self.P), self.state.t+1)
+            new_state = STATE.State(tuple(self.P), tuple(shares), self.state.t+1)
 
             for firm in self.firms:
                 firm.update_strategy(self.state, new_state)

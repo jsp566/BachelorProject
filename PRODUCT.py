@@ -17,6 +17,5 @@ class Product():
         self.marginal_cost = marginal_cost
         self.quality = quality
         self.pricerange = None
-        self.price = None
-        self.share = None
+
 
