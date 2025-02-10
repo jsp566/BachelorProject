@@ -32,6 +32,7 @@ class Firm():
         
         self.market.P.append(None)
         self.market.A.append(product.quality)
+        self.market.MC.append(product.marginal_cost)
     
     def set_prices(self, state):
         '''
@@ -56,7 +57,7 @@ class Firm():
 
         for product in self.products:
             index = product.productid
-            profit += (state.prices[index] - product.marginal_cost) * state.shares[index]
+            profit += state.profits[index]
         
         return profit
                 
