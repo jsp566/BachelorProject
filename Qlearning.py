@@ -1,4 +1,5 @@
 import numpy as np
+import random
 
 
 class Qlearning():
@@ -16,7 +17,6 @@ class Qlearning():
         '''
         Initializes strategy
         '''
-        self.action_space = action_space
         self.Q = {}
 
         for state in state_space:
@@ -33,24 +33,22 @@ class Qlearning():
         explore = self.exploration_rate(state.t)
 
         if np.random.uniform(0, 1) < explore:
-            index = np.random.randint(0,len(self.Q[state.prices].keys())-1)
-            action = list(self.Q[state.prices].keys())[index]
+            action = random.choice(list(self.Q[state.prices].keys()))
             
             return action
         else:
-            best_actions = []
+            return self.best_action(state)
+        
+    def best_action(self, state):
+        best_actions = []
 
-            max_val = max(self.Q[state.prices].values())
+        max_val = max(self.Q[state.prices].values())
 
-            for action in self.Q[state.prices].keys():
-                if self.Q[state.prices][action] == max_val:
-                    best_actions.append(action)
+        for action in self.Q[state.prices].keys():
+            if self.Q[state.prices][action] == max_val:
+                best_actions.append(action)
 
-            if len(best_actions) == 1:
-                return best_actions[0]
-            else:
-                index = np.random.randint(0,len(best_actions)-1)
-                return best_actions[index]
+        return random.choice(best_actions)
 
 
     def update_strategy(self, state, action, next_state, profit):
@@ -59,4 +57,4 @@ class Qlearning():
         Updates Q values
         '''
         
-        self.Q[state.prices][action] = (1 - self.learning_rate) * self.Q[state.prices][action] + self.learning_rate * (profit + self.discount_factor * self.Q[next_state.prices][self.get_action(next_state)])
+        self.Q[state.prices][action] = (1 - self.learning_rate) * self.Q[state.prices][action] + self.learning_rate * (profit + self.discount_factor * self.Q[next_state.prices][self.best_action(next_state)])

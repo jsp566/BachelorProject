@@ -26,7 +26,7 @@ class Strategy():
         '''
         pass
 
-    def update_strategy(self, state, action, next_state):
+    def update_strategy(self, state, action, next_state, profit):
         '''
         Takes state, action, next state
         Updates strategy
