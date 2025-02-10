@@ -24,18 +24,21 @@ def Set_Price(P, i, p):
 
 def Best_Response(P, A, MC, Share, i):
     fun = lambda p: -Profit(Set_Price(P, i, p), A, MC, Share)[i]
-    return minimize(fun, 
-                    P[i]
-                    ).x[0]
+    result = minimize(fun, 
+                    P[i],
+                    tol=1e-10
+                    )
+    return result.x[0]
 
 
 def IBR(P0, A, MC, Share, maxit=1000, tol=1e-8):
     success = False
     P = P0
     for i in range(maxit):
-        P_new = np.array([Best_Response(P, A, MC, Share, i) for i in range(P0)])
+        P_new = np.array([Best_Response(P, A, MC, Share, i) for i in range(len(P0))])
         if np.linalg.norm(P_new - P) < tol:
             print(f'IBR successful after {i} iterations')
+            success = True
             break
         P = P_new
 
@@ -49,7 +52,7 @@ def IBR(P0, A, MC, Share, maxit=1000, tol=1e-8):
 def Newton(P0, A, MC, Share):
     fun = lambda p: np.array(p) - np.array([Best_Response(p, A, MC, Share, i) for i in range(len(P0))])
 
-    return fsolve(fun, P0)
+    return fsolve(fun, P0, xtol=1e-10)
     
 
 

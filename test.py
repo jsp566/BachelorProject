@@ -83,8 +83,8 @@ for firm in market.firms:
 
 
 #states = market.simulate(maxit)
-
-print(market.get_monopoly_prices())
 print(market.get_nash_prices())
+print(market.get_monopoly_prices())
+
 
 ##print([state.prices for state in states])
