@@ -7,7 +7,7 @@ import MARKET
 
 
 # Demand function
-mu = 0.1
+mu = 0.25
 def Share(P, A):
     '''
     P: Price matrix
@@ -20,24 +20,27 @@ def Share(P, A):
 
 
 # Observable attributes
-qualities = 1
+qualities = 2
 
 # Marginal cost
 marginal_costs = 1
 
 # Learning rate
-alpha = 0.1
+alpha = 0.125
 
 # Exloration rate
-beta = 0.5
-def Exloration_Rate(t):
+beta = 0.00001
+def Calvani_Exloration_Rate(t):
     return np.exp(-beta*t)
 
+def Mathias_Exloration_Rate(t):
+    return (0.015**(2/maxit))**t
+
 # Discount factor
-gamma = 0.9
+gamma = 0.95
 
 # Number of iterations
-maxit = 100000
+maxit = 1000000
 
 # Number of firms
 numb_firms = 2
@@ -46,7 +49,7 @@ numb_firms = 2
 numb_products = 1
 
 # Price range
-numb_prices = 20
+numb_prices = 15
 include_NE_and_Mono=True
 extra=0.1
 
@@ -58,7 +61,7 @@ extra=0.1
 market = MARKET.Market(DEMAND.DemandFunction(Share))
 
 for i in range(numb_firms):
-    firm = FIRM.Firm(Qlearning.Qlearning(gamma, alpha, Exloration_Rate))
+    firm = FIRM.Firm(Qlearning.Qlearning(gamma, alpha, Calvani_Exloration_Rate))
     market.add_firm(firm)
     for j in range(numb_products):
         product = PRODUCT.Product(qualities, marginal_costs)
