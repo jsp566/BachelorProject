@@ -9,8 +9,15 @@ class Strategy():
     Gives action
     '''
     
-    def __init__(self, state):
-        self.state = state
+    def __init__(self, params):
+        self.params = params
+
+    def initialize(self, state_space, action_space):
+        '''
+        Initializes strategy
+        '''
+        pass
+        
 
     def get_action(self, state):
         '''

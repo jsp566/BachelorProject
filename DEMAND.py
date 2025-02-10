@@ -11,27 +11,18 @@ class DemandFunction():
     def __init__(self, fun):
         self.fun = fun
 
-    def update_shares(self, state):
+    def get_shares(self, P, A):
         '''
         Takes prices and product (state)
         Gives share for product
         '''
-        
-        P = []
-        A = []
-
-        for product in state.products:
-            P.append(product.price)
-            A.append(product.quality)
 
         P = np.array(P)
         A = np.array(A)
-
+        
         shares = self.fun(P, A)
 
-        for i, product in enumerate(state.products):
-            product.share = shares[i]
-
+        return shares
 
 
 

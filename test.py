@@ -37,7 +37,7 @@ def Exloration_Rate(t):
 gamma = 0.9
 
 # Number of iterations
-maxit = 10000
+maxit = 100000
 
 # Number of firms
 numb_firms = 2
@@ -45,17 +45,20 @@ numb_firms = 2
 # Number of products per firm
 numb_products = 1
 
-# Number of prices
+# Price range
 numb_prices = 20
 include_NE_and_Mono=True
 extra=0.1
 
 # Given memory of prices = 1
 
+
+# Start
+
 market = MARKET.Market(DEMAND.DemandFunction(Share))
 
 for i in range(numb_firms):
-    firm = FIRM.Firm(Qlearning.Qlearning(gamma, alpha, Exloration_Rate))
+    firm = FIRM.Firm(market, Qlearning.Qlearning(gamma, alpha, Exloration_Rate))
     market.add_firm(firm)
     for j in range(numb_products):
         product = PRODUCT.Product(qualities, marginal_costs)
@@ -64,7 +67,14 @@ for i in range(numb_firms):
 
 market.set_priceranges(numb_prices, include_NE_and_Mono, extra)
 
+state_space = market.set_state_space()
+
+for firm in market.firms:
+    action_space = firm.set_action_space()
+    firm.strategy.initialize(market.state_space, firm.action_space)
 
 
-prices = market.simulate(maxit)
 
+states = market.simulate(maxit)
+
+print([state.state for state in states])

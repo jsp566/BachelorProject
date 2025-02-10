@@ -2,6 +2,7 @@
 import itertools
 import lib
 import numpy as np
+import STATE
 
 class Market():
     '''
@@ -14,7 +15,13 @@ class Market():
         self.firms = []
         self.demand_function = demand_function
         self.next_firmid = 0
+        self.next_productid = 0
         self.state = None
+        self.state_space = None
+        self.P = []
+        self.A = []
+        self.MC = []
+        self.shares = []
 
     def add_firm(self, firm):
         '''
@@ -31,34 +38,43 @@ class Market():
         Simulates market
         '''
         
-        prices = []
+        states = []
+
+        if self.state == None:
+            
+            index = np.random.randint(0,len(self.state_space)-1)
+            state = self.state_space[index]
+            self.state = STATE.State(state)
 
         for period in range(num_periods):
             for firm in self.firms:
-                firm.set_prices(self.state, self)
+                firm.set_prices(self.state)
 
-            
-            
-            new_state = self.update_state(self.state)
+            self.P = [product.price for firm in self.firms for product in firm.products]
+            self.A = [product.quality for firm in self.firms for product in firm.products]
 
-            self.demand_function.update_shares(self.state, new_state)
+            shares = self.demand_function.get_shares(self.P, self.A)
+
+            i = 0
 
             for firm in self.firms:
-                firm.strategy.update_strategy(self.state, new_state)
+                for product in firm.products:
+                    product.share = shares[i]
+                    i += 1
 
+            new_state = STATE.State(tuple(self.P), self.state.t+1)
+
+            for firm in self.firms:
+                firm.update_strategy(self.state, new_state)
+
+            
+            states.append(new_state)
             self.state = new_state
 
-        return prices
-
-    def update_state(self, state):
-        '''
-        Takes state
-        Updates state
-        '''
-        pass
+        return states
 
     
-    def get_state_space(self):
+    def set_state_space(self):
         '''
         Gives state space
         '''
@@ -68,7 +84,7 @@ class Market():
             for product in firm.products:
                 prices.append(product.pricerange)
         
-        return list(itertools.product(*prices))
+        self.state_space = list(itertools.product(*prices))
     
     def set_priceranges(self, num_prices, include_NE_and_Mono=True, extra=0.1):
         '''
@@ -76,19 +92,22 @@ class Market():
         Sets price ranges for products
         '''
         
-        MC = []
+        P0 = []
         A = []
+        MC = []
 
         for firm in self.firms:
             for product in firm.products:
-                MC.append(product.margin_cost)
+                P0.append(0)
                 A.append(product.quality)
+                MC.append(product.marginal_cost)
 
-        MC = np.array(MC)
+        P0 = np.array(P0)
         A = np.array(A)
+        MC = np.array(MC)
 
-        Nash = lib.newton(MC, A, MC, self.demand_function.fun)
-        Mono = lib.monopoly_prices(MC, A, MC, self.demand_function.fun)
+        Nash = lib.Newton(P0, A, MC, self.demand_function.fun)
+        Mono = lib.Monopoly_Prices(P0, A, MC, self.demand_function.fun)
 
         start = Nash*(1-extra)
         end = Mono*(1+extra)
@@ -103,4 +122,3 @@ class Market():
                 else:
                     product.pricerange = np.linspace(start[i], end[i], num_prices)
                 i += 1
-

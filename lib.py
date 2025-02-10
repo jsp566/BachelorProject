@@ -47,7 +47,7 @@ def IBR(P0, A, MC, Share, maxit=1000, tol=1e-8):
 
 
 def Newton(P0, A, MC, Share):
-    fun = lambda p: np.array(p) - np.array([Best_Response(p, A, MC, Share, i) for i in range(P0)])
+    fun = lambda p: np.array(p) - np.array([Best_Response(p, A, MC, Share, i) for i in range(len(P0))])
 
     return fsolve(fun, P0)
     
