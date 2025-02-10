@@ -1,5 +1,7 @@
 
-
+import itertools
+import lib
+import numpy as np
 
 class Market():
     '''
@@ -19,6 +21,8 @@ class Market():
         Simulates market
         '''
         
+        prices = []
+
         for period in range(num_periods):
             for firm in self.firms:
                 firm.set_prices(self.state, self)
@@ -34,6 +38,8 @@ class Market():
 
             self.state = new_state
 
+        return prices
+
     def update_state(self, state):
         '''
         Takes state
@@ -46,4 +52,45 @@ class Market():
         '''
         Gives state space
         '''
-        pass
+        prices = []
+
+        for firm in self.firms:
+            for product in firm.products:
+                prices.append(product.pricerange)
+        
+        return list(itertools.product(*prices))
+    
+    def get_monopoly_prices(self):
+        '''
+        Gives monopoly prices
+        '''
+        MC = []
+        A = []
+
+        for firm in self.firms:
+            for product in firm.products:
+                MC.append(product.margin_cost)
+                A.append(product.quality)
+        
+        MC = np.array(MC)
+        A = np.array(A)
+
+        return lib.monopoly_prices(MC, A, MC, self.demand_function.fun)
+
+    def get_nash_prices(self):
+        '''
+        Gives Nash prices
+        '''
+        MC = []
+        A = []
+
+        for firm in self.firms:
+            for product in firm.products:
+                MC.append(product.margin_cost)
+                A.append(product.quality)
+        
+        MC = np.array(MC)
+        A = np.array(A)
+
+        return lib.newton(MC, A, MC, self.demand_function.fun)
+        

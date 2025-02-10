@@ -1,4 +1,10 @@
 import numpy as np
+import PRODUCT
+import FIRM
+import DEMAND
+import Qlearning
+import MARKET
+
 
 # Demand function
 mu = 0.1
@@ -40,3 +46,13 @@ n = 10
 num_p = 10
 
 # Given memory of prices = 1
+
+product0 = PRODUCT.Product(0, qualities, marginal_costs)
+firm0 = FIRM.Firm(0, [product0], Qlearning.Qlearning(gamma, alpha, Exloration_Rate))
+
+product1 = PRODUCT.Product(1, qualities, marginal_costs)
+firm1 = FIRM.Firm(1, [product1], Qlearning.Qlearning(gamma, alpha, Exloration_Rate))
+
+market = MARKET.Market([firm0, firm1], DEMAND.DemandFunction(Share))
+
+

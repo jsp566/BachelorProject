@@ -9,14 +9,14 @@ class Product():
     productid: The product id of the product
     marginal_cost: The marginal cost of the product
     quality: The quality of the product
-    pricerange: The price range of the product
     '''
 
-    def __init__(self, firmid, productid, marginal_cost, quality, pricerange):
+    def __init__(self, firmid, marginal_cost, quality):
         self.firmid = firmid
-        self.productid = productid
+        self.productid = None
         self.marginal_cost = marginal_cost
         self.quality = quality
+        self.pricerange = None
         self.price = None
         self.share = None
 
