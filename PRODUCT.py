@@ -11,8 +11,8 @@ class Product():
     quality: The quality of the product
     '''
 
-    def __init__(self, firmid, marginal_cost, quality):
-        self.firmid = firmid
+    def __init__(self, marginal_cost, quality):
+        self.firmid = None
         self.productid = None
         self.marginal_cost = marginal_cost
         self.quality = quality

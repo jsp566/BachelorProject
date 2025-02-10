@@ -39,20 +39,32 @@ gamma = 0.9
 # Number of iterations
 maxit = 10000
 
-# Number of products
-n = 10
+# Number of firms
+numb_firms = 2
+
+# Number of products per firm
+numb_products = 1
 
 # Number of prices
-num_p = 10
+numb_prices = 20
+include_NE_and_Mono=True
+extra=0.1
 
 # Given memory of prices = 1
 
-product0 = PRODUCT.Product(0, qualities, marginal_costs)
-firm0 = FIRM.Firm(0, [product0], Qlearning.Qlearning(gamma, alpha, Exloration_Rate))
+market = MARKET.Market(DEMAND.DemandFunction(Share))
 
-product1 = PRODUCT.Product(1, qualities, marginal_costs)
-firm1 = FIRM.Firm(1, [product1], Qlearning.Qlearning(gamma, alpha, Exloration_Rate))
+for i in range(numb_firms):
+    firm = FIRM.Firm(Qlearning.Qlearning(gamma, alpha, Exloration_Rate))
+    market.add_firm(firm)
+    for j in range(numb_products):
+        product = PRODUCT.Product(qualities, marginal_costs)
+        firm.add_product(product)
 
-market = MARKET.Market([firm0, firm1], DEMAND.DemandFunction(Share))
 
+market.set_priceranges(numb_prices, include_NE_and_Mono, extra)
+
+
+
+prices = market.simulate(maxit)
 

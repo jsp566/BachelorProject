@@ -5,15 +5,25 @@ import numpy as np
 
 class Market():
     '''
-    Takes list of firms and a demand function
+    Takes demand function
     
     Simulates market
     '''
     
-    def __init__(self, firms, demand_function):
-        self.firms = firms
+    def __init__(self, demand_function):
+        self.firms = []
         self.demand_function = demand_function
+        self.next_firmid = 0
         self.state = None
+
+    def add_firm(self, firm):
+        '''
+        Takes firm
+        Adds firm to market
+        '''
+        firm.firmid = self.next_firmid
+        self.next_firmid += 1
+        self.firms.append(firm)
 
     def simulate(self, num_periods):
         '''
@@ -60,10 +70,12 @@ class Market():
         
         return list(itertools.product(*prices))
     
-    def get_monopoly_prices(self):
+    def set_priceranges(self, num_prices, include_NE_and_Mono=True, extra=0.1):
         '''
-        Gives monopoly prices
+        Takes number of prices
+        Sets price ranges for products
         '''
+        
         MC = []
         A = []
 
@@ -71,26 +83,24 @@ class Market():
             for product in firm.products:
                 MC.append(product.margin_cost)
                 A.append(product.quality)
-        
+
         MC = np.array(MC)
         A = np.array(A)
 
-        return lib.monopoly_prices(MC, A, MC, self.demand_function.fun)
+        Nash = lib.newton(MC, A, MC, self.demand_function.fun)
+        Mono = lib.monopoly_prices(MC, A, MC, self.demand_function.fun)
 
-    def get_nash_prices(self):
-        '''
-        Gives Nash prices
-        '''
-        MC = []
-        A = []
+        start = Nash*(1-extra)
+        end = Mono*(1+extra)
 
+        i = 0
         for firm in self.firms:
             for product in firm.products:
-                MC.append(product.margin_cost)
-                A.append(product.quality)
-        
-        MC = np.array(MC)
-        A = np.array(A)
+                if include_NE_and_Mono:
+                    pricerange = np.linspace(start[i], end[i], num_prices-2)
+                    product.pricerange =  np.sort(np.concatenate(([Nash[i], Mono[i]], pricerange)))
 
-        return lib.newton(MC, A, MC, self.demand_function.fun)
-        
+                else:
+                    product.pricerange = np.linspace(start[i], end[i], num_prices)
+                i += 1
+
