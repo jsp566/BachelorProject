@@ -30,10 +30,10 @@ alpha = 0.125
 
 # Exloration rate
 beta = 0.00001
-def Calvani_Exloration_Rate(t):
+def Calvani_Exploration_Rate(t):
     return np.exp(-beta*t)
 
-def Mathias_Exloration_Rate(t):
+def Mathias_Exploration_Rate(t):
     return (0.015**(2/maxit))**t
 
 # Discount factor
@@ -61,7 +61,7 @@ extra=0.1
 market = MARKET.Market(DEMAND.DemandFunction(Share))
 
 for i in range(numb_firms):
-    firm = FIRM.Firm(Qlearning.Qlearning(gamma, alpha, Calvani_Exloration_Rate))
+    firm = FIRM.Firm(Qlearning.Qlearning(gamma, alpha, Calvani_Exploration_Rate))
     market.add_firm(firm)
     for j in range(numb_products):
         product = PRODUCT.Product(qualities, marginal_costs)
@@ -77,10 +77,14 @@ for firm in market.firms:
     firm.strategy.initialize(market.state_space, firm.action_space)
 
 
+for firm in market.firms:
+    for product in firm.products:
+        print(product.pricerange)
 
-states = market.simulate(maxit)
+
+#states = market.simulate(maxit)
 
 print(market.get_monopoly_prices())
 print(market.get_nash_prices())
 
-#print([state.prices for state in states])
+##print([state.prices for state in states])
