@@ -83,8 +83,8 @@ class Market():
         Takes number of prices
         Sets price ranges for products
         '''
-        Nash = get_nash_prices()
-        Mono = get_monopoly_prices()
+        Nash = self.get_nash_prices()
+        Mono = self.get_monopoly_prices()
 
         more = extra * (Nash-Mono)
 
