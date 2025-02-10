@@ -1,5 +1,5 @@
 
-
+import itertools
 
 
 class Firm():
@@ -39,4 +39,10 @@ class Firm():
         '''
         Gives action space
         '''
-        pass
+        prices = []
+
+        for product in self.products:
+            prices.append(product.pricerange)
+
+        return list(itertools.product(*prices))
+
