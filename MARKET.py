@@ -83,23 +83,8 @@ class Market():
         Takes number of prices
         Sets price ranges for products
         '''
-        
-        P0 = []
-        A = []
-        MC = []
-
-        for firm in self.firms:
-            for product in firm.products:
-                P0.append(product.marginal_cost)
-                A.append(product.quality)
-                MC.append(product.marginal_cost)
-
-        P0 = np.array(P0)
-        A = np.array(A)
-        MC = np.array(MC)
-
-        Nash = lib.Newton(P0, A, MC, self.demand_function.fun)
-        Mono = lib.Monopoly_Prices(P0, A, MC, self.demand_function.fun)
+        Nash = self.get_nash_prices()
+        Mono = self.get_monopoly_prices()
 
         more = extra * (Mono-Nash)
 
