@@ -58,7 +58,7 @@ extra=0.1
 market = MARKET.Market(DEMAND.DemandFunction(Share))
 
 for i in range(numb_firms):
-    firm = FIRM.Firm(market, Qlearning.Qlearning(gamma, alpha, Exloration_Rate))
+    firm = FIRM.Firm(Qlearning.Qlearning(gamma, alpha, Exloration_Rate))
     market.add_firm(firm)
     for j in range(numb_products):
         product = PRODUCT.Product(qualities, marginal_costs)
@@ -77,4 +77,4 @@ for firm in market.firms:
 
 states = market.simulate(maxit)
 
-print([state.state for state in states])
+print([state.prices for state in states])
