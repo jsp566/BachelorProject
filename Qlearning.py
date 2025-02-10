@@ -34,17 +34,23 @@ class Qlearning():
 
         if np.random.uniform(0, 1) < explore:
             index = np.random.randint(0,len(self.Q[state.prices].keys())-1)
-            return list(self.Q[state.prices].keys())[index]
+            action = list(self.Q[state.prices].keys())[index]
+            
+            return action
         else:
             best_actions = []
 
-            max_val = np.max(self.Q[state.prices].values())
+            max_val = max(self.Q[state.prices].values())
 
             for action in self.Q[state.prices].keys():
                 if self.Q[state.prices][action] == max_val:
                     best_actions.append(action)
 
-            return np.random.choice(best_actions)
+            if len(best_actions) == 1:
+                return best_actions[0]
+            else:
+                index = np.random.randint(0,len(best_actions)-1)
+                return best_actions[index]
 
 
     def update_strategy(self, state, action, next_state, profit):
