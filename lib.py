@@ -53,6 +53,7 @@ def Newton(P0, A, MC, Share):
     
 
 
+
 def Make_Price_Range(P0, A, MC, Share, i, num_p, include_NE_and_Mono=True, extra=0.1):
     NE = Newton(P0, A, MC, Share)[i]
     Mono = Monopoly_Prices(P0, A, MC, Share)[i]
@@ -67,3 +68,7 @@ def Make_Price_Range(P0, A, MC, Share, i, num_p, include_NE_and_Mono=True, extra
         start = NE*(1-extra)
         end = Mono*(1+extra)
         return np.linspace(start, end, num_p)
+
+def get_collusion_quotient(average: np.array ,nash: np.array, monopoly:np.array):
+    return (average- nash)/(monopoly-nash)
+
