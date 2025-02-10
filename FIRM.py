@@ -12,7 +12,6 @@ class Firm():
     
     def __init__(self, strategy):
         self.market = None
-        self.firmid = None
         self.products = []
         self.strategy = strategy
         self.action_space = None
@@ -23,9 +22,8 @@ class Firm():
         Takes product
         Adds product to firm
         '''
-        product.firmid = self.firmid
-        product.productid = self.market.next_productid
-        self.market.next_productid += 1
+        product.productindex = self.market.next_productindex
+        self.market.next_productindex += 1
     
         self.products.append(product)
         self.market.products.append(product)
@@ -45,7 +43,7 @@ class Firm():
 
         i = 0
         for product in self.products:
-            self.market.P[product.productid] = action[i]
+            self.market.P[product.productindex] = action[i]
             i += 1
 
     def get_profit(self, state):
@@ -56,18 +54,18 @@ class Firm():
         profit = 0
 
         for product in self.products:
-            index = product.productid
+            index = product.productindex
             profit += state.profits[index]
         
         return profit
                 
-    def update_strategy(self, state, new_state):
+    def update_strategy(self, prev_state, new_state):
         '''
         Takes state, next state
         Updates strategy
         '''
         profit = self.get_profit(new_state)
-        self.strategy.update_strategy(state, self.prev_action, new_state, profit)
+        self.strategy.update_strategy(prev_state, self.prev_action, new_state, profit)
 
     def set_action_space(self):
         '''

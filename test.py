@@ -68,15 +68,7 @@ for i in range(numb_firms):
         product = PRODUCT.Product(qualities, marginal_costs)
         firm.add_product(product)
 
-
 market.set_priceranges(numb_prices, include_NE_and_Mono, extra)
-
-state_space = market.set_state_space()
-
-for firm in market.firms:
-    action_space = firm.set_action_space()
-    firm.strategy.initialize(market.state_space, firm.action_space)
-
 
 for firm in market.firms:
     for product in firm.products:

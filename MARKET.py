@@ -14,8 +14,7 @@ class Market():
     def __init__(self, demand_function):
         self.firms = []
         self.demand_function = demand_function
-        self.next_firmid = 0
-        self.next_productid = 0
+        self.next_productindex = 0
         self.current_state = None
         self.state_space = None
         self.products = []
@@ -29,9 +28,7 @@ class Market():
         Takes firm
         Adds firm to market
         '''
-        firm.firmid = self.next_firmid
         firm.market = self
-        self.next_firmid += 1
         self.firms.append(firm)
 
     def get_profits(self, shares):
@@ -54,13 +51,19 @@ class Market():
         Takes number of periods
         Simulates market
         '''
-        
+
+        if self.state_space == None:
+            self.set_state_space()
+
+            for firm in self.firms:
+                firm.action_space = firm.set_action_space()
+                firm.strategy.initialize(self.state_space, firm.action_space)
+
         states = []
 
         if self.current_state == None:
             for product in self.products:
-                self.P[product.productid] = np.random.choice(product.pricerange)
-            
+                self.P[product.productindex] = np.random.choice(product.pricerange)
             
             self.current_state = self.create_state()
             states.append(self.current_state)
@@ -70,14 +73,11 @@ class Market():
             for firm in self.firms:
                 firm.set_prices(self.current_state)
             
-            
-            
             new_state = self.create_state(self.current_state.t+1)
 
             for firm in self.firms:
                 firm.update_strategy(self.current_state, new_state)
 
-            
             self.current_state = new_state
             states.append(self.current_state)
 
