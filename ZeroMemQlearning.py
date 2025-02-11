@@ -1,4 +1,5 @@
 import numpy as np
+import random
 
 
 class ZeroMemQlearning():
@@ -16,9 +17,7 @@ class ZeroMemQlearning():
         '''
         Initializes strategy
         '''
-        self.action_space = action_space
         self.Q = {}
-
 
         for action in action_space:
             self.Q[action] = 0.0
@@ -32,24 +31,15 @@ class ZeroMemQlearning():
         explore = self.exploration_rate(state.t)
 
         if np.random.uniform(0, 1) < explore:
-            index = np.random.randint(0,len(self.Q.keys())-1)
-            action = list(self.Q.keys())[index]
+            action = random.choice(list(self.Q.keys()))
             
             return action
         else:
-            best_actions = []
-
             max_val = max(self.Q.values())
 
-            for action in self.Q.keys():
-                if self.Q[action] == max_val:
-                    best_actions.append(action)
-
-            if len(best_actions) == 1:
-                return best_actions[0]
-            else:
-                index = np.random.randint(0,len(best_actions)-1)
-                return best_actions[index]
+            best_actions = [action for action, value in self.Q.items() if value == max_val]
+            
+            return random.choice(best_actions)
 
 
     def update_strategy(self, state, action, next_state, profit):
@@ -57,5 +47,5 @@ class ZeroMemQlearning():
         Takes state, action, next state
         Updates Q values
         '''
-        
-        self.Q[action] = (1 - self.learning_rate) * self.Q[action] + self.learning_rate * (profit + self.discount_factor * self.Q[self.get_action(next_state)])
+        next_max_val = max(self.Q.values())
+        self.Q[action] = (1 - self.learning_rate) * self.Q[action] + self.learning_rate * (profit + self.discount_factor * next_max_val)
