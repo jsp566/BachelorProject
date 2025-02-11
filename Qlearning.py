@@ -37,21 +37,17 @@ class Qlearning():
             
             return action
         else:
-            return self.best_action(state)
+            max_val = max(self.Q[state.prices].values())
+
+            best_actions = [action for action, value in self.Q[state.prices].items() if value == max_val]
+            
+            return random.choice(best_actions)
         
-    def best_action(self, state):
-
-        max_val = max(self.Q[state.prices].values())
-
-        best_actions = [action for action, value in self.Q[state.prices].items() if value == max_val]
-        
-        return random.choice(best_actions)
-
 
     def update_strategy(self, state, action, next_state, profit):
         '''
         Takes state, action, next state
         Updates Q values
         '''
-        
-        self.Q[state.prices][action] = (1 - self.learning_rate) * self.Q[state.prices][action] + self.learning_rate * (profit + self.discount_factor * self.Q[next_state.prices][self.best_action(next_state)])
+        next_max_val = max(self.Q[next_state.prices].values())
+        self.Q[state.prices][action] = (1 - self.learning_rate) * self.Q[state.prices][action] + self.learning_rate * (profit + self.discount_factor * next_max_val)
