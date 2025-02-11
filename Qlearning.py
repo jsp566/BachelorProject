@@ -40,14 +40,11 @@ class Qlearning():
             return self.best_action(state)
         
     def best_action(self, state):
-        best_actions = []
 
         max_val = max(self.Q[state.prices].values())
 
-        for action in self.Q[state.prices].keys():
-            if self.Q[state.prices][action] == max_val:
-                best_actions.append(action)
-
+        best_actions = [action for action, value in self.Q[state.prices].items() if value == max_val]
+        
         return random.choice(best_actions)
 
 

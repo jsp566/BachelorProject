@@ -65,7 +65,7 @@ times = 50
 
 sum_collusion_quotients = 0
 for i in range(times):
-    print(i)
+    print(f"i = {i}")
     start = time.time()
     market = MARKET.Market(DEMAND.DemandFunction(Share))
 
@@ -78,12 +78,6 @@ for i in range(times):
 
 
     market.set_priceranges(numb_prices, include_NE_and_Mono, extra)
-
-    state_space = market.set_state_space()
-
-    for firm in market.firms:
-        action_space = firm.set_action_space()
-        firm.strategy.initialize(market.state_space, firm.action_space)
 
     states = market.simulate(maxit)
 
@@ -98,7 +92,7 @@ for i in range(times):
 
     sum_collusion_quotients += collusion_quotient
     end = time.time()
-    print(end-start)
+    print(f"Time: {end-start}s")
     
 average_collusion_quotient = sum_collusion_quotients/times
 

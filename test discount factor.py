@@ -62,7 +62,7 @@ extra=0.1
 # Start
 
 discount_factors = np.linspace(0.0, 1.0, 11)
-times = 10
+times = 25
 
 average_collusion_quotient = []
 for gamma in discount_factors:
@@ -83,26 +83,20 @@ for gamma in discount_factors:
 
         market.set_priceranges(numb_prices, include_NE_and_Mono, extra)
 
-        state_space = market.set_state_space()
-
-        for firm in market.firms:
-            action_space = firm.set_action_space()
-            firm.strategy.initialize(market.state_space, firm.action_space)
-
         states = market.simulate(maxit)
 
         
         profits = np.array([state.profits for state in states])
-        mean = np.mean(profits, axis=1)
+        mean = np.mean(profits)
         nash = np.mean(market.get_nash_profits())
 
         mono = np.mean(market.get_monopoly_profits())
 
         collusion_quotient = lib.get_collusion_quotient(mean, nash, mono)
-
-        sum_collusion_quotients += np.mean(collusion_quotient)
+        print(f"collusion_quotient = {collusion_quotient}")
+        sum_collusion_quotients += collusion_quotient
         end = time.time()
-        print(end-start)
+        print(f"Time: {end-start}s")
     average_collusion_quotient.append(sum_collusion_quotients/times)
     
 
