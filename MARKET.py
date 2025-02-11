@@ -56,7 +56,7 @@ class Market():
             self.set_state_space()
 
             for firm in self.firms:
-                firm.action_space = firm.set_action_space()
+                firm.set_action_space()
                 firm.strategy.initialize(self.state_space, firm.action_space)
 
         states = []
