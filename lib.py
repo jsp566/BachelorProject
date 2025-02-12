@@ -33,7 +33,7 @@ def Best_Response(P, A, MC, Share, i):
 
 def IBR(P0, A, MC, Share, maxit=1000, tol=1e-8):
     success = False
-    P = P0
+    P = np.array([Best_Response(P0, A, MC, Share, i) for i in range(len(P0))])
     for i in range(maxit):
         P_new = np.array([Best_Response(P, A, MC, Share, i) for i in range(len(P0))])
         if np.linalg.norm(P_new - P) < tol:
@@ -58,17 +58,17 @@ def Newton(P0, A, MC, Share):
 
 
 def Make_Price_Range(P0, A, MC, Share, i, num_p, include_NE_and_Mono=True, extra=0.1):
-    NE = Newton(P0, A, MC, Share)[i]
+    Nash = Newton(P0, A, MC, Share)[i]
     Mono = Monopoly_Prices(P0, A, MC, Share)[i]
 
     if include_NE_and_Mono:
-        start = NE*(1-extra)
+        start = Nash*(1-extra)
         end = Mono*(1+extra)
         result = np.linspace(start, end, num_p-2)
-        return np.sort(np.concatenate(([NE, Mono], result)))
+        return np.sort(np.concatenate(([Nash, Mono], result)))
 
     else:
-        start = NE*(1-extra)
+        start = Nash*(1-extra)
         end = Mono*(1+extra)
         return np.linspace(start, end, num_p)
 

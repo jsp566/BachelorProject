@@ -21,10 +21,10 @@ def Share(P, A):
 
 
 # Observable attributes
-qualities = 2
+quality = 2
 
 # Marginal cost
-marginal_costs = 1
+marginal_cost = 1
 
 # Learning rate
 alpha = 0.125
@@ -51,7 +51,7 @@ numb_products = 1
 
 # Price range
 numb_prices = 15
-include_NE_and_Mono=True
+include_NE_and_Mono=False
 extra=0.1
 
 # Given memory of prices = 1
@@ -65,7 +65,7 @@ for i in range(numb_firms):
     firm = FIRM.Firm(Qlearning.Qlearning(gamma, alpha, Calvani_Exploration_Rate))
     market.add_firm(firm)
     for j in range(numb_products):
-        product = PRODUCT.Product(qualities, marginal_costs)
+        product = PRODUCT.Product(marginal_cost, quality)
         firm.add_product(product)
 
 market.set_priceranges(numb_prices, include_NE_and_Mono, extra)
@@ -79,9 +79,9 @@ for firm in market.firms:
 print(market.get_nash_prices())
 print(market.get_monopoly_prices())
 
-states = market.simulate(maxit)
+#states = market.simulate(maxit)
 
-
+'''
 # plot
 import matplotlib.pyplot as plt
 
@@ -112,3 +112,4 @@ plt.plot(period, nash2, label='Nash 2', linestyle='dashed')
 plt.legend()
 plt.show()
 
+'''
