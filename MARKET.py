@@ -11,8 +11,9 @@ class Market():
     Simulates market
     '''
     
-    def __init__(self, demand_function):
+    def __init__(self, demand_function,no_of_firms):
         self.firms = []
+        self.no_of_firms = no_of_firms
         self.demand_function = demand_function
         self.next_productindex = 0
         self.current_state = None
@@ -22,7 +23,9 @@ class Market():
         self.A = []
         self.MC = []
 
-
+    def get_no_of_firms(self):
+        return self.no_of_firms
+    
     def add_firm(self, firm):
         '''
         Takes firm
@@ -119,6 +122,7 @@ class Market():
                 else:
                     product.pricerange = np.linspace(start[i], end[i], num_prices)
                 i += 1
+
 
 
     def get_nash_prices(self):

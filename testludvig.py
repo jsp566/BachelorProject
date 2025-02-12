@@ -6,8 +6,7 @@ import Qlearning
 import ZeroMemQlearning
 import MARKET
 
-
-# Demand function
+#Create a testing environment for the different classes in the program
 mu = 0.25
 def Share(P, A):
     '''
@@ -41,7 +40,7 @@ def Mathias_Exploration_Rate(t):
 gamma = 0.95
 
 # Number of iterations
-maxit = 10000
+maxit = 1000000
 
 # Number of firms
 numb_firms = 2
@@ -59,12 +58,10 @@ extra=0.1
 
 # Start
 
-market = MARKET.Market(DEMAND.DemandFunction(Share),numb_firms)
-market.set_priceranges(numb_prices, include_NE_and_Mono, extra)
-
+market = MARKET.Market(DEMAND.DemandFunction(Share))
 
 for i in range(numb_firms):
-    firm = FIRM.Firm(Qlearning.Qlearning(gamma, alpha, Calvani_Exploration_Rate, MARKET.get_no_of_firms()))
+    firm = FIRM.Firm(Qlearning.Qlearning(gamma, alpha, Calvani_Exploration_Rate))
     market.add_firm(firm)
     for j in range(numb_products):
         product = PRODUCT.Product(marginal_cost, quality)
@@ -75,44 +72,3 @@ market.set_priceranges(numb_prices, include_NE_and_Mono, extra)
 for firm in market.firms:
     for product in firm.products:
         print(product.pricerange)
-
-
-
-
-print(market.get_nash_prices())
-print(market.get_monopoly_prices())
-
-#states = market.simulate(maxit)
-
-'''
-# plot
-import matplotlib.pyplot as plt
-
-states = states[-100:]
-mono = market.get_monopoly_prices()
-nash = market.get_nash_prices()
-
-period = [state.t for state in states]
-
-price1 = [state.prices[0] for state in states]
-mono1 = [mono[0] for state in states]
-nash1 = [nash[0] for state in states]
-
-price2 = [state.prices[1] for state in states]
-mono2 = [mono[1] for state in states]
-nash2 = [nash[1] for state in states]
-
-
-plt.plot(period, price1, label='Price 1')
-#plt.plot(period, mono1, label='Mono 1', linestyle='dashed')
-plt.plot(period, nash1, label='Nash 1', linestyle='dashed')
-
-
-plt.plot(period, price2, label='Price 2')
-#plt.plot(period, mono2, label='Mono 2', linestyle='dashed')
-plt.plot(period, nash2, label='Nash 2', linestyle='dashed')
-
-plt.legend()
-plt.show()
-
-'''
