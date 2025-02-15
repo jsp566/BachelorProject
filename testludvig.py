@@ -40,7 +40,7 @@ def Mathias_Exploration_Rate(t):
 gamma = 0.95
 
 # Number of iterations
-maxit = 1000000
+maxit = 10000
 
 # Number of firms
 numb_firms = 2
@@ -72,3 +72,7 @@ market.set_priceranges(numb_prices, include_NE_and_Mono, extra)
 for firm in market.firms:
     for product in firm.products:
         print(product.pricerange)
+
+print(market.get_no_of_firms())
+print(market.get_firms())
+states = market.simulate(maxit)

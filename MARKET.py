@@ -11,9 +11,8 @@ class Market():
     Simulates market
     '''
     
-    def __init__(self, demand_function,no_of_firms):
+    def __init__(self, demand_function):
         self.firms = []
-        self.no_of_firms = no_of_firms
         self.demand_function = demand_function
         self.next_productindex = 0
         self.current_state = None
@@ -24,7 +23,7 @@ class Market():
         self.MC = []
 
     def get_no_of_firms(self):
-        return self.no_of_firms
+        return len(self.firms)
     
     def add_firm(self, firm):
         '''
@@ -55,7 +54,7 @@ class Market():
 
             for firm in self.firms:
                 firm.set_action_space()
-                firm.strategy.initialize(self.state_space, firm.action_space)
+                firm.strategy.initialize(self.state_space, firm.action_space, self)
 
         states = []
 
@@ -177,3 +176,9 @@ class Market():
 
         profits = lib.Profit(P, A, MC, shares)
         return profits
+    
+    def get_firms(self):
+        '''
+        Gives firms
+        '''
+        return self.firms

@@ -43,7 +43,7 @@ def Mathias_Exploration_Rate(t):
 gamma = 0.95
 
 # Number of iterations
-maxit = 1000000
+maxit = 1000
 
 # Number of firms
 numb_firms = 2
