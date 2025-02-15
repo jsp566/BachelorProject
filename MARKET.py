@@ -34,20 +34,15 @@ class Market():
         firm.market = self
         self.firms.append(firm)
 
-    def get_profits(self, shares):
-        P = np.array(self.P)
-        MC = np.array(self.MC)
-        shares = np.array(shares)
-
-        profits = (P - MC) * shares
-        return profits
         
     def create_state(self, t=0):
         prices = tuple(self.P)
-        shares = self.demand_function.get_shares(self.P, self.A)
-        profits = self.get_profits(shares)
+        state = self.state_space[prices]
+        
+        shares = state.shares
+        profits = state.profits
 
-        return STATE.State(prices, tuple(shares), tuple(profits), t)
+        return STATE.State(prices, shares, profits, t)
 
     def simulate(self, num_periods):
         '''
@@ -97,7 +92,20 @@ class Market():
             for product in firm.products:
                 prices.append(product.pricerange)
         
-        self.state_space = list(itertools.product(*prices))
+        price_space = list(itertools.product(*prices))
+
+        self.state_space = {}
+
+        A = np.array(self.A)
+        MC = np.array(self.MC)
+
+        for price in price_space:
+            P = np.array(price)
+            shares = self.demand_function.get_shares(P, A)
+            profits = (price - MC) * shares
+            self.state_space[price] = STATE.State(price, shares, profits)
+
+
     
     def set_priceranges(self, num_prices, include_NE_and_Mono=True, extra=0.1):
         '''
