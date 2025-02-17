@@ -1,8 +1,8 @@
-import MARKET
-import DEMAND
+import Classes.MARKET as MARKET
+import Classes.DEMAND as DEMAND
 
-import FIRM
-import PRODUCT
+import Classes.FIRM as FIRM
+import Classes.PRODUCT as PRODUCT
 
 
 def simulate(config):

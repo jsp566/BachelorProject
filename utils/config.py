@@ -1,6 +1,6 @@
 import numpy as np
-import Qlearning
-
+import Classes.Qlearning as Qlearning
+import os
 # Demand function
 mu = 0.25
 def Share(P, A):
@@ -38,3 +38,13 @@ def create_config(**kwargs):
     config = defaultconfig.copy()
     config.update(kwargs)
     return config
+
+def create_filepath(file):
+    save_dir = 'Output'
+    os.makedirs(save_dir, exist_ok=True)
+    filename = file.replace('.py', '.png')
+    filepath = os.path.join(save_dir, filename)
+    return filepath
+    
+    
+

@@ -1,8 +1,8 @@
 
 import itertools
-import lib
+import utils.lib as lib
 import numpy as np
-import STATE
+import Classes.STATE as STATE
 
 class Market():
     '''

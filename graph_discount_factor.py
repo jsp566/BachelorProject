@@ -1,10 +1,11 @@
 import numpy as np
-import lib
-
-import SIMULATOR
-import config
-
+import utils.lib as lib
+import Classes.SIMULATOR as SIMULATOR
+import utils.config as config
+import matplotlib.pyplot as plt
 import time
+from os.path import basename
+
 
 def main():
     # Start
@@ -38,11 +39,13 @@ def main():
         average_collusion_quotient.append(sum_collusion_quotients/times)
 
 
-    import matplotlib.pyplot as plt
+    
 
 
     plt.plot(discount_factors, average_collusion_quotient)
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Discount factor')
 
-    plt.savefig('discount_factor.png')
+    filename = basename(__file__)
+    plt.savefig(config.create_filepath(filename))
+

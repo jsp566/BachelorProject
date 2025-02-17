@@ -1,8 +1,8 @@
 import numpy as np
-import config
-import SIMULATOR
-
+import utils.config as config
+import Classes.SIMULATOR as SIMULATOR
 import time
+import os
 
 # simulate
 start = time.time()
@@ -38,4 +38,10 @@ plt.plot(period, price2, label='Price 2')
 #plt.plot(period, nash2, label='Nash 2', linestyle='dashed')
 
 plt.legend()
+
+filename = os.path.basename(__file__)
+plt.savefig(config.create_filepath(filename))
+
 plt.show()
+
+
