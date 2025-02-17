@@ -12,7 +12,6 @@ def main():
     alphas = np.linspace(0.0, 0.25, 10, endpoint=False) #SET Alpha values
     betas = np.linspace(0.0, 2*10**-5, 10, endpoint=False) #SET Beta values
     times = 25 #Repetitions
-    maxit = 10000 #Iterations in q-learning algorithm
 
     average_collusion_quotient = [] #List to store average collusion quotients
     sim_start = time.time()
@@ -22,7 +21,7 @@ def main():
             fun = lambda t: np.exp(-beta*t) #lambda function for exploration rate
             print(f"alpha = {alpha}, beta = {beta}")
             start = time.time()
-            new_config = config.create_config(exploration_rate=fun, alpha=alpha, beta=beta, iterations = maxit)
+            new_config = config.create_config(exploration_rate=fun, alpha=alpha, beta=beta)
             sum_collusion_quotients = 0
             for i in range(times):
             
