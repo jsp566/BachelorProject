@@ -13,6 +13,7 @@ class Firm():
     def __init__(self, strategy):
         self.strategy = strategy
 
+        self.index = None        
         self.market = None
         self.products = []
 

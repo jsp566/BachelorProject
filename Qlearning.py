@@ -4,7 +4,7 @@ import random
 
 class Qlearning():
     '''
-    Takes state space, action space, reward function, discount factor, learning rate, exploration rate, and initial Q values
+    Takes discount factor, learning rate, exploration rate
     '''
     def __init__(self, discount_factor, learning_rate, exploration_rate):
         self.discount_factor = discount_factor
