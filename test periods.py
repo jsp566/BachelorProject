@@ -1,7 +1,7 @@
 import numpy as np
-import lib
-import SIMULATOR
-import config
+import utils.lib as lib
+import Classes.SIMULATOR as SIMULATOR
+import utils.config as config
 import time
 
 
