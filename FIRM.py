@@ -11,9 +11,12 @@ class Firm():
     '''
     
     def __init__(self, strategy):
+        self.strategy = strategy
+
+        self.index = None        
         self.market = None
         self.products = []
-        self.strategy = strategy
+
         self.action_space = None
         self.prev_action = None
 
@@ -22,50 +25,27 @@ class Firm():
         Takes product
         Adds product to firm
         '''
-        product.productindex = self.market.next_productindex
-        self.market.next_productindex += 1
-    
+        assert(product.firm == None)
+        product.firm = self
         self.products.append(product)
-        self.market.products.append(product)
-        
-        self.market.P.append(None)
-        self.market.A.append(product.quality)
-        self.market.MC.append(product.marginal_cost)
     
-    def set_prices(self, state):
+    def get_action(self, state, t):
         '''
         Takes state and market
         Using strategy
         Sets prices for own products
         '''
-        action = self.strategy.get_action(state)
+        action = self.strategy.get_action(state, t)
         self.prev_action = action
+    
+        return action
 
-        i = 0
-        for product in self.products:
-            self.market.P[product.productindex] = action[i]
-            i += 1
-
-    def get_profit(self, state):
+    def update_strategy(self, state, next_state, profit):
         '''
-        Takes state
-        Gives profit
-        '''
-        profit = 0
-
-        for product in self.products:
-            index = product.productindex
-            profit += state.profits[index]
-        
-        return profit
-                
-    def update_strategy(self, prev_state, new_state):
-        '''
-        Takes state, next state
+        Takes state, action, next state
         Updates strategy
         '''
-        profit = self.get_profit(new_state)
-        self.strategy.update_strategy(prev_state, self.prev_action, new_state, profit)
+        self.strategy.update_strategy(state, self.prev_action, next_state, profit)            
 
     def set_action_space(self):
         '''

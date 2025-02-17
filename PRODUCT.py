@@ -11,9 +11,11 @@ class Product():
     '''
 
     def __init__(self, marginal_cost, quality):
-        self.productindex = None
         self.marginal_cost = marginal_cost
         self.quality = quality
+
+        self.firm = None
+
         self.pricerange = None
 
 

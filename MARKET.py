@@ -12,36 +12,98 @@ class Market():
     '''
     
     def __init__(self, demand_function):
-        self.firms = []
         self.demand_function = demand_function
-        self.next_productindex = 0
-        self.current_state = None
-        self.state_space = None
-        self.products = []
-        self.P = []
-        self.A = []
-        self.MC = []
 
-    def get_no_of_firms(self):
-        return len(self.firms)
-    
+        self.next_firm_index = 0
+        self.firms = []
+
+        self.state_space = None
+        self.current_state = None
+
+        self.products = None
+        self.A = None
+        self.MC = None
+
     def add_firm(self, firm):
         '''
         Takes firm
         Adds firm to market
         '''
+        assert(firm.market == None)
         firm.market = self
+        firm.index = self.next_firm_index
         self.firms.append(firm)
+        self.next_firm_index += 1
 
         
-    def create_state(self, t=0):
-        prices = tuple(self.P)
-        state = self.state_space[prices]
-        
-        shares = state.shares
-        profits = state.profits
+    def set_priceranges(self, num_prices, include_NE_and_Mono=True, extra=0.1):
+        '''
+        Takes number of prices
+        Sets price ranges for products
+        '''
+        self.products = [product for firm in self.firms for product in firm.products]
+        self.A = np.array([product.quality for product in self.products])
+        self.MC = np.array([product.marginal_cost for product in self.products])
 
-        return STATE.State(prices, shares, profits, t)
+        priceranges = lib.Make_Price_Ranges(self.MC, self.A, self.MC, self.demand_function.fun, num_prices, include_NE_and_Mono, extra)
+        
+        i = 0
+        for firm in self.firms:
+            for product in firm.products:
+                product.pricerange = priceranges[i]
+                i += 1
+
+        for firm in self.firms:
+            firm.set_action_space()
+        
+        self.set_state_space()
+
+        for firm in self.firms:
+            firm.strategy.initialize(self.state_space, firm.action_space, firm.index)
+
+    def set_state_space(self):
+        '''
+        Gives state space
+        '''
+        actions = []
+
+        for firm in self.firms:
+            actions.append(firm.action_space)
+        
+        state_space = list(itertools.product(*actions))
+
+        self.state_space = {}
+
+        for actions in state_space:
+            state = self.create_state(actions)
+            self.state_space[actions] = state
+
+    def create_state(self, actions):
+        '''
+        Takes actions
+        Creates state
+        '''
+        prices = np.array([price for action in actions for price in action])
+        shares = self.demand_function.get_shares(prices, self.A)
+        profits = (prices - self.MC) * shares
+
+        firm_shares = []
+        firm_profits = []
+
+        i = 0
+        for action in actions:
+            sum_shares = 0
+            sum_profits = 0
+
+            for price in action:
+                sum_shares += shares[i]
+                sum_profits += profits[i]
+                i += 1
+            
+            firm_shares.append(sum_shares)
+            firm_profits.append(sum_profits)
+        
+        return STATE.State(actions, prices, shares, profits, firm_shares, firm_profits)
 
     def simulate(self, num_periods):
         '''
@@ -49,136 +111,56 @@ class Market():
         Simulates market
         '''
 
-        if self.state_space == None:
-            self.set_state_space()
-
-            for firm in self.firms:
-                firm.set_action_space()
-                firm.strategy.initialize(self.state_space, firm.action_space, self)
-
         states = []
 
         if self.current_state == None:
-            for product in self.products:
-                self.P[product.productindex] = np.random.choice(product.pricerange)
+            actions = tuple([firm.get_action(None, 0) for firm in self.firms])
+
+            self.current_state = self.state_space[actions]
             
-            self.current_state = self.create_state()
             states.append(self.current_state)
 
 
-        for period in range(num_periods-1):
-            for firm in self.firms:
-                firm.set_prices(self.current_state)
+        for period in range(1, num_periods+1):
+            actions = tuple([firm.get_action(self.current_state, period) for firm in self.firms])
             
-            new_state = self.create_state(self.current_state.t+1)
+            new_state = self.state_space[actions]
 
-            for firm in self.firms:
-                firm.update_strategy(self.current_state, new_state)
+            
+            for i in range(len(self.firms)):
+                self.firms[i].update_strategy(self.current_state, new_state, new_state.firm_profits[i])
 
             self.current_state = new_state
             states.append(self.current_state)
 
         return states
 
-    
-    def set_state_space(self):
-        '''
-        Gives state space
-        '''
-        prices = []
-
-        for firm in self.firms:
-            for product in firm.products:
-                prices.append(product.pricerange)
-        
-        price_space = list(itertools.product(*prices))
-
-        self.state_space = {}
-
-        A = np.array(self.A)
-        MC = np.array(self.MC)
-
-        for price in price_space:
-            P = np.array(price)
-            shares = self.demand_function.get_shares(P, A)
-            profits = (price - MC) * shares
-            self.state_space[price] = STATE.State(price, shares, profits)
-
-
-    
-    def set_priceranges(self, num_prices, include_NE_and_Mono=True, extra=0.1):
-        '''
-        Takes number of prices
-        Sets price ranges for products
-        '''
-        Nash = self.get_nash_prices()
-        Mono = self.get_monopoly_prices()
-
-        more = extra * (Mono-Nash)
-
-        start = Nash-more
-        end = Mono+more
-
-        i = 0
-        for firm in self.firms:
-            for product in firm.products:
-                if include_NE_and_Mono:
-                    pricerange = np.linspace(start[i], end[i], num_prices-2)
-                    product.pricerange =  np.sort(np.concatenate(([Nash[i], Mono[i]], pricerange)))
-
-                else:
-                    product.pricerange = np.linspace(start[i], end[i], num_prices)
-                i += 1
-
-
 
     def get_nash_prices(self):
         '''
         Gives Nash prices
         '''
+        return lib.Newton(self.MC, self.A, self.MC, self.demand_function.fun)
 
-        P0 = np.array(self.MC)
-        A = np.array(self.A)
-        MC = np.array(self.MC)
-
-        return lib.Newton(P0, A, MC, self.demand_function.fun)
-    
     def get_nash_profits(self):
         '''
         Gives Nash profits
         '''
         P = np.array(self.get_nash_prices())
-        A = np.array(self.A)
-        MC = np.array(self.MC)
-        shares = self.demand_function.get_shares
-
-        profits = lib.Profit(P, A, MC, shares)
-        return profits
+        return lib.Profit(P, self.A, self.MC, self.demand_function.fun) 
     
     def get_monopoly_prices(self):
         '''
         Gives monopoly prices
         '''
-        P0 = np.array(self.MC)
-        A = np.array(self.A)
-        MC = np.array(self.MC)
+        return lib.Monopoly_Prices(self.MC, self.A, self.MC, self.demand_function.fun)
 
-        return lib.Monopoly_Prices(P0, A, MC, self.demand_function.fun)
-    
     def get_monopoly_profits(self):
         '''
         Gives monopoly profits
         '''
         P = np.array(self.get_monopoly_prices())
-        A = np.array(self.A)
-        MC = np.array(self.MC)
-        shares = self.demand_function.get_shares
+        return lib.Profit(P, self.A, self.MC, self.demand_function.fun)
 
-        profits = lib.Profit(P, A, MC, shares)
-        return profits
-    
-    def get_firms(self):
-        '''
-        Gives firms
-        '''
-        return self.firms
+
+ 

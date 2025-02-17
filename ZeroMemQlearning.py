@@ -10,10 +10,11 @@ class ZeroMemQlearning():
         self.discount_factor = discount_factor
         self.learning_rate = learning_rate
         self.exploration_rate = exploration_rate
+        self.action_space = None
         self.Q = None
 
 
-    def initialize(self, state_space, action_space):
+    def initialize(self, state_space, action_space, firmindex):
         '''
         Initializes strategy
         '''
@@ -23,12 +24,12 @@ class ZeroMemQlearning():
             self.Q[action] = 0.0
 
     
-    def get_action(self, state):
+    def get_action(self, state, t):
         '''
         Takes state
         Gives action
         '''
-        explore = self.exploration_rate(state.t)
+        explore = self.exploration_rate(t)
 
         if np.random.uniform(0, 1) < explore:
             action = random.choice(list(self.Q.keys()))

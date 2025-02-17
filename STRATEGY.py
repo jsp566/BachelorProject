@@ -19,7 +19,7 @@ class Strategy():
         pass
         
 
-    def get_action(self, state):
+    def get_action(self, state, t):
         '''
         Takes state
         Gives action

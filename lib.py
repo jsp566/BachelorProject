@@ -55,22 +55,25 @@ def Newton(P0, A, MC, Share):
     return fsolve(fun, P0, xtol=1e-10)
     
 
+def Make_Price_Ranges(P0, A, MC, Share, num_p, include_NE_and_Mono=True, extra=0.1):
+    Nash = Newton(P0, A, MC, Share)
+    Mono = Monopoly_Prices(P0, A, MC, Share)
 
+    more = extra * (Mono-Nash)
 
-def Make_Price_Range(P0, A, MC, Share, i, num_p, include_NE_and_Mono=True, extra=0.1):
-    Nash = Newton(P0, A, MC, Share)[i]
-    Mono = Monopoly_Prices(P0, A, MC, Share)[i]
+    start = Nash-more
+    end = Mono+more
 
-    if include_NE_and_Mono:
-        start = Nash*(1-extra)
-        end = Mono*(1+extra)
-        result = np.linspace(start, end, num_p-2)
-        return np.sort(np.concatenate(([Nash, Mono], result)))
+    price_ranges = []
 
-    else:
-        start = Nash*(1-extra)
-        end = Mono*(1+extra)
-        return np.linspace(start, end, num_p)
+    for i in range(len(P0)):
+        if include_NE_and_Mono:
+            pricerange = np.linspace(start[i], end[i], num_p-2)
+            price_ranges.append(np.sort(np.concatenate(([Nash[i], Mono[i]], pricerange))))
+        else:
+            price_ranges.append(np.linspace(start[i], end[i], num_p))
+            
+    return price_ranges
 
 def get_collusion_quotient(average: np.array, nash: np.array, monopoly:np.array):
     return (average- nash)/(monopoly-nash)
