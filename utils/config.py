@@ -1,11 +1,6 @@
 import numpy as np
-<<<<<<< HEAD:config.py
-import Agent.Strategies.Qlearning as Qlearning
-
-=======
 import Classes.Qlearning as Qlearning
 import os
->>>>>>> main:utils/config.py
 # Demand function
 mu = 0.25
 def Share(P, A):

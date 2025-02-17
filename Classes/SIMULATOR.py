@@ -1,16 +1,8 @@
-<<<<<<< HEAD:SIMULATOR.py
-import Environment.MARKET as MARKET
-import Environment.DEMAND as DEMAND
-
-import Agent.FIRM as FIRM
-import Agent.PRODUCT as PRODUCT
-=======
 import Classes.MARKET as MARKET
 import Classes.DEMAND as DEMAND
 
 import Classes.FIRM as FIRM
 import Classes.PRODUCT as PRODUCT
->>>>>>> main:Classes/SIMULATOR.py
 
 
 def simulate(config):
