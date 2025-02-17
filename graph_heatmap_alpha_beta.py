@@ -24,11 +24,7 @@ def main():
             new_config = config.create_config(exploration_rate=fun, alpha=alpha, beta=beta)
             sum_collusion_quotients = 0
             for i in range(times):
-            
-                start = time.time()
-
                 market, states = SIMULATOR.simulate(new_config)
-
 
                 profits = np.array([state.profits for state in states[-1000:]])
 
