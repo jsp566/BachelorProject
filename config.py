@@ -1,5 +1,5 @@
 import numpy as np
-import Qlearning
+import Agent.Strategies.Qlearning as Qlearning
 
 # Demand function
 mu = 0.25

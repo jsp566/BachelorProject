@@ -2,7 +2,7 @@
 import itertools
 import lib
 import numpy as np
-import STATE
+import Environment.STATE as STATE
 
 class Market():
     '''

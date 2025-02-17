@@ -6,7 +6,8 @@ import time
 
 # simulate
 start = time.time()
-market, states = SIMULATOR.simulate(config.defaultconfig)
+new_config = config.create_config()
+market, states = SIMULATOR.simulate(new_config)
 end = time.time()
 print(f"Time: {end-start}s")
 
@@ -29,13 +30,13 @@ nash2 = [nash[1] for state in states]
 
 
 plt.plot(period, price1, label='Price 1')
-#plt.plot(period, mono1, label='Mono 1', linestyle='dashed')
-#plt.plot(period, nash1, label='Nash 1', linestyle='dashed')
+plt.plot(period, mono1, label='Mono 1', linestyle='dashed')
+plt.plot(period, nash1, label='Nash 1', linestyle='dashed')
 
 
 plt.plot(period, price2, label='Price 2')
-#plt.plot(period, mono2, label='Mono 2', linestyle='dashed')
-#plt.plot(period, nash2, label='Nash 2', linestyle='dashed')
+plt.plot(period, mono2, label='Mono 2', linestyle='dashed')
+plt.plot(period, nash2, label='Nash 2', linestyle='dashed')
 
 plt.legend()
 plt.show()
