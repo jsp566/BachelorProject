@@ -13,6 +13,7 @@ def main():
     times = 25
 
     average_collusion_quotient = []
+    sim_start = time.time()
     for gamma in discount_factors:
         print(f"gamma = {gamma}")
         new_config = config.create_config(discount_factor=gamma)
@@ -24,7 +25,7 @@ def main():
             market, states = SIMULATOR.simulate(new_config)
 
 
-            profits = np.array([state.profits for state in states])
+            profits = np.array([state.profits for state in states[-1000:]])
 
             mean = np.mean(profits)
             nash = np.mean(market.get_nash_profits())
@@ -38,14 +39,15 @@ def main():
             print(f"Time: {end-start}s")
         average_collusion_quotient.append(sum_collusion_quotients/times)
 
-
+    sim_end = time.time()
+    print(f"Total time: {sim_end-sim_start}s")
     
-
-
+    #plot
     plt.plot(discount_factors, average_collusion_quotient)
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Discount factor')
-
+    plt.figtext(0.15, 0.85, f"Total time: {sim_end-sim_start:.2f}s", fontsize=10)
+    
     filename = basename(__file__)
     plt.savefig(config.create_filepath(filename))
 

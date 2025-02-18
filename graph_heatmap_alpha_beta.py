@@ -21,7 +21,7 @@ def main():
             fun = lambda t: np.exp(-beta*t) #lambda function for exploration rate
             print(f"alpha = {alpha}, beta = {beta}")
             start = time.time()
-            new_config = config.create_config(exploration_rate=fun, alpha=alpha, beta=beta)
+            new_config = config.create_config(exploration_rate=fun, learning_rate=alpha)
             sum_collusion_quotients = 0
             for i in range(times):
                 market, states = SIMULATOR.simulate(new_config)
@@ -40,7 +40,8 @@ def main():
             print(f"Time: {end-start}s")
             average_collusion_quotient.append(sum_collusion_quotients/times)
 
-
+    sim_end = time.time()
+    print(f"Total time: {sim_end-sim_start}s")
     #Plotting heatmap of collusion quotients for different beta and alpha values
     average_collusion_quotient = np.array(average_collusion_quotient).reshape(len(alphas), len(betas))
     plt.imshow(average_collusion_quotient, cmap='hot_r', interpolation='nearest')
@@ -49,6 +50,7 @@ def main():
     plt.colorbar()
     plt.ylabel(r'$\alpha$')
     plt.xlabel(r'$\beta$x$10^5$')
+    plt.figtext(0.15, 0.85, f"Total time: {sim_end-sim_start:.2f}s", fontsize=10)
     filename = basename(__file__)
     plt.savefig(config.create_filepath(filename))
     plt.show()
