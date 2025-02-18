@@ -78,3 +78,6 @@ def Make_Price_Ranges(P0, A, MC, Share, num_p, include_NE_and_Mono=True, extra=0
 def get_collusion_quotient(average: np.array, nash: np.array, monopoly:np.array):
     return (average- nash)/(monopoly-nash)
 
+
+def moving_average(x, w):
+    return np.convolve(x, np.ones(w), 'valid') / w
