@@ -135,6 +135,15 @@ class Market():
 
         return states
 
+    def reset(self):
+        '''
+        Resets market
+        '''
+        self.current_state = None
+        for firm in self.firms:
+            firm.prev_action = None
+            firm.strategy.initialize(self.state_space, firm.action_space, firm.index)
+
 
     def get_nash_prices(self):
         '''

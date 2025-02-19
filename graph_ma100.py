@@ -17,18 +17,18 @@ def main():
     sum_collusion_quotients = 0
     collusion_quotient_list = []
     sim_start = time.time()
-        for i in range(times):
-    
-            market, states = SIMULATOR.simulate(new_config)
-            profits = np.array([state.profits for state in states])
-            profits = np.mean(profits, axis=1)
-            nash = np.mean(market.get_nash_profits())
-            mono = np.mean(market.get_monopoly_profits())
+    for i in range(times):
 
-            for i in range(maxit):
-                collusion_quotient = lib.get_collusion_quotient(profits[i], nash, mono)
-                collusion_quotient_list.append(collusion_quotient)
-            ma100 += np.array(lib.moving_average(collusion_quotient_list, 100))
+        market, states = SIMULATOR.simulate(new_config)
+        profits = np.array([state.profits for state in states])
+        profits = np.mean(profits, axis=1)
+        nash = np.mean(market.get_nash_profits())
+        mono = np.mean(market.get_monopoly_profits())
+
+        for i in range(maxit):
+            collusion_quotient = lib.get_collusion_quotient(profits[i], nash, mono)
+            collusion_quotient_list.append(collusion_quotient)
+        ma100 += np.array(lib.moving_average(collusion_quotient_list, 100))
 
     #linear space length of ma100
     repetitions = np.linspace(0, len(ma100), len(ma100))

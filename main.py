@@ -15,7 +15,7 @@ def execute_scripts(scripts):
             print(f'{script} not found')
 
 def main():
-    scripts = ['graph_heatmap_alpha_beta.py']
+    scripts = ['graph_default.py','graph_heatmap_alpha_beta.py']
     execute_scripts(scripts)
 
 if __name__ == "__main__":

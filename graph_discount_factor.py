@@ -51,3 +51,5 @@ def main():
     filename = basename(__file__)
     plt.savefig(config.create_filepath(filename))
 
+if __name__ == "__main__":
+    main()
