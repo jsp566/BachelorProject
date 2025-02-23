@@ -55,7 +55,7 @@ def main():
     print(f"Total time: {sim_end-sim_start}s")
     #Plotting heatmap of collusion quotients for different beta and alpha values
     average_collusion_quotient = np.array(average_collusion_quotient).reshape(len(alphas), len(betas))
-    plt.imshow(average_collusion_quotient, cmap='hot_r', interpolation='nearest')
+    plt.imshow(average_collusion_quotient, cmap='hot_r', origin='lower', interpolation='nearest')
     #plt.xticks(ticks = [5*10**(-6),1*10**(-5),1.5*10**(-5)], labels=[0.5,1,1.5])
     #plt.yticks(ticks = [0.05,0.1,0.15,0.2], labels=[0.05,0.1,0.15,0.2])
     plt.colorbar()

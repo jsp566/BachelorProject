@@ -32,6 +32,7 @@ def main():
     nash = np.mean(market.get_nash_profits())
     mono = np.mean(market.get_monopoly_profits())
 
+
     average_collusion_quotient = []
     for gamma in discount_factors:
         new_config = config.create_config(discount_factor=gamma)
