@@ -5,6 +5,17 @@ import utils.config as config
 import time
 import matplotlib.pyplot as plt
 from os.path import basename
+import cProfile
+import pstats
+
+
+def profile_main():
+    cProfile.run('main()', 'restats')
+    p = pstats.Stats('restats')
+    p.strip_dirs().sort_stats('cumulative').print_stats(10)
+
+if __name__ == "__main__":
+    profile_main()
 
 
 def main():

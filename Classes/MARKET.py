@@ -3,6 +3,7 @@ import itertools
 import utils.lib as lib
 import numpy as np
 import Classes.STATE as STATE
+from numba import njit
 
 class Market():
     '''
@@ -104,7 +105,7 @@ class Market():
             firm_profits.append(sum_profits)
         
         return STATE.State(actions, prices, shares, profits, firm_shares, firm_profits)
-
+    
     def simulate(self, num_periods):
         '''
         Takes number of periods

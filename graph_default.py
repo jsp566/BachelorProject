@@ -6,15 +6,21 @@ import time
 import matplotlib.pyplot as plt
 
 from os.path import basename
+import cProfile
+import pstats
+from numba import jit
 
 
+
+
+@jit(parallel=True)
 def main():
     # Start
     market = SIMULATOR.setup(config.defaultconfig)
     nash = np.mean(market.get_nash_profits())
     mono = np.mean(market.get_monopoly_profits())
 
-    times = 100
+    times = 1
     iterations = 1000000
 
     state_frec = {state: 0 for state in market.state_space}
@@ -79,5 +85,11 @@ def main():
     filename = "collusion_quotient_" + basename(__file__)
     plt.savefig(config.create_filepath(filename))
 
+
+def profile_main():
+    cProfile.run('main()', 'restats')
+    p = pstats.Stats('restats')
+    p.strip_dirs().sort_stats('cumulative').print_stats(10)
+
 if __name__ == "__main__":
-    main()
+    profile_main()

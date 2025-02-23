@@ -29,6 +29,7 @@ class Firm():
         product.firm = self
         self.products.append(product)
     
+    
     def get_action(self, state, t):
         '''
         Takes state and market
