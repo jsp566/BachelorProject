@@ -50,9 +50,8 @@ def main():
     print("Simulation time: ", sim_end - sim_start)
     plt.plot(repetitions, ma100)
     plt.ylabel('Collusion Quotient')
-    plt.xlabel('Discount factor')
+    plt.xlabel('Period')
     plt.figtext(0.15, 0.85, f"Total time: {sim_end-sim_start:.2f}s", fontsize=10)
-    plt.show()
     filename = basename(__file__)
     plt.savefig(config.create_filepath(filename))
 
