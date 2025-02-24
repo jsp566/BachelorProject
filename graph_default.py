@@ -9,6 +9,8 @@ import pstats
 import multiprocessing
 from multiprocessing import Pool, cpu_count
 
+filename =  basename(__file__)
+
 def run_simulation(new_config, nash, mono,state_frec, maxit):
     """ Runs a single simulation and computes collusion quotient moving average. """
     market, states = SIMULATOR.simulate(new_config)
@@ -18,7 +20,7 @@ def run_simulation(new_config, nash, mono,state_frec, maxit):
         local_state_frec[state.actions] += 1
 
     # Extract and process profits
-    profits = np.array([state.profits for state in states])
+    profits = np.array([state.profits for state in states[-1000:]])
     mean= np.mean(profits, axis=1)
 
     # Compute collusion quotient
@@ -77,9 +79,7 @@ def main():
     nash_prices = market.get_nash_prices()
 
     closest_nash_0 = find_closest(nash_prices[0], market.firms[0].action_space)
-    closest_nash_1 = find_closest(nash_prices[0], market.firms[1].action_space)
     closest_mono_0 = find_closest(monopoly_prices[0], market.firms[0].action_space)
-    closest_mono_1 = find_closest(monopoly_prices[0], market.firms[1].action_space)
  
 
     plt.imshow(heatmap, cmap='hot_r', interpolation='nearest', origin='lower', extent=[market.firms[0].action_space[0][0], market.firms[0].action_space[-1][0], market.firms[1].action_space[0][0], market.firms[1].action_space[-1][0]])
@@ -89,24 +89,17 @@ def main():
 
     plt.ylabel('Firm 1 price')
     plt.xlabel('Firm 2 price')
-    filename = "state_frec_" + basename(__file__)
-    plt.savefig(config.create_filepath(filename))
+    plt.savefig(config.create_filepath("state_frec_" + filename))
 
     plt.clf()
     # Collusion Quotient:
     average_collusion_quotient = sum_collusion_quotients/times
-    period = range(iterations+1)
+    period = range(len(average_collusion_quotient))
     plt.plot(period, average_collusion_quotient)
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Period')
-    filename = "collusion_quotient_" + basename(__file__)
-    plt.savefig(config.create_filepath(filename))
+    plt.savefig(config.create_filepath("collusion_quotient_" +filename))
 
 
-def profile_main():
-    cProfile.run('main()', 'restats')
-    p = pstats.Stats('restats')
-    p.strip_dirs().sort_stats('cumulative').print_stats(10)
-    p.strip_dirs().sort_stats('calls').print_stats(30)
 if __name__ == "__main__":
-    profile_main()
+    config.profile_main(main,filename)
