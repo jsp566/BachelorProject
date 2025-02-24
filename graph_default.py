@@ -18,7 +18,7 @@ def run_simulation(new_config, nash, mono,state_frec, maxit):
         local_state_frec[state.actions] += 1
 
     # Extract and process profits
-    profits = np.array([state.profits for state in states[-1000:]])
+    profits = np.array([state.profits for state in states])
     mean= np.mean(profits, axis=1)
 
     # Compute collusion quotient
