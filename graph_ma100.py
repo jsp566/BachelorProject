@@ -9,6 +9,7 @@ from multiprocessing import Pool, cpu_count
 import cProfile
 import pstats
 
+filename = basename(__file__)
 
 
 def run_simulation(new_config, nash, mono, maxit):
@@ -31,7 +32,7 @@ def main():
     nash = np.mean(market.get_nash_profits())
     mono = np.mean(market.get_monopoly_profits())
 
-    times = 1000
+    times = 8
     maxit = 1500000
     new_config = config.create_config(iterations=maxit)
 
@@ -54,11 +55,6 @@ def main():
     filename = basename(__file__)
     plt.savefig(config.create_filepath(filename))
 
-def profile_main():
-    cProfile.run('main()', 'restats')
-    p = pstats.Stats('restats')
-    p.strip_dirs().sort_stats('cumulative').print_stats(10)
-    p.strip_dirs().sort_stats('calls').print_stats(30)
 
 if __name__ == "__main__":
-    profile_main()
+    config.profile_main(main,filename)

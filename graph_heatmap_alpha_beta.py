@@ -8,15 +8,7 @@ from os.path import basename
 import cProfile
 import pstats
 
-
-def profile_main():
-    cProfile.run('main()', 'restats')
-    p = pstats.Stats('restats')
-    p.strip_dirs().sort_stats('cumulative').print_stats(10)
-
-if __name__ == "__main__":
-    profile_main()
-
+filename = basename(__file__)
 
 def main():
     # Start
@@ -68,4 +60,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    config.profile_main(main,filename)
