@@ -1,0 +1,230 @@
+Mon Feb 24 14:33:22 2025    profile.prof
+
+         7497241 function calls (7493572 primitive calls) in 8.495 seconds
+
+   Ordered by: cumulative time
+   List reduced from 1821 to 50 due to restriction <50>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.002    0.002    8.495    8.495 test2.py:13(main)
+        2    0.000    0.000    7.267    3.633 Classes\SIMULATOR.py:22(simulate)
+        2    0.697    0.348    7.036    3.518 Classes\MARKET.py:109(simulate)
+   200000    0.218    0.000    4.691    0.000 Classes\MARKET.py:126(<listcomp>)
+   400004    0.261    0.000    4.473    0.000 Classes\FIRM.py:33(get_action)
+   400004    1.036    0.000    4.212    0.000 Classes\Qlearning.py:40(get_action)
+   400000    0.232    0.000    1.581    0.000 Classes\FIRM.py:44(update_strategy)
+   400000    0.945    0.000    1.349    0.000 Classes\Qlearning.py:65(update_strategy)
+   400004    1.239    0.000    1.239    0.000 {method 'uniform' of 'numpy.random.mtrand.RandomState' objects}
+   400008    0.379    0.000    0.962    0.000 \random.py:367(choice)
+   400004    0.689    0.000    0.689    0.000 utils\config.py:16(Calvani_Exploration_Rate)
+   400008    0.342    0.000    0.475    0.000 \random.py:235(_randbelow_with_getrandbits)
+        1    0.000    0.000    0.441    0.441 \matplotlib\pyplot.py:3582(plot)
+        4    0.000    0.000    0.424    0.106 \matplotlib\pyplot.py:2538(gca)
+       68    0.002    0.000    0.412    0.006 \scipy\optimize\_minimize.py:51(minimize)
+       68    0.017    0.000    0.409    0.006 \scipy\optimize\_optimize.py:1412(_minimize_bfgs)
+        4    0.000    0.000    0.397    0.099 utils\lib.py:52(Newton)
+        4    0.000    0.000    0.397    0.099 scipy\optimize\_minpack_py.py:51(fsolve)
+        4    0.000    0.000    0.397    0.099 scipy\optimize\_minpack_py.py:187(_root_hybr)
+       32    0.000    0.000    0.397    0.012 utils\lib.py:53(<lambda>)
+       32    0.000    0.000    0.396    0.012 utils\lib.py:53(<listcomp>)
+       64    0.000    0.000    0.396    0.006 utils\lib.py:25(Best_Response)
+        4    0.000    0.000    0.390    0.097 {built-in method scipy.optimize._minpack._hybrd}
+   471937    0.388    0.000    0.388    0.000 {built-in method builtins.max}
+        5    0.000    0.000    0.372    0.074 matplotlib\pyplot.py:987(gcf)
+        1    0.000    0.000    0.372    0.372 matplotlib\pyplot.py:777(figure)
+        1    0.000    0.000    0.372    0.372 matplotlib\pyplot.py:462(new_figure_manager)
+        3    0.000    0.000    0.324    0.108 \Classes\MARKET.py:40(set_priceranges)
+      368    0.002    0.000    0.315    0.001 scipy\optimize\_optimize.py:1223(_line_search_wolfe12)
+        1    0.000    0.000    0.306    0.306 matplotlib\pyplot.py:1129(savefig)
+        1    0.000    0.000    0.305    0.305 matplotlib\figure.py:3234(savefig)
+        1    0.000    0.000    0.305    0.305 matplotlib\backend_bases.py:2052(print_figure)
+        1    0.000    0.000    0.304    0.304 matplotlib\backend_bases.py:2043(<lambda>)
+        1    0.000    0.000    0.304    0.304 matplotlib\backends\backend_agg.py:450(print_png)
+        1    0.000    0.000    0.304    0.304 matplotlib\backends\backend_agg.py:440(_print_pil)
+        1    0.000    0.000    0.301    0.301 matplotlib\backend_bases.py:3404(new_figure_manager)
+        1    0.000    0.000    0.300    0.300 matplotlib\backend_bases.py:3413(new_figure_manager_given_figure)
+        1    0.000    0.000    0.300    0.300 matplotlib\backend_bases.py:1774(new_manager)
+        1    0.000    0.000    0.299    0.299 matplotlib\backends\_backend_tk.py:479(create_with_canvas)
+      368    0.002    0.000    0.297    0.001 scipy\optimize\_linesearch.py:38(line_search_wolfe1)
+      368    0.002    0.000    0.295    0.001 scipy\optimize\_linesearch.py:101(scalar_search_wolfe1)
+      368    0.007    0.000    0.291    0.001 scipy\optimize\_dcsrch.py:201(__call__)
+        3    0.000    0.000    0.287    0.096 utils\lib.py:58(Make_Price_Ranges)
+        1    0.000    0.000    0.260    0.260 \matplotlib\backends\backend_agg.py:381(draw)
+        1    0.000    0.000    0.256    0.256 \matplotlib\artist.py:93(draw_wrapper)
+     94/1    0.001    0.000    0.256    0.256 \matplotlib\artist.py:54(draw_wrapper)
+        1    0.000    0.000    0.256    0.256 \matplotlib\figure.py:3134(draw)
+      2/1    0.000    0.000    0.255    0.255 \matplotlib\image.py:114(_draw_list_compositing_images)
+        1    0.000    0.000    0.255    0.255 \matplotlib\axes\_base.py:3005(draw)
+     1068    0.001    0.000    0.226    0.000 \scipy\optimize\_differentiable_functions.py:265(_update_grad)
+
+
+Mon Feb 24 14:33:22 2025    profile.prof
+
+         7497241 function calls (7493572 primitive calls) in 8.495 seconds
+
+   Ordered by: internal time
+   List reduced from 1821 to 50 due to restriction <50>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+   400004    1.239    0.000    1.239    0.000 {method 'uniform' of 'numpy.random.mtrand.RandomState' objects}
+   400004    1.036    0.000    4.212    0.000 Classes\Qlearning.py:40(get_action)
+   400000    0.945    0.000    1.349    0.000 Classes\Qlearning.py:65(update_strategy)
+        2    0.697    0.348    7.036    3.518 Classes\MARKET.py:109(simulate)
+   400004    0.689    0.000    0.689    0.000 utils\config.py:16(Calvani_Exploration_Rate)
+   471937    0.388    0.000    0.388    0.000 {built-in method builtins.max}
+   400008    0.379    0.000    0.962    0.000 Lib\random.py:367(choice)
+   400008    0.342    0.000    0.475    0.000 Lib\random.py:235(_randbelow_with_getrandbits)
+   400004    0.261    0.000    4.473    0.000 Classes\FIRM.py:33(get_action)
+   400000    0.232    0.000    1.581    0.000 Classes\FIRM.py:44(update_strategy)
+   200000    0.218    0.000    4.691    0.000 Classes\MARKET.py:126(<listcomp>)
+    70489    0.173    0.000    0.173    0.000 Classes\Qlearning.py:58(<listcomp>)
+1008479/1008467    0.139    0.000    0.139    0.000 {built-in method builtins.len}
+        7    0.137    0.020    0.137    0.020 {method 'draw_path' of 'matplotlib.backends._backend_agg.RendererAgg' objects}
+        1    0.136    0.136    0.136    0.136 {built-in method _tkinter.create}
+      166    0.098    0.001    0.098    0.001 {method 'call' of '_tkinter.tkapp' objects}
+        2    0.086    0.043    0.151    0.076 test2.py:32(<listcomp>)
+     4114    0.084    0.000    0.084    0.000 {built-in method numpy.array}
+   492273    0.078    0.000    0.078    0.000 {method 'getrandbits' of '_random.Random' objects}
+   471395    0.069    0.000    0.069    0.000 {method 'values' of 'dict' objects}
+   200000    0.065    0.000    0.065    0.000 \utils\lib.py:78(get_collusion_quotient)
+   400008    0.055    0.000    0.055    0.000 {method 'bit_length' of 'int' objects}
+   329519    0.050    0.000    0.050    0.000 {method 'keys' of 'dict' objects}
+   207070    0.039    0.000    0.039    0.000 {method 'append' of 'list' objects}
+      792    0.039    0.000    0.221    0.000 \scipy\optimize\_numdiff.py:276(approx_derivative)
+        8    0.038    0.005    0.038    0.005 {method 'encode' of 'ImagingEncoder' objects}
+     1690    0.037    0.000    0.041    0.000 \numpy\core\numerictypes.py:357(issubdtype)
+     7976    0.031    0.000    0.031    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     2397    0.022    0.000    0.044    0.000 utils\config.py:8(Share)
+      181    0.019    0.000    0.020    0.000 {built-in method nt.stat}
+        2    0.018    0.009    0.018    0.009 test2.py:28(<listcomp>)
+        6    0.017    0.003    0.017    0.003 Classes\Qlearning.py:17(initialize)
+        5    0.017    0.003    0.017    0.003 {built-in method _imp.create_dynamic}
+       68    0.017    0.000    0.409    0.006 scipy\optimize\_optimize.py:1412(_minimize_bfgs)
+     1292    0.013    0.000    0.035    0.000 scipy\optimize\_dcsrch.py:269(_iterate)
+        2    0.013    0.006    0.048    0.024 matplotlib\font_manager.py:1393(_findfont_cached)
+    79461    0.012    0.000    0.012    0.000 {method 'items' of 'dict' objects}
+     5406    0.012    0.000    0.037    0.000 numpy\core\fromnumeric.py:71(_wrapreduction)
+     1584    0.012    0.000    0.023    0.000 numpy\core\fromnumeric.py:1407(resize)
+      792    0.011    0.000    0.105    0.000 scipy\optimize\_numdiff.py:580(_dense_difference)
+     1624    0.010    0.000    0.010    0.000 utils\lib.py:20(Set_Price)
+     9019    0.010    0.000    0.011    0.000 {built-in method numpy.asarray}
+     1688    0.009    0.000    0.015    0.000 scipy\_lib\array_api_compat\array_api_compat\common\_aliases.py:270(_asarray)
+       27    0.009    0.000    0.009    0.000 {built-in method marshal.loads}
+     3343    0.009    0.000    0.009    0.000 {method 'astype' of 'numpy.ndarray' objects}
+     1722    0.008    0.000    0.042    0.000 utils\lib.py:4(Profit)
+      792    0.008    0.000    0.019    0.000 scipy\optimize\_numdiff.py:12(_adjust_scheme_to_bounds)
+    30399    0.007    0.000    0.011    0.000 {built-in method builtins.isinstance}
+      924    0.007    0.000    0.191    0.000 scipy\optimize\_linesearch.py:87(derphi)
+     2140    0.007    0.000    0.019    0.000 numpy\core\numeric.py:2378(array_equal)
+
+
+Mon Feb 24 14:33:22 2025    profile.prof
+
+         7497241 function calls (7493572 primitive calls) in 8.495 seconds
+
+   Ordered by: call count
+   List reduced from 1821 to 100 due to restriction <100>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+1008479/1008467    0.139    0.000    0.139    0.000 {built-in method builtins.len}
+   492273    0.078    0.000    0.078    0.000 {method 'getrandbits' of '_random.Random' objects}
+   471937    0.388    0.000    0.388    0.000 {built-in method builtins.max}
+   471395    0.069    0.000    0.069    0.000 {method 'values' of 'dict' objects}
+   400008    0.379    0.000    0.962    0.000 Lib\random.py:367(choice)
+   400008    0.342    0.000    0.475    0.000 Lib\random.py:235(_randbelow_with_getrandbits)
+   400008    0.055    0.000    0.055    0.000 {method 'bit_length' of 'int' objects}
+   400004    0.689    0.000    0.689    0.000 utils\config.py:16(Calvani_Exploration_Rate)
+   400004    0.261    0.000    4.473    0.000 Classes\FIRM.py:33(get_action)
+   400004    1.036    0.000    4.212    0.000 Classes\Qlearning.py:40(get_action)
+   400004    1.239    0.000    1.239    0.000 {method 'uniform' of 'numpy.random.mtrand.RandomState' objects}
+   400000    0.232    0.000    1.581    0.000 Classes\FIRM.py:44(update_strategy)
+   400000    0.945    0.000    1.349    0.000 Classes\Qlearning.py:65(update_strategy)
+   329519    0.050    0.000    0.050    0.000 {method 'keys' of 'dict' objects}
+   207070    0.039    0.000    0.039    0.000 {method 'append' of 'list' objects}
+   200000    0.065    0.000    0.065    0.000 utils\lib.py:78(get_collusion_quotient)
+   200000    0.218    0.000    4.691    0.000 Classes\MARKET.py:126(<listcomp>)
+    79461    0.012    0.000    0.012    0.000 {method 'items' of 'dict' objects}
+    70489    0.173    0.000    0.173    0.000 Classes\Qlearning.py:58(<listcomp>)
+    30399    0.007    0.000    0.011    0.000 {built-in method builtins.isinstance}
+    12150    0.002    0.000    0.002    0.000 {method 'get' of 'dict' objects}
+     9302    0.002    0.000    0.002    0.000 {built-in method builtins.abs}
+     9019    0.010    0.000    0.011    0.000 {built-in method numpy.asarray}
+     7976    0.031    0.000    0.031    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     6186    0.003    0.000    0.004    0.000 {built-in method builtins.getattr}
+     5764    0.002    0.000    0.002    0.000 {built-in method builtins.issubclass}
+     5406    0.012    0.000    0.037    0.000 \numpy\core\fromnumeric.py:71(_wrapreduction)
+     5406    0.005    0.000    0.005    0.000 \numpy\core\fromnumeric.py:72(<dictcomp>)
+     5222    0.002    0.000    0.002    0.000 {built-in method numpy.asanyarray}
+     4493    0.001    0.000    0.001    0.000 {function RcParams.__getitem__ at 0x00000222F6872D40}
+     4488    0.002    0.000    0.003    0.000 \matplotlib\__init__.py:703(_get)
+     4486    0.003    0.000    0.007    0.000 \matplotlib\__init__.py:754(__getitem__)
+     4114    0.084    0.000    0.084    0.000 {built-in method numpy.array}
+     3899    0.002    0.000    0.004    0.000 <frozen abc>:117(__instancecheck__)
+     3899    0.001    0.000    0.002    0.000 {built-in method _abc._abc_instancecheck}
+     3828    0.001    0.000    0.001    0.000 {method 'lower' of 'str' objects}
+3573/3244    0.002    0.000    0.002    0.000 \matplotlib\artist.py:317(stale)
+     3540    0.003    0.000    0.003    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+     3380    0.003    0.000    0.004    0.000 \numpy\core\numerictypes.py:283(issubclass_)
+     3343    0.009    0.000    0.009    0.000 {method 'astype' of 'numpy.ndarray' objects}
+     3109    0.005    0.000    0.026    0.000 numpy\core\fromnumeric.py:2177(sum)
+     3109    0.001    0.000    0.001    0.000 numpy\core\fromnumeric.py:2172(_sum_dispatcher)
+     3092    0.001    0.000    0.001    0.000 {built-in method numpy.geterrobj}
+     3021    0.000    0.000    0.000    0.000 {built-in method builtins.id}
+     2961    0.001    0.000    0.001    0.000 {built-in method builtins.hasattr}
+     2812    0.001    0.000    0.001    0.000 numpy\core\multiarray.py:741(dot)
+     2512    0.002    0.000    0.006    0.000 scipy\_lib\array_api_compat\array_api_compat\common\_aliases.py:232(astype)
+     2508    0.001    0.000    0.001    0.000 {method 'ravel' of 'numpy.ndarray' objects}
+     2397    0.022    0.000    0.044    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\config.py:8(Share)
+     2376    0.003    0.000    0.006    0.000 numpy\core\fromnumeric.py:1768(ravel)
+     2376    0.001    0.000    0.001    0.000 numpy\core\fromnumeric.py:1764(_ravel_dispatcher)
+     2376    0.001    0.000    0.003    0.000 scipy\optimize\_numdiff.py:205(<genexpr>)
+     2285    0.003    0.000    0.010    0.000 numpy\core\fromnumeric.py:53(_wrapfunc)
+     2222    0.000    0.000    0.000    0.000 matplotlib\font_manager.py:700(get_size)
+     2204    0.000    0.000    0.000    0.000 matplotlib\font_manager.py:655(get_family)
+     2191    0.002    0.000    0.010    0.000 numpy\core\_methods.py:61(_all)
+     2191    0.002    0.000    0.012    0.000 {method 'all' of 'numpy.ndarray' objects}
+     2172    0.000    0.000    0.000    0.000 matplotlib\font_manager.py:671(get_style)
+     2172    0.000    0.000    0.000    0.000 matplotlib\font_manager.py:677(get_variant)
+     2172    0.000    0.000    0.000    0.000 matplotlib\font_manager.py:683(get_weight)
+     2172    0.000    0.000    0.000    0.000 matplotlib\font_manager.py:692(get_stretch)
+     2140    0.007    0.000    0.019    0.000 numpy\core\numeric.py:2378(array_equal)
+     2140    0.001    0.000    0.001    0.000 numpy\core\numeric.py:2374(_array_equal_dispatcher)
+  2100/36    0.003    0.000    0.007    0.000 \Lib\copy.py:128(deepcopy)
+     2000    0.001    0.000    0.037    0.000 \local-packages\Python311\site-packages\scipy\optimize\_differentiable_functions.py:260(_update_fun)
+     1915    0.001    0.000    0.001    0.000 \local-packages\Python311\site-packages\matplotlib\cbook.py:1851(_str_equal)
+     1840    0.001    0.000    0.001    0.000 \Lib\logging\__init__.py:1734(isEnabledFor)
+     1840    0.001    0.000    0.002    0.000 \Lib\logging\__init__.py:1467(debug)
+     1790    0.007    0.000    0.012    0.000 matplotlib\font_manager.py:1115(score_family)
+     1790    0.007    0.000    0.008    0.000 matplotlib\font_manager.py:1173(score_stretch)
+     1790    0.003    0.000    0.008    0.000 matplotlib\font_manager.py:1191(score_weight)
+     1790    0.001    0.000    0.001    0.000 matplotlib\font_manager.py:1209(score_size)
+     1790    0.001    0.000    0.001    0.000 matplotlib\font_manager.py:1162(score_variant)
+     1790    0.002    0.000    0.004    0.000 matplotlib\font_manager.py:1107(_expand_aliases)
+     1790    0.001    0.000    0.001    0.000 matplotlib\font_manager.py:1145(score_style)
+     1788    0.001    0.000    0.003    0.000 numpy\lib\function_base.py:873(copy)
+     1788    0.000    0.000    0.000    0.000 numpy\lib\function_base.py:869(_copy_dispatcher)
+     1727    0.001    0.000    0.002    0.000 numpy\core\numeric.py:1855(isscalar)
+     1722    0.008    0.000    0.042    0.000 utils\lib.py:4(Profit)
+     1720    0.007    0.000    0.068    0.000 \scipy\optimize\_differentiable_functions.py:140(fun_wrapped)
+     1690    0.037    0.000    0.041    0.000 \numpy\core\numerictypes.py:357(issubdtype)
+     1688    0.004    0.000    0.008    0.000 \numpy\core\shape_base.py:23(atleast_1d)
+     1688    0.000    0.000    0.000    0.000 \numpy\core\shape_base.py:19(_atleast_1d_dispatcher)
+     1688    0.009    0.000    0.015    0.000 \scipy\_lib\array_api_compat\array_api_compat\common\_aliases.py:270(_asarray)
+     1688    0.003    0.000    0.018    0.000 \scipy\_lib\_array_api.py:157(atleast_nd)
+     1688    0.002    0.000    0.002    0.000 \scipy\_lib\array_api_compat\array_api_compat\common\_helpers.py:13(_is_numpy_array)
+     1688    0.002    0.000    0.003    0.000 \scipy\_lib\array_api_compat\array_api_compat\common\_helpers.py:119(_check_device)
+     1684    0.003    0.000    0.046    0.000 \scipy\_lib\array_api_compat\array_api_compat\common\_aliases.py:484(isdtype)
+     1684    0.002    0.000    0.048    0.000 \scipy\_lib\array_api_compat\array_api_compat\_internal.py:25(wrapped_f)
+     1660    0.000    0.000    0.000    0.000 \numpy\core\fromnumeric.py:195(_reshape_dispatcher)
+     1660    0.002    0.000    0.006    0.000 \numpy\core\fromnumeric.py:200(reshape)
+     1624    0.003    0.000    0.053    0.000 utils\lib.py:26(<lambda>)
+     1624    0.010    0.000    0.010    0.000 utils\lib.py:20(Set_Price)
+     1621    0.000    0.000    0.000    0.000 \numpy\core\multiarray.py:153(concatenate)
+     1608    0.000    0.000    0.000    0.000 Lib\copy.py:182(_deepcopy_atomic)
+     1584    0.012    0.000    0.023    0.000 \numpy\core\fromnumeric.py:1407(resize)
+     1584    0.000    0.000    0.000    0.000 \numpy\core\fromnumeric.py:1403(_resize_dispatcher)
+     1546    0.004    0.000    0.008    0.000 \numpy\core\_ufunc_config.py:33(seterr)
+     1546    0.003    0.000    0.003    0.000 \numpy\core\_ufunc_config.py:132(geterr)
+     1546    0.001    0.000    0.001    0.000 {built-in method numpy.seterrobj}
+
+

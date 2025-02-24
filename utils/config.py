@@ -1,6 +1,8 @@
 import numpy as np
 import Classes.Qlearning as Qlearning
 import os
+import cProfile
+import pstats
 # Demand function
 mu = 0.25
 def Share(P, A):
@@ -69,5 +71,21 @@ def create_filepath(file):
     filepath = os.path.join(save_dir, filename)
     return filepath
     
-    
+
+def profile_main(main, filename):
+    profiler = cProfile.Profile()
+    profiler.enable()
+    main()
+    profiler.disable()
+    profiler.dump_stats('profile.prof')
+    profile_name = 'profile_' + filename.replace('.py', '.txt')
+    with open(profile_name, 'w') as f:
+        stats = pstats.Stats('profile.prof', stream=f)
+        stats.sort_stats('cumulative')
+        stats.print_stats(50)
+        stats.sort_stats('time')
+        stats.print_stats(50)
+        stats.sort_stats('calls')
+        stats.print_stats(100)
+
 
