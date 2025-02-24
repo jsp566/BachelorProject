@@ -2,45 +2,36 @@ import numpy as np
 import utils.lib as lib
 import Classes.SIMULATOR as SIMULATOR
 import utils.config as config
+import time
 import matplotlib.pyplot as plt
-
 from os.path import basename
-from multiprocessing import Pool, cpu_count
 import cProfile
 import pstats
 
-
-
-def run_simulation(new_config, nash, mono, maxit):
-    """ Runs a single simulation and computes collusion quotient moving average. """
-    market, states = SIMULATOR.simulate(new_config)
-
-    # Extract and process profits
-    profits = np.array([state.profits for state in states])
-    profits = np.mean(profits, axis=1)
-
-    # Compute collusion quotient
-    collusion_quotient_list = [lib.get_collusion_quotient(profits[i], nash, mono) for i in range(maxit)]
-    
-    return lib.moving_average(collusion_quotient_list, 100)
-
+filename = basename(__file__)
 
 def main():
-    # Initialize
-    market = SIMULATOR.setup(config.defaultconfig_3_firms)
+    # Start
+    market = SIMULATOR.setup(config.defaultconfig)
     nash = np.mean(market.get_nash_profits())
     mono = np.mean(market.get_monopoly_profits())
 
-    times = 1000
-    maxit = 1500000
-    new_config = config.create_config_3(iterations=maxit)
+    times = 2
+    maxit = 100000
+    new_config = config.create_config(iterations=maxit)
+    sum_collusion_quotients = 0
+    average_collusion_quotient = []
+    for i in range(times):
+        market, states = SIMULATOR.simulate(new_config)
 
-    # Parallel processing
-    with Pool(processes=cpu_count()) as pool:
-        results = pool.starmap(run_simulation, [(new_config, nash, mono, maxit)] * times)
+    # Extract and process profits
+        profits = np.array([state.profits for state in states])
+        profits = np.mean(profits, axis=1)
 
-    # Aggregate results
-    ma100 = np.sum(results, axis=0) / times
+        # Compute collusion quotient
+        collusion_quotient_list = [lib.get_collusion_quotient(profits[i], nash, mono) for i in range(maxit)]
+    
+    ma100 = lib.moving_average(collusion_quotient_list, 100)
     print(ma100.shape)
     # Generate x-axis
     repetitions = np.linspace(0, len(ma100), len(ma100))
@@ -49,16 +40,9 @@ def main():
     # Plot results
     plt.plot(repetitions, ma100)
     plt.ylabel('Collusion Quotient')
-    plt.xlabel('Discount factor')
-    
-    filename = '3 firms' + basename(__file__)
+    plt.xlabel('Period')
+    plt.title('Collusion Quotient over time')
     plt.savefig(config.create_filepath(filename))
 
-def profile_main():
-    cProfile.run('main()', 'restats')
-    p = pstats.Stats('restats')
-    p.strip_dirs().sort_stats('cumulative').print_stats(10)
-    p.strip_dirs().sort_stats('calls').print_stats(30)
-    
 if __name__ == "__main__":
-    profile_main()
+    config.profile_main(main,filename)
