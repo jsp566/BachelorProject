@@ -2,9 +2,6 @@
 import itertools
 import utils.lib as lib
 import numpy as np
-<<<<<<<< HEAD:Environment/MARKET.py
-import Environment.STATE as STATE
-========
 import Classes.STATE as STATE
 
 class Market():
