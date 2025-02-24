@@ -9,6 +9,7 @@ import pstats
 import multiprocessing
 from multiprocessing import Pool, cpu_count
 
+filename =  basename(__file__)
 
 def run_simulation(new_config, nash, mono, maxit):
     """ Runs a single simulation and computes collusion quotient moving average. """
@@ -26,7 +27,7 @@ def run_simulation(new_config, nash, mono, maxit):
 def main():
     # Start
     discount_factors = np.linspace(0.0, 1.0, 20, endpoint=False)
-    times = 100
+    times = 8
     maxit = 1000000
     market = SIMULATOR.setup(config.defaultconfig)
     nash = np.mean(market.get_nash_profits())
@@ -47,14 +48,8 @@ def main():
     plt.plot(discount_factors, average_collusion_quotient)
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Discount factor')
-    filename = 'test_' + basename(__file__)
     plt.savefig(config.create_filepath(filename))
 
-def profile_main():
-    cProfile.run('main()', 'restats')
-    p = pstats.Stats('restats')
-    p.strip_dirs().sort_stats('cumulative').print_stats(10)
-    p.strip_dirs().sort_stats('calls').print_stats(30)
 
 if __name__ == "__main__":
-    profile_main()
+    config.profile_main(main,filename)
