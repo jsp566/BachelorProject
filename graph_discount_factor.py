@@ -54,6 +54,7 @@ def profile_main():
     cProfile.run('main()', 'restats')
     p = pstats.Stats('restats')
     p.strip_dirs().sort_stats('cumulative').print_stats(10)
+    p.strip_dirs().sort_stats('calls').print_stats(30)
 
 if __name__ == "__main__":
     profile_main()

@@ -38,7 +38,7 @@ def main():
     nash = np.mean(market.get_nash_profits())
     mono = np.mean(market.get_monopoly_profits())
 
-    times = 100
+    times = 8
     iterations = 1000000
     state_frec = {state: 0 for state in market.state_space}
     new_config = config.create_config(iterations=iterations)
@@ -107,6 +107,6 @@ def profile_main():
     cProfile.run('main()', 'restats')
     p = pstats.Stats('restats')
     p.strip_dirs().sort_stats('cumulative').print_stats(10)
-
+    p.strip_dirs().sort_stats('calls').print_stats(30)
 if __name__ == "__main__":
     profile_main()

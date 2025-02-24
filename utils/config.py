@@ -32,10 +32,33 @@ defaultconfig = {"demand_function": Share,
 
                  "iterations": 1000000}
 
+
+defaultconfig_3_firms = {"demand_function": Share,
+                 "numb_firms": 3,
+
+                 "strategy": Qlearning.Qlearning,
+                 "exploration_rate": Calvani_Exploration_Rate, 
+                 "discount_factor": 0.95, 
+                 "learning_rate": 0.125, 
+
+                 "numb_products": 1,  
+                 "quality": 2, 
+                 "marginal_cost": 1, 
+
+                 "numb_prices": 15, 
+                 "include_NE_and_Mono": False, 
+                 "extra": 0.1,
+
+                 "iterations": 1000000}
 # Given memory of prices = 1
 
 def create_config(**kwargs):
     config = defaultconfig.copy()
+    config.update(kwargs)
+    return config
+
+def create_config_3(**kwargs):
+    config = defaultconfig_3_firms.copy()
     config.update(kwargs)
     return config
 
