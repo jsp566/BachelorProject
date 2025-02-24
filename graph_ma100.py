@@ -3,11 +3,12 @@ import utils.lib as lib
 import Classes.SIMULATOR as SIMULATOR
 import utils.config as config
 import matplotlib.pyplot as plt
+
 from os.path import basename
+from multiprocessing import Pool, cpu_count
 import cProfile
 import pstats
-import multiprocessing
-from multiprocessing import Pool, cpu_count
+
 
 
 def run_simulation(new_config, nash, mono, maxit):
@@ -15,39 +16,42 @@ def run_simulation(new_config, nash, mono, maxit):
     market, states = SIMULATOR.simulate(new_config)
 
     # Extract and process profits
-    profits = np.array([state.profits for state in states[-1000:]])
-    profits = np.mean(profits)
+    profits = np.array([state.profits for state in states])
+    profits = np.mean(profits, axis=1)
 
     # Compute collusion quotient
-    collusion_quotient= lib.get_collusion_quotient(profits, nash, mono)
+    collusion_quotient_list = [lib.get_collusion_quotient(profits[i], nash, mono) for i in range(maxit)]
     
-    return collusion_quotient
+    return lib.moving_average(collusion_quotient_list, 100)
+
 
 def main():
-    # Start
-    discount_factors = np.linspace(0.0, 1.0, 20, endpoint=False)
-    times = 100
-    maxit = 1000000
+    # Initialize
     market = SIMULATOR.setup(config.defaultconfig)
     nash = np.mean(market.get_nash_profits())
     mono = np.mean(market.get_monopoly_profits())
 
+    times = 1000
+    maxit = 1500000
+    new_config = config.create_config(iterations=maxit)
 
-    average_collusion_quotient = []
-    for gamma in discount_factors:
-        new_config = config.create_config(discount_factor=gamma)
-        sum_collusion_quotients = 0
+    # Parallel processing
+    with Pool(processes=cpu_count()) as pool:
+        results = pool.starmap(run_simulation, [(new_config, nash, mono, maxit)] * times)
 
-        with Pool(processes=cpu_count()) as pool:
-            results = pool.starmap(run_simulation, [(new_config, nash, mono, maxit)] * times)
-        sum_collusion_quotients = np.sum(results)
-        average_collusion_quotient.append(sum_collusion_quotients/times)
+    # Aggregate results
+    ma100 = np.sum(results, axis=0) / times
+    print(ma100.shape)
+    # Generate x-axis
+    repetitions = np.linspace(0, len(ma100), len(ma100))
 
-    #plot
-    plt.plot(discount_factors, average_collusion_quotient)
+
+    # Plot results
+    plt.plot(repetitions, ma100)
     plt.ylabel('Collusion Quotient')
-    plt.xlabel('Discount factor')
-    filename = 'test_' + basename(__file__)
+    plt.xlabel('Period')
+    
+    filename = basename(__file__)
     plt.savefig(config.create_filepath(filename))
 
 def profile_main():

@@ -6,7 +6,6 @@ import numpy as np
 import Environment.STATE as STATE
 ========
 import Classes.STATE as STATE
->>>>>>>> main:Classes/MARKET.py
 
 class Market():
     '''
@@ -108,7 +107,7 @@ class Market():
             firm_profits.append(sum_profits)
         
         return STATE.State(actions, prices, shares, profits, firm_shares, firm_profits)
-
+    
     def simulate(self, num_periods):
         '''
         Takes number of periods
@@ -138,6 +137,15 @@ class Market():
             states.append(self.current_state)
 
         return states
+
+    def reset(self):
+        '''
+        Resets market
+        '''
+        self.current_state = None
+        for firm in self.firms:
+            firm.prev_action = None
+            firm.strategy.initialize(self.state_space, firm.action_space, firm.index)
 
 
     def get_nash_prices(self):
