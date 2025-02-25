@@ -35,12 +35,11 @@ def session(market, iterations):
     return new_market.simulate(iterations)
 
 
-def simulate(config, filename = None):
+def simulate(config, filename = None, parallel = True):
 
     market = setup(config)
 
-    paralell = True
-    if paralell:
+    if parallel:
         with Pool(processes=cpu_count()) as pool:
             results = pool.starmap(session, [(market, config['iterations'])] * config['sessions'])
     else:
