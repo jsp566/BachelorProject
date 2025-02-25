@@ -27,7 +27,7 @@ def run_simulation(new_config, nash, mono, maxit):
 def main():
     # Start
     discount_factors = np.linspace(0.0, 1.0, 20, endpoint=False)
-    times = 8
+    times = 100
     maxit = 1000000
     market = SIMULATOR.setup(config.defaultconfig)
     nash = np.mean(market.get_nash_profits())
