@@ -1,6 +1,7 @@
 import numpy as np
 import Classes.Strategies.Qlearning as Qlearning
 import os
+import io
 import cProfile
 import pstats
 
@@ -60,14 +61,17 @@ def create_filepath(filename):
 
 def profile_main(main, filename):
     profiler = cProfile.Profile()
+    
     profiler.enable()
     main()
     profiler.disable()
-    profiler.dump_stats('profile.prof')
+    
     save_dir = 'Output/Profiles'
+    os.makedirs(save_dir, exist_ok=True)
     profile_name = filename + '_profile.txt'
+
     with open(os.path.join(save_dir, profile_name), 'w') as f:
-        stats = pstats.Stats('profile.prof', stream=f)
+        stats = pstats.Stats(profiler, stream=f)
         stats.sort_stats('cumulative')
         stats.print_stats(50)
         stats.sort_stats('time')
