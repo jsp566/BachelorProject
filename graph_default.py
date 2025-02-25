@@ -29,9 +29,6 @@ def run_simulation(new_config, nash, mono,state_frec, maxit):
     return collusion_quotient, local_state_frec
 
 
-def find_closest(value, action_space):
-    """Finds the closest value in the given sorted action space."""
-    return min(action_space, key=lambda x: abs(x - value))
 
 
 def main():
@@ -40,7 +37,7 @@ def main():
     nash = np.mean(market.get_nash_profits())
     mono = np.mean(market.get_monopoly_profits())
 
-    times = 8
+    times = 1000
     iterations = 1000000
     state_frec = {state: 0 for state in market.state_space}
     new_config = config.create_config(iterations=iterations)
@@ -78,8 +75,8 @@ def main():
     monopoly_prices = market.get_monopoly_prices()
     nash_prices = market.get_nash_prices()
 
-    closest_nash_0 = find_closest(nash_prices[0], market.firms[0].action_space)
-    closest_mono_0 = find_closest(monopoly_prices[0], market.firms[0].action_space)
+    closest_nash_0 = lib.find_closest(nash_prices[0], market.firms[0].action_space)
+    closest_mono_0 = lib.find_closest(monopoly_prices[0], market.firms[0].action_space)
  
 
     plt.imshow(heatmap, cmap='hot_r', interpolation='nearest', origin='lower', extent=[market.firms[0].action_space[0][0], market.firms[0].action_space[-1][0], market.firms[1].action_space[0][0], market.firms[1].action_space[-1][0]])

@@ -81,3 +81,7 @@ def get_collusion_quotient(average: np.array, nash: np.array, monopoly:np.array)
 
 def moving_average(x, w):
     return np.convolve(x, np.ones(w), 'valid') / w
+
+def find_closest(value, action_space):
+    """Finds the closest value in the given sorted action space."""
+    return min(action_space, key=lambda x: abs(x - value))
