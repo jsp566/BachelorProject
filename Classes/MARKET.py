@@ -23,6 +23,8 @@ class Market():
         self.products = None
         self.A = None
         self.MC = None
+        self.Nash = None
+        self.Mono = None
 
     def add_firm(self, firm):
         '''
@@ -44,8 +46,10 @@ class Market():
         self.products = [product for firm in self.firms for product in firm.products]
         self.A = np.array([product.quality for product in self.products])
         self.MC = np.array([product.marginal_cost for product in self.products])
+        self.Nash = lib.Newton(self.MC, self.A, self.MC, self.demand_function.fun)
+        self.Mono = lib.Monopoly_Prices(self.MC, self.A, self.MC, self.demand_function.fun)
 
-        priceranges = lib.Make_Price_Ranges(self.MC, self.A, self.MC, self.demand_function.fun, num_prices, include_NE_and_Mono, extra)
+        priceranges = lib.Make_Price_Ranges(self.Nash, self.Mono, num_prices, include_NE_and_Mono, extra)
         
         i = 0
         for firm in self.firms:
@@ -75,36 +79,15 @@ class Market():
         self.state_space = {}
 
         for actions in state_space:
-            state = self.create_state(actions)
+            prices = np.array([price for action in actions for price in action])
+            shares = self.demand_function.get_shares(prices, self.A)
+            profits = (prices - self.MC) * shares
+            collussion_quotient = lib.get_collusion_quotient(profits, self.get_nash_profits(), self.get_monopoly_profits())
+
+            state = STATE.State(actions, prices, shares, profits, collussion_quotient)
             self.state_space[actions] = state
 
-    def create_state(self, actions):
-        '''
-        Takes actions
-        Creates state
-        '''
-        prices = np.array([price for action in actions for price in action])
-        shares = self.demand_function.get_shares(prices, self.A)
-        profits = (prices - self.MC) * shares
 
-        firm_shares = []
-        firm_profits = []
-
-        i = 0
-        for action in actions:
-            sum_shares = 0
-            sum_profits = 0
-
-            for price in action:
-                sum_shares += shares[i]
-                sum_profits += profits[i]
-                i += 1
-            
-            firm_shares.append(sum_shares)
-            firm_profits.append(sum_profits)
-        
-        return STATE.State(actions, prices, shares, profits, firm_shares, firm_profits)
-    
     def simulate(self, num_periods):
         '''
         Takes number of periods
@@ -149,7 +132,9 @@ class Market():
         '''
         Gives Nash prices
         '''
-        return lib.Newton(self.MC, self.A, self.MC, self.demand_function.fun)
+        if self.Nash is None:
+            self.Nash = lib.Newton(self.MC, self.A, self.MC, self.demand_function.fun)
+        return self.Nash
 
     def get_nash_profits(self):
         '''
@@ -162,7 +147,9 @@ class Market():
         '''
         Gives monopoly prices
         '''
-        return lib.Monopoly_Prices(self.MC, self.A, self.MC, self.demand_function.fun)
+        if self.Mono is None:
+            self.Mono = lib.Monopoly_Prices(self.MC, self.A, self.MC, self.demand_function.fun)
+        return self.Mono
 
     def get_monopoly_profits(self):
         '''
