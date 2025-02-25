@@ -35,8 +35,17 @@ def session(market, iterations):
     return new_market.simulate(iterations)
 
 
-def simulate(config, filename = None, parallel = True):
+def simulate(config):
 
+    market = setup(config)
+    return market, market.simulate(config['iterations'])
+
+def session(market, iterations):
+    new_market = copy.deepcopy(market)
+
+    return new_market.simulate(iterations)
+
+def simulate_sessions(config, filename = None, parallel = True):
     market = setup(config)
 
     if parallel:

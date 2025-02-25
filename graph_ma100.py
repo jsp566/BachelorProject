@@ -32,7 +32,7 @@ def main():
     nash = np.mean(market.get_nash_profits())
     mono = np.mean(market.get_monopoly_profits())
 
-    times = 1000
+    times = 2
     maxit = 2000000
     new_config = config.create_config(iterations=maxit)
 

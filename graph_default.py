@@ -17,7 +17,7 @@ def main():
 
     new_config = config.create_config(sessions=sessions, iterations=iterations)
 
-    market, results = SIMULATOR.simulate(new_config, filename=filename)
+    market, results = SIMULATOR.simulate_sessions(new_config, filename=filename)
 
 
     # State frequency
