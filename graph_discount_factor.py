@@ -4,9 +4,6 @@ import Classes.SIMULATOR as SIMULATOR
 import utils.config as config
 import matplotlib.pyplot as plt
 from os.path import basename
-import cProfile
-import pstats
-import multiprocessing
 from multiprocessing import Pool, cpu_count
 
 filename =  basename(__file__)
