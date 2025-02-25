@@ -7,6 +7,7 @@ import Classes.PRODUCT as PRODUCT
 import copy
 from multiprocessing import Pool, cpu_count
 import time
+import signal
 
 import os
 import pickle
@@ -38,12 +39,14 @@ def simulate(config, filename = None):
 
     market = setup(config)
 
-    with Pool(processes=cpu_count()) as pool:
-        results = pool.starmap_async(session, [(market, config['iterations'])] * config['sessions'])
-        while not results.ready():
-            time.sleep(1)
-        results = results.get()
-     
+    paralell = True
+    if paralell:
+        with Pool(processes=cpu_count()) as pool:
+            results = pool.starmap(session, [(market, config['iterations'])] * config['sessions'])
+    else:
+        results = []
+        for i in range(config['sessions']):
+            results.append(session(market, config['iterations']))
         
     if filename:
         os.makedirs('Output/Data/' + filename, exist_ok=True)

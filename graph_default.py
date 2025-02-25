@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from os.path import basename
 
 
-filename =  basename(__file__)
+filename =  basename(__file__).replace('.py', '')
 
 def find_closest(value, action_space):
     """Finds the closest value in the given sorted action space."""
@@ -15,12 +15,12 @@ def find_closest(value, action_space):
 
 def main():
     # Start
-    sessions = 8
+    sessions = 2
     iterations = 1000000
 
     new_config = config.create_config(sessions=sessions, iterations=iterations)
 
-    market, results = SIMULATOR.simulate(new_config)
+    market, results = SIMULATOR.simulate(new_config, filename=filename)
 
 
     # State frequency
