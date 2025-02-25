@@ -4,52 +4,29 @@ import Classes.SIMULATOR as SIMULATOR
 import utils.config as config
 import matplotlib.pyplot as plt
 from os.path import basename
-import cProfile
-import pstats
-import multiprocessing
-from multiprocessing import Pool, cpu_count
 
-filename =  basename(__file__)
 
-def run_simulation(new_config, nash, mono,state_frec, maxit):
-    """ Runs a single simulation and computes collusion quotient moving average. """
-    market, states = SIMULATOR.simulate(new_config)
-
-    local_state_frec = {state: 0 for state in market.state_space}
-    for state in states[-100000:]:
-        local_state_frec[state.actions] += 1
-
-    # Extract and process profits
-    profits = np.array([state.profits for state in states[-1000:]])
-    mean= np.mean(profits, axis=1)
-
-    # Compute collusion quotient
-    collusion_quotient= lib.get_collusion_quotient(mean, nash, mono)
-    market.reset()
-    return collusion_quotient, local_state_frec
-
+filename =  basename(__file__).replace('.py', '')
 
 
 
 def main():
     # Start
-    market = SIMULATOR.setup(config.defaultconfig)
-    nash = np.mean(market.get_nash_profits())
-    mono = np.mean(market.get_monopoly_profits())
-
-    times = 1000
+    sessions = 2
     iterations = 1000000
-    state_frec = {state: 0 for state in market.state_space}
-    new_config = config.create_config(iterations=iterations)
 
-    with Pool(processes=cpu_count()) as pool:
-            results = pool.starmap(run_simulation, [(new_config, nash, mono,state_frec, iterations)] * times)
-    collusion_quotients, state_frequencies = zip(*results)
+    new_config = config.create_config(sessions=sessions, iterations=iterations)
 
-    sum_collusion_quotients = np.sum(collusion_quotients,axis=0)
+    market, results = SIMULATOR.simulate(new_config, filename=filename)
 
 
     # State frequency
+    state_frec = {state: 0 for state in market.state_space}
+
+    for result in results:
+        for state in result[-100000:]:
+            state_frec[state.actions] += 1
+
     heatmap = np.zeros((len(market.firms[0].action_space), len(market.firms[1].action_space)))
     
     # Make indexes for heatmap
@@ -57,10 +34,7 @@ def main():
     market.firms[0].action_space.sort()
     market.firms[1].action_space.sort()
 
-    for local_frec in state_frequencies:
-        for state, count in local_frec.items():
-            state_frec[state] += count
-    
+
     for state in state_frec:
         index1 = market.firms[0].action_space.index(state[0])
         index2 = market.firms[1].action_space.index(state[1])
@@ -86,16 +60,22 @@ def main():
 
     plt.ylabel('Firm 1 price')
     plt.xlabel('Firm 2 price')
-    plt.savefig(config.create_filepath("state_frec_" + filename))
+    plt.savefig(config.create_filepath(filename + "_state_frec"))
 
     plt.clf()
+
     # Collusion Quotient:
-    average_collusion_quotient = sum_collusion_quotients/times
+    collusion_quotients = [[state.collussion_quotient for state in result] for result in results]
+    
+    collusion_quotients = np.array(collusion_quotients)
+
+    average_collusion_quotient = np.mean(collusion_quotients, axis=(0,2))
+
     period = range(len(average_collusion_quotient))
     plt.plot(period, average_collusion_quotient)
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Period')
-    plt.savefig(config.create_filepath("collusion_quotient_" +filename))
+    plt.savefig(config.create_filepath(filename + "_collusion_quotient"))
 
 
 if __name__ == "__main__":
