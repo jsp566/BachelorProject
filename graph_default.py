@@ -12,12 +12,12 @@ filename =  basename(__file__).replace('.py', '')
 
 def main():
     # Start
-    sessions = 2
+    sessions = 
     iterations = 1000000
 
     new_config = config.create_config(sessions=sessions, iterations=iterations)
 
-    market, results = SIMULATOR.simulate_sessions(new_config, filename=filename)
+    market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, savedData=False)
 
 
     # State frequency

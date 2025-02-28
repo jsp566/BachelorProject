@@ -45,30 +45,36 @@ def session(market, iterations):
 
     return new_market.simulate(iterations)
 
-def simulate_sessions(config, filename = None, parallel = True):
+def simulate_sessions(config, filename = None, parallel = True, savedData = False):
     market = setup(config)
-
-    if parallel:
-        with Pool(processes=cpu_count()) as pool:
-            results = pool.starmap(session, [(market, config['iterations'])] * config['sessions'])
+    if savedData:  
+        with open('Output/Data/' + filename + '/config.pkl', 'rb') as f:
+            old_config = pickle.load(f)
+        assert old_config == config, 'Configurations do not match'
+        with open('Output/Data/' + filename + '/results.pkl', 'rb') as f:
+            results = pickle.load(f)
     else:
-        results = []
-        for i in range(config['sessions']):
-            results.append(session(market, config['iterations']))
         
-    if filename:
-        os.makedirs('Output/Data/' + filename, exist_ok=True)
-        
-        # Save config
-        with open('Output/Data/' + filename + '/config.pkl', 'wb') as f:
-            pickle.dump(config, f)
+        if parallel:
+            with Pool(processes=cpu_count()) as pool:
+                results = pool.starmap(session, [(market, config['iterations'])] * config['sessions'])
+        else:
+            results = []
+            for i in range(config['sessions']):
+                results.append(session(market, config['iterations']))
 
-        # Save market
-        with open('Output/Data/' + filename + '/market.pkl', 'wb') as f:
-            pickle.dump(market, f)
+        if filename:
+            os.makedirs('Output/Data/' + filename, exist_ok=True)
 
-        # Save results
-        with open('Output/Data/' + filename + '/results.pkl', 'wb') as f:
-            pickle.dump(results, f)
+            # Save config
+            with open('Output/Data/' + filename + '/config.pkl', 'wb') as f:
+                pickle.dump(config, f)
 
+            # Save market
+            with open('Output/Data/' + filename + '/market.pkl', 'wb') as f:
+                pickle.dump(market, f)
+
+            # Save results
+            with open('Output/Data/' + filename + '/results.pkl', 'wb') as f:
+                pickle.dump(results, f)
     return market, results
