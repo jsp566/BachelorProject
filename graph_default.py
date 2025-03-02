@@ -12,7 +12,7 @@ filename =  basename(__file__).replace('.py', '')
 
 def main():
     # Start
-    sessions = 
+    sessions = 2
     iterations = 1000000
 
     new_config = config.create_config(sessions=sessions, iterations=iterations)
