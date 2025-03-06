@@ -10,10 +10,10 @@ filename =  basename(__file__)
 
 
 def main():
-    sessions = 8
+    sessions = 100
     iterations = 1000000
 
-    firm_count = range(2, 5)
+    firm_count = range(2, 11)
 
     collusion_quotients_list = []
     ticks = []
