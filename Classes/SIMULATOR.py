@@ -14,15 +14,52 @@ import pickle
 
 import time
 
+def list_creator(input, numb):
+    if type(input) == list:
+        assert len(input) == numb, 'List must be of length numb'
+        return input
+    else:
+        return [input] * numb
+
+
+def fix_config(config):
+    # check numb firms is int
+    assert type(config['numb_firms']) == int, 'numb_firms must be an integer'
+
+    # check numb products is int
+    config['numb_products'] = list_creator(config['numb_products'], config['numb_firms'])
+
+    config['strategy'] = list_creator(config['strategy'], config['numb_firms'])
+    config['exploration_rate'] = list_creator(config['exploration_rate'], config['numb_firms'])
+    config['discount_factor'] = list_creator(config['discount_factor'], config['numb_firms'])
+    config['learning_rate'] = list_creator(config['learning_rate'], config['numb_firms'])
+
+    if type(config['quality']) != list:
+        config['quality'] = [[config['quality']] * numb for numb in config['numb_products']]
+    else:
+        if type(config['quality'][0]) != list:
+            config['quality'] = [config['quality']] * config['numb_firms']
+        
+    if type(config['marginal_cost']) != list:
+        config['marginal_cost'] = [[config['marginal_cost']] * numb for numb in config['numb_products']]
+    else:
+        if type(config['marginal_cost'][0]) != list:
+            config['marginal_cost'] = [config['marginal_cost']] * config['numb_firms']
+
+
+
+
+
 def setup(config):
+    fix_config(config)
 
     market = MARKET.Market(DEMAND.DemandFunction(config['demand_function']))
 
     for i in range(config['numb_firms']):
-        firm  = FIRM.Firm(config['strategy'](config['discount_factor'], config['learning_rate'], config['exploration_rate']))
+        firm  = FIRM.Firm(config['strategy'][i](config['discount_factor'][i], config['learning_rate'][i], config['exploration_rate'][i]))
         market.add_firm(firm)
-        for j in range(config['numb_products']):
-            product = PRODUCT.Product(config['marginal_cost'], config['quality'])
+        for j in range(config['numb_products'][i]):
+            product = PRODUCT.Product(config['marginal_cost'][i][j], config['quality'][i][j])
             firm.add_product(product)
 
     market.set_priceranges(config['numb_prices'], config['include_NE_and_Mono'], config['extra'])
