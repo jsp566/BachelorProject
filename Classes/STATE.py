@@ -1,29 +1,31 @@
 
 
+import numpy as np
+import utils.lib as lib
+
 class State():
     '''
     State class
     '''
     
-    def __init__(self, actions, prices, shares, profits, collussion_quotient):
-        self.actions = actions
-        self.prices = prices
-        self.shares = shares
-        self.profits = profits
-        self.collussion_quotient = collussion_quotient
+    def __init__(self, prices, market):
+        self.p = prices
+        self.actions = tuple([tuple([prices[product.index] for product in firm.products]) for firm in market.firms])
+        self.prices = np.array(prices)
+        self.shares = market.demand_function.get_shares(self.prices, market.A)
+        self.profits = (self.prices - market.MC) * self.shares
+        self.collussion_quotient = lib.get_collusion_quotient(self.profits, market.get_nash_profits(), market.get_monopoly_profits())
 
         self.firm_shares = []
         self.firm_profits = []
 
-        i = 0
-        for action in self.actions:
+        for firm in market.firms:
             sum_shares = 0
             sum_profits = 0
 
-            for price in action:
-                sum_shares += self.shares[i]
-                sum_profits += self.profits[i]
-                i += 1
+            for product in firm.products:
+                sum_shares += self.shares[product.index]
+                sum_profits += self.profits[product.index]
             
             self.firm_shares.append(sum_shares)
             self.firm_profits.append(sum_profits)

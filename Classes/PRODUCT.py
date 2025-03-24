@@ -16,6 +16,9 @@ class Product():
 
         self.firm = None
 
+        self.market = None
+        self.index = None
+
         self.pricerange = None
 
 

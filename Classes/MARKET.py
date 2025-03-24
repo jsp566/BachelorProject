@@ -17,10 +17,13 @@ class Market():
         self.next_firm_index = 0
         self.firms = []
 
+        self.next_product_index = 0
+        self.products = []
+
         self.state_space = None
         self.current_state = None
 
-        self.products = None
+        self.products = []
         self.A = None
         self.MC = None
         self.Nash = None
@@ -37,13 +40,23 @@ class Market():
         self.firms.append(firm)
         self.next_firm_index += 1
 
+    def add_product(self, product):
+        '''
+        Takes product
+        Adds product to market
+        '''
+        assert(product.market == None)
+        product.market = self
+        product.index = self.next_product_index
+        self.products.append(product)
+        self.next_product_index += 1
+
         
     def set_priceranges(self, num_prices, include_NE_and_Mono=True, extra=0.1):
         '''
         Takes number of prices
         Sets price ranges for products
         '''
-        self.products = [product for firm in self.firms for product in firm.products]
         self.A = np.array([product.quality for product in self.products])
         self.MC = np.array([product.marginal_cost for product in self.products])
         self.Nash = lib.Newton(self.MC, self.A, self.MC, self.demand_function.fun)
@@ -69,26 +82,21 @@ class Market():
         '''
         Gives state space
         '''
-        actions = []
+        prices = []
 
-        for firm in self.firms:
-            actions.append(firm.action_space)
+        for product in self.products:
+            prices.append(product.pricerange)
         
-        state_space = list(itertools.product(*actions))
+        state_space = list(itertools.product(*prices))
 
         self.state_space = {}
 
-        for actions in state_space:
-            prices = np.array([price for action in actions for price in action])
-            shares = self.demand_function.get_shares(prices, self.A)
-            profits = (prices - self.MC) * shares
-            collussion_quotient = lib.get_collusion_quotient(profits, self.get_nash_profits(), self.get_monopoly_profits())
-
-            state = STATE.State(actions, prices, shares, profits, collussion_quotient)
-            self.state_space[actions] = state
+        for prices in state_space:
+            state = STATE.State(prices, self)
+            self.state_space[prices] = state
 
 
-    def simulate(self, num_periods):
+    def simulate(self, num_periods, start_period = 1):
         '''
         Takes number of periods
         Simulates market
@@ -97,17 +105,30 @@ class Market():
         states = []
 
         if self.current_state == None:
-            actions = tuple([firm.get_action(None, 0) for firm in self.firms])
+            prices = [None] * len(self.products)
+            for firm in self.firms:
+                action = firm.get_action(None, 0)
+                for i in range(len(firm.products)):
+                    prices[firm.products[i].index] = action[i]
 
-            self.current_state = self.state_space[actions]
+            prices = tuple(prices)
+
+            self.current_state = self.state_space[prices]
             
             states.append(self.current_state)
 
 
-        for period in range(1, num_periods+1):
-            actions = tuple([firm.get_action(self.current_state, period) for firm in self.firms])
-            
-            new_state = self.state_space[actions]
+        for period in range(start_period, num_periods+start_period):
+            prices = [None] * len(self.products)
+
+            for firm in self.firms:
+                action = firm.get_action(self.current_state, period)
+                for i in range(len(firm.products)):
+                    prices[firm.products[i].index] = action[i]
+
+            prices = tuple(prices)
+
+            new_state = self.state_space[prices]
 
             
             for i in range(len(self.firms)):
@@ -126,6 +147,37 @@ class Market():
         for firm in self.firms:
             firm.prev_action = None
             firm.strategy.initialize(self.state_space, firm.action_space, firm.index)
+
+    def merge(self, firmindex1, firmindex2):
+        # Move products
+        for product in self.firms[firmindex2].products:
+            product.firm = self.firms[firmindex1]
+            self.firms[firmindex2].products.append(product)
+        
+        self.firms[firmindex2].products = []
+    
+        # make new actionspace
+        self.firms[firmindex1].set_action_space()
+
+        # update strategy if both are q learning
+        self.firms[firmindex1].strategy.merge(self.firms[firmindex2].strategy)
+        self.firms[firmindex2].strategy = None
+
+        # Remove from firm list
+        self.firms.pop(firmindex2)
+
+        # remake firmids
+        for i in range(len(self.firms)):
+            self.firms[i].index = i
+
+        self.next_firm_index -= 1
+        
+
+        # update state space
+        self.set_state_space()
+
+        
+        
 
 
     def get_nash_prices(self):

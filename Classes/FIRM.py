@@ -28,6 +28,9 @@ class Firm():
         assert(product.firm == None)
         product.firm = self
         self.products.append(product)
+        self.market.add_product(product) 
+
+
     
     
     def get_action(self, state, t):

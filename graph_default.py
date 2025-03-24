@@ -17,7 +17,7 @@ def main():
 
     new_config = config.create_config(sessions=sessions, iterations=iterations)
 
-    market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, savedData=False)
+    market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=False, savedData=False)
 
 
     # State frequency
@@ -25,7 +25,7 @@ def main():
 
     for result in results:
         for state in result[-100000:]:
-            state_frec[state.actions] += 1
+            state_frec[state.p] += 1
 
     heatmap = np.zeros((len(market.firms[0].action_space), len(market.firms[1].action_space)))
     

@@ -23,7 +23,7 @@ class Qlearning():
         action_counter = {action: 0 for action in action_space}
 
         for state in state_space:
-            action = state[firmindex]
+            action = state_space[state].actions[firmindex]
             firmprofit = state_space[state].firm_profits[firmindex]
 
             action_profit_sums[action] += firmprofit
@@ -47,7 +47,7 @@ class Qlearning():
         if state is None:
             state = random.choice(list(self.Q.keys()))
         else:
-            state = state.actions
+            state = state.p
             
         if np.random.uniform(0, 1) < explore:
             action = random.choice(list(self.Q[state].keys()))
@@ -68,6 +68,26 @@ class Qlearning():
         Updates Q values
         '''
 
-        next_max_val = max(self.Q[next_state.actions].values())
+        next_max_val = max(self.Q[next_state.p].values())
 
-        self.Q[state.actions][action] = (1 - self.learning_rate) * self.Q[state.actions][action] + self.learning_rate * (profit + self.discount_factor * next_max_val)
+        self.Q[state.p][action] = (1 - self.learning_rate) * self.Q[state.p][action] + self.learning_rate * (profit + self.discount_factor * next_max_val)
+
+    def merge(self, strategy):
+        '''
+        Takes another strategy
+        Merges Q values
+        '''
+        if isinstance(strategy, Qlearning):
+            new_Q = {}
+            
+            for state in self.Q:
+                new_Q[state] = {}
+
+                for action in self.Q[state]:
+                    for other_action in strategy.Q[state]:
+                        new_action = action + other_action
+                        new_Q[state][new_action] = (self.Q[state][action] + strategy.Q[state][other_action])
+    
+            self.Q = new_Q
+                    
+        
