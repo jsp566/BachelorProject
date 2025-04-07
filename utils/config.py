@@ -20,7 +20,11 @@ def Calvani_Exploration_Rate(t):
 
 defaultconfig = {# Simulation config
                  "sessions": 8,
+                
+                 "start_period": 1,
                  "iterations": 1000000,
+                 "convergence": 100000,
+
                  "seed": 0,
 
                  # Market config  

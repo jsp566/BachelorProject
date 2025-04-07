@@ -66,16 +66,16 @@ def setup(config):
     return market
 
 
-def session(market, iterations):
+def session(market, iterations, start_period = 1, convergence = None):
     new_market = copy.deepcopy(market)
 
-    return new_market.simulate(iterations)
+    return new_market.simulate(iterations, start_period=start_period, convergence=convergence)
 
 
 def simulate(config):
 
     market = setup(config)
-    return market, market.simulate(config['iterations'])
+    return market, market.simulate(config['iterations'], start_period=config['start_period'], convergence=config['convergence'])
 
 def session(market, iterations):
     new_market = copy.deepcopy(market)
@@ -94,11 +94,11 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
         
         if parallel:
             with Pool(processes=cpu_count()) as pool:
-                results = pool.starmap(session, [(market, config['iterations'])] * config['sessions'])
+                results = pool.starmap(session, [(market, config['iterations'], config['start_period'], config['convergence'])] * config['sessions'])
         else:
             results = []
             for i in range(config['sessions']):
-                results.append(session(market, config['iterations']))
+                results.append(session(market, config['iterations'], start_period=config['start_period'], convergence=config['convergence']))
 
         if filename:
             os.makedirs('Output/Data/' + filename, exist_ok=True)
