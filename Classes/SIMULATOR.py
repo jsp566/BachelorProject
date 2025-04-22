@@ -77,10 +77,6 @@ def simulate(config):
     market = setup(config)
     return market, market.simulate(config['iterations'], start_period=config['start_period'], convergence=config['convergence'])
 
-def session(market, iterations):
-    new_market = copy.deepcopy(market)
-
-    return new_market.simulate(iterations)
 
 def simulate_sessions(config, filename = None, parallel = True, savedData = False):
     market = setup(config)
