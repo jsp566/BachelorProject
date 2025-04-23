@@ -49,7 +49,7 @@ class Firm():
         Takes state, action, next state
         Updates strategy
         '''
-        self.strategy.update_strategy(state, self.prev_action, next_state, profit)            
+        return self.strategy.update_strategy(state, self.prev_action, next_state, profit)            
 
     def set_action_space(self):
         '''

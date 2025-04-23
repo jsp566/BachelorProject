@@ -74,32 +74,50 @@ class Qlearning():
 
         new_Q_val = (1 - self.learning_rate) * self.Q[state.p][action] + self.learning_rate * (profit + self.discount_factor * next_max_val)
         
-        # check if best actions need to be updated
-        max_val = self.Q[state.p][self.best_actions[state.p][0]]
+        update_to_best = self.update_best_actions(state, action, new_Q_val)
 
-        if new_Q_val > self.Q[state.p][action]:
+        self.Q[state.p][action] = new_Q_val
+        return update_to_best
+
+    def update_best_actions(self, state, action, new_Q_val):
+        # check if best actions need to be updated
+        
+        max_val = self.Q[state.p][self.best_actions[state.p][0]]
+        old_Q_val = self.Q[state.p][action]
+        update_to_best = False
+
+        if new_Q_val > old_Q_val:
             # check if new Q value is the best action
             if new_Q_val > max_val:
+                new_best = (action,)
+                if new_best != self.best_actions[state.p]:
+                    update_to_best = True
+                
                 self.best_actions[state.p] = (action,)
             # check if new Q value is equal to the best action
             elif new_Q_val == max_val:
                 self.best_actions[state.p] += (action,)
+                update_to_best = True
 
             
-        elif new_Q_val < self.Q[state.p][action]:
+        elif new_Q_val < old_Q_val:
             # check if old Q value was the best action
-            if self.Q[state.p][action] == max_val: 
-                # remove action from best actions
-                self.best_actions[state.p] = tuple([a for a in self.best_actions[state.p] if a != action])
-                # check if there are no best actions left
-                if len(self.best_actions[state.p]) == 0:
+            if old_Q_val == max_val:
+                if len(self.best_actions[state.p]) == 1:
                     # set new best action to the action with the highest Q value
                     self.Q[state.p][action] = new_Q_val
                     max_val = max(self.Q[state.p].values())
                     self.best_actions[state.p] = tuple([a for a in self.Q[state.p] if self.Q[state.p][a] == max_val])
+                    if self.best_actions[state.p] != (action,):
+                        update_to_best = True
 
-        
-        self.Q[state.p][action] = new_Q_val
+                else:
+                    # remove action from best actions
+                    self.best_actions[state.p] = tuple([a for a in self.best_actions[state.p] if a != action])
+                    update_to_best = True
+
+        return update_to_best
+
 
     def merge(self, strategy):
         '''

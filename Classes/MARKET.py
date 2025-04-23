@@ -104,14 +104,7 @@ class Market():
 
         states = []
         converged = False
-
-        if convergence is not None:
-            #get max strategies
-            max_strategies = {}
-            for firm in self.firms:
-                max_strategies[firm.index] = firm.strategy.best_actions.copy()
-            # set similar periods to 1
-            similar_periods = 1
+        similar_periods = 1
 
         if self.current_state is None:
             prices = [None] * len(self.products)
@@ -128,6 +121,7 @@ class Market():
 
         period = start_period
         while period < num_periods+start_period and not converged:
+
             prices = [None] * len(self.products)
 
             for firm in self.firms:
@@ -139,31 +133,26 @@ class Market():
 
             new_state = self.state_space[prices]
 
-            
+            update_to_best = False
             for i in range(len(self.firms)):
-                self.firms[i].update_strategy(self.current_state, new_state, new_state.firm_profits[i])
+                update_to_best |= self.firms[i].update_strategy(self.current_state, new_state, new_state.firm_profits[i])
 
             self.current_state = new_state
             states.append(self.current_state)
             period += 1
             if convergence is not None:
-                # get max strategies
-                new_max_strategies = {}
-                for firm in self.firms:
-                    new_max_strategies[firm.index] = firm.strategy.best_actions.copy()
-    
-                print(f"{period}: {similar_periods}")
+
                 
+               
                 
-                     
                 # if similar to previous period then add and check if reached else reset and update
-                if max_strategies == new_max_strategies:
+                if update_to_best:
+                    similar_periods = 1
+                else:
                     similar_periods += 1
                     if similar_periods >= convergence:
                         converged = True
-                else:
-                    max_strategies = new_max_strategies
-                    similar_periods = 1
+                    
 
 
         return states
