@@ -10,7 +10,7 @@ filename =  basename(__file__)
 
 
 def main():
-    sessions = 100
+    sessions =2
     iterations = 1000000
 
     firm_count = range(2, 11)

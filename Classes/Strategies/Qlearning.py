@@ -12,6 +12,7 @@ class Qlearning():
         self.exploration_rate = exploration_rate
 
         self.Q = None
+        self.best_actions = None
 
 
     def initialize(self, state_space, action_space, firmindex):
@@ -35,6 +36,11 @@ class Qlearning():
             self.Q[state] = {}
             for action in action_space:
                 self.Q[state][action] = (action_profit_sums[action]) / ((1 - self.discount_factor) * action_counter[action])
+        
+        self.best_actions = {}
+        for state in self.Q:
+            max_val = max(self.Q[state].values())
+            self.best_actions[state] = tuple([action for action, value in self.Q[state].items() if value == max_val])
 
     
     def get_action(self, state, t):
@@ -53,11 +59,7 @@ class Qlearning():
             action = random.choice(list(self.Q[state].keys()))
             
         else:
-            max_val = max(self.Q[state].values())
-
-            best_actions = [action for action, value in self.Q[state].items() if value == max_val]
-            
-            action = random.choice(best_actions)
+            action = random.choice(self.best_actions[state])
         
         return action
         
@@ -68,9 +70,36 @@ class Qlearning():
         Updates Q values
         '''
 
-        next_max_val = max(self.Q[next_state.p].values())
+        next_max_val = self.Q[next_state.p][self.best_actions[next_state.p][0]]
 
-        self.Q[state.p][action] = (1 - self.learning_rate) * self.Q[state.p][action] + self.learning_rate * (profit + self.discount_factor * next_max_val)
+        new_Q_val = (1 - self.learning_rate) * self.Q[state.p][action] + self.learning_rate * (profit + self.discount_factor * next_max_val)
+        
+        # check if best actions need to be updated
+        max_val = self.Q[state.p][self.best_actions[state.p][0]]
+
+        if new_Q_val > self.Q[state.p][action]:
+            # check if new Q value is the best action
+            if new_Q_val > max_val:
+                self.best_actions[state.p] = (action,)
+            # check if new Q value is equal to the best action
+            elif new_Q_val == max_val:
+                self.best_actions[state.p] += (action,)
+
+            
+        elif new_Q_val < self.Q[state.p][action]:
+            # check if old Q value was the best action
+            if self.Q[state.p][action] == max_val: 
+                # remove action from best actions
+                self.best_actions[state.p] = tuple([a for a in self.best_actions[state.p] if a != action])
+                # check if there are no best actions left
+                if len(self.best_actions[state.p]) == 0:
+                    # set new best action to the action with the highest Q value
+                    self.Q[state.p][action] = new_Q_val
+                    max_val = max(self.Q[state.p].values())
+                    self.best_actions[state.p] = tuple([a for a in self.Q[state.p] if self.Q[state.p][a] == max_val])
+
+        
+        self.Q[state.p][action] = new_Q_val
 
     def merge(self, strategy):
         '''
@@ -89,5 +118,8 @@ class Qlearning():
                         new_Q[state][new_action] = (self.Q[state][action] + strategy.Q[state][other_action])
     
             self.Q = new_Q
-                    
-        
+
+            self.best_actions = {}
+            for state in self.Q:
+                max_val = max(self.Q[state].values())
+                self.best_actions[state] = tuple([action for action, value in self.Q[state].items() if value == max_val])

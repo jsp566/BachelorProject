@@ -13,11 +13,11 @@ filename =  basename(__file__).replace('.py', '')
 def main():
     # Start
     sessions = 2
-    iterations = 1000000
+    iterations = 10000000
 
     new_config = config.create_config(sessions=sessions, iterations=iterations)
 
-    market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=True, savedData=False)
+    market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=False, savedData=False)
 
 
     # State frequency
@@ -65,7 +65,8 @@ def main():
     plt.clf()
 
     # Collusion Quotient:
-    collusion_quotients = [[state.collussion_quotient for state in result] for result in results]
+    min_length = min(len(result) for result in results)
+    collusion_quotients = [[state.collussion_quotient for state in result[:min_length]] for result in results]
     
     collusion_quotients = np.array(collusion_quotients)
 

@@ -109,15 +109,11 @@ class Market():
             #get max strategies
             max_strategies = {}
             for firm in self.firms:
-                max_strategies[firm.index] = {}
-                for state in self.state_space:
-                    max_val = max(firm.strategy.Q[state.p].values())
-                    max_strategies[firm.index][state.p] = tuple([action for action, value in firm.Q[state].items() if value == max_val])
-
+                max_strategies[firm.index] = firm.strategy.best_actions.copy()
             # set similar periods to 1
             similar_periods = 1
 
-        if self.current_state == None:
+        if self.current_state is None:
             prices = [None] * len(self.products)
             for firm in self.firms:
                 action = firm.get_action(None, 0)
@@ -154,11 +150,12 @@ class Market():
                 # get max strategies
                 new_max_strategies = {}
                 for firm in self.firms:
-                    max_strategies[firm.index] = {}
-                    for state in self.state_space:
-                        max_val = max(firm.strategy.Q[state.p].values())
-                        new_max_strategies[firm.index][state.p] = tuple([action for action, value in firm.Q[state].items() if value == max_val])
-
+                    new_max_strategies[firm.index] = firm.strategy.best_actions.copy()
+    
+                print(f"{period}: {similar_periods}")
+                
+                
+                     
                 # if similar to previous period then add and check if reached else reset and update
                 if max_strategies == new_max_strategies:
                     similar_periods += 1
@@ -184,7 +181,7 @@ class Market():
         # Move products
         for product in self.firms[firmindex2].products:
             product.firm = self.firms[firmindex1]
-            self.firms[firmindex2].products.append(product)
+            self.firms[firmindex1].products.append(product)
         
         self.firms[firmindex2].products = []
     
@@ -205,7 +202,7 @@ class Market():
         self.next_firm_index -= 1
         
 
-        # update state space
+        # update state space to calculate new firm profits
         self.set_state_space()
 
         

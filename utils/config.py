@@ -25,8 +25,6 @@ defaultconfig = {# Simulation config
                  "iterations": 1000000,
                  "convergence": 100000,
 
-                 "seed": 0,
-
                  # Market config  
                  "demand_function": Share,
                  "numb_firms": 2,
@@ -37,7 +35,7 @@ defaultconfig = {# Simulation config
                  # Strategy config 
                  "exploration_rate": Calvani_Exploration_Rate, 
                  "discount_factor": 0.95, 
-                 "learning_rate": 0.125, 
+                 "learning_rate": 0.15, 
 
                  # Product config
                  "quality": 2, 

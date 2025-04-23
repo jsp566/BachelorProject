@@ -78,7 +78,7 @@ def simulate(config):
     return market, market.simulate(config['iterations'], start_period=config['start_period'], convergence=config['convergence'])
 
 
-def simulate_sessions(config, filename = None, parallel = True, savedData = False):
+def simulate_sessions(config, filename = None, parallel = True, savedData = False, session = session):
     market = setup(config)
     if savedData:  
         with open('Output/Data/' + filename + '/config.pkl', 'rb') as f:
