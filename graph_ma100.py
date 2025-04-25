@@ -8,42 +8,32 @@ from os.path import basename
 from multiprocessing import Pool, cpu_count
 import cProfile
 import pstats
+import copy
 
-filename = basename(__file__)
-
-
-def run_simulation(new_config, nash, mono, maxit):
-    """ Runs a single simulation and computes collusion quotient moving average. """
-    market, states = SIMULATOR.simulate(new_config)
-
-    # Extract and process profits
-    profits = np.array([state.profits for state in states])
-    profits = np.mean(profits, axis=1)
-
-    # Compute collusion quotient
-    collusion_quotient_list = [lib.get_collusion_quotient(profits[i], nash, mono) for i in range(maxit)]
-    
-    return lib.moving_average(collusion_quotient_list, 100)
-
+filename =  basename(__file__).replace('.py', '')
 
 def main():
-    # Initialize
-    market = SIMULATOR.setup(config.defaultconfig)
-    nash = np.mean(market.get_nash_profits())
-    mono = np.mean(market.get_monopoly_profits())
+    # Start
+    sessions = 8
+    iterations = 10000000
+    numb_firms = 2
 
-    times = 2
-    maxit = 2000000
-    new_config = config.create_config(iterations=maxit)
+    
 
-    # Parallel processing
-    with Pool(processes=cpu_count()) as pool:
-        results = pool.starmap(run_simulation, [(new_config, nash, mono, maxit)] * times)
+    new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms)
 
-    # Aggregate results
-    ma100 = np.sum(results, axis=0) / times
-    print(ma100.shape)
-    # Generate x-axis
+    market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=True, savedData=False)
+
+
+
+    # Collusion Quotient:
+    min_length = min(len(result) for result in results)
+    collusion_quotients = [[state.collussion_quotient for state in result[:min_length]] for result in results]
+    
+    collusion_quotients = np.array(collusion_quotients)
+
+    average_collusion_quotient = np.mean(collusion_quotients, axis=(0,2))
+    ma100=  lib.moving_average(average_collusion_quotient, 100)
     repetitions = np.linspace(0, len(ma100), len(ma100))
 
 
@@ -52,7 +42,7 @@ def main():
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Period')
     
-    filename = basename(__file__)
+
     plt.savefig(config.create_filepath(filename))
 
 

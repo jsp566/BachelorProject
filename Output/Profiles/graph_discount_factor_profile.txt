@@ -1,0 +1,224 @@
+         294021320 function calls (293821624 primitive calls) in 323.337 seconds
+
+   Ordered by: cumulative time
+   List reduced from 1818 to 50 due to restriction <50>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.035    0.035  323.367  323.367 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\graph_discount_factor.py:13(main)
+        4    0.000    0.000  319.633   79.908 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\SIMULATOR.py:81(simulate_sessions)
+        8    0.003    0.000  318.795   39.849 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\SIMULATOR.py:69(session)
+        8   47.582    5.948  318.183   39.773 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\MARKET.py:99(simulate)
+ 16000016    9.105    0.000  136.901    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\FIRM.py:36(get_action)
+ 16000000    8.308    0.000  128.618    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\FIRM.py:47(update_strategy)
+ 16000016   26.914    0.000  127.796    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:46(get_action)
+ 16000000   40.913    0.000  120.311    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:67(update_strategy)
+ 16000000   38.995    0.000   79.397    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:82(update_best_actions)
+ 16000016   41.093    0.000   41.093    0.000 {method 'uniform' of 'numpy.random.mtrand.RandomState' objects}
+ 16000032   13.115    0.000   35.772    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\random.py:367(choice)
+  7030280   30.756    0.000   30.756    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:110(<listcomp>)
+ 16000016   23.496    0.000   23.496    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\config.py:18(Calvani_Exploration_Rate)
+ 16000032   13.739    0.000   19.015    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\random.py:235(_randbelow_with_getrandbits)
+71037063/71037051    8.274    0.000    8.274    0.000 {built-in method builtins.len}
+  7033491    7.877    0.000    7.877    0.000 {built-in method builtins.max}
+ 28335704    3.472    0.000    3.472    0.000 {method 'getrandbits' of '_random.Random' objects}
+     6650    2.465    0.000    2.465    0.000 {built-in method numpy.array}
+ 16000032    1.805    0.000    1.805    0.000 {method 'bit_length' of 'int' objects}
+  8106534    1.326    0.000    1.326    0.000 {method 'append' of 'list' objects}
+  7032982    0.910    0.000    0.910    0.000 {method 'values' of 'dict' objects}
+        8    0.647    0.081    0.647    0.081 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\graph_discount_factor.py:26(<listcomp>)
+183675/47    0.251    0.000    0.617    0.013 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:128(deepcopy)
+  5660/47    0.069    0.000    0.616    0.013 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:227(_deepcopy_dict)
+ 2172/316    0.008    0.000    0.613    0.002 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:259(_reconstruct)
+  3925417    0.521    0.000    0.521    0.000 {method 'keys' of 'dict' objects}
+3648/3616    0.006    0.000    0.443    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:201(_deepcopy_list)
+       12    0.439    0.037    0.439    0.037 {built-in method _pickle.dump}
+        1    0.000    0.000    0.414    0.414 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\pyplot.py:3582(plot)
+        3    0.000    0.000    0.412    0.137 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\pyplot.py:2538(gca)
+        4    0.000    0.000    0.388    0.097 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\SIMULATOR.py:53(setup)
+        4    0.000    0.000    0.388    0.097 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\MARKET.py:55(set_priceranges)
+        4    0.000    0.000    0.351    0.088 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\pyplot.py:987(gcf)
+        1    0.000    0.000    0.351    0.351 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\pyplot.py:777(figure)
+        1    0.000    0.000    0.351    0.351 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\pyplot.py:462(new_figure_manager)
+       68    0.001    0.000    0.302    0.004 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_minimize.py:51(minimize)
+       68    0.017    0.000    0.299    0.004 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_optimize.py:1412(_minimize_bfgs)
+        4    0.000    0.000    0.276    0.069 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\lib.py:53(Newton)
+        4    0.000    0.000    0.276    0.069 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_minpack_py.py:51(fsolve)
+        4    0.000    0.000    0.276    0.069 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_minpack_py.py:187(_root_hybr)
+       32    0.000    0.000    0.275    0.009 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\lib.py:54(<lambda>)
+       32    0.000    0.000    0.275    0.009 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\lib.py:54(<listcomp>)
+       64    0.000    0.000    0.275    0.004 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\lib.py:26(Best_Response)
+        4    0.000    0.000    0.270    0.067 {built-in method scipy.optimize._minpack._hybrd}
+        1    0.000    0.000    0.254    0.254 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\backend_bases.py:3404(new_figure_manager)
+        1    0.000    0.000    0.253    0.253 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\backend_bases.py:3413(new_figure_manager_given_figure)
+        1    0.000    0.000    0.253    0.253 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\backend_bases.py:1774(new_manager)
+        1    0.000    0.000    0.253    0.253 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\backends\_backend_tk.py:479(create_with_canvas)
+      380    0.001    0.000    0.247    0.001 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_optimize.py:1223(_line_search_wolfe12)
+      380    0.002    0.000    0.231    0.001 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_linesearch.py:38(line_search_wolfe1)
+
+
+         294021320 function calls (293821624 primitive calls) in 323.337 seconds
+
+   Ordered by: internal time
+   List reduced from 1818 to 50 due to restriction <50>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        8   47.582    5.948  318.183   39.773 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\MARKET.py:99(simulate)
+ 16000016   41.093    0.000   41.093    0.000 {method 'uniform' of 'numpy.random.mtrand.RandomState' objects}
+ 16000000   40.913    0.000  120.311    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:67(update_strategy)
+ 16000000   38.995    0.000   79.397    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:82(update_best_actions)
+  7030280   30.756    0.000   30.756    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:110(<listcomp>)
+ 16000016   26.914    0.000  127.796    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:46(get_action)
+ 16000016   23.496    0.000   23.496    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\config.py:18(Calvani_Exploration_Rate)
+ 16000032   13.739    0.000   19.015    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\random.py:235(_randbelow_with_getrandbits)
+ 16000032   13.115    0.000   35.772    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\random.py:367(choice)
+ 16000016    9.105    0.000  136.901    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\FIRM.py:36(get_action)
+ 16000000    8.308    0.000  128.618    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\FIRM.py:47(update_strategy)
+71037063/71037051    8.274    0.000    8.274    0.000 {built-in method builtins.len}
+  7033491    7.877    0.000    7.877    0.000 {built-in method builtins.max}
+ 28335704    3.472    0.000    3.472    0.000 {method 'getrandbits' of '_random.Random' objects}
+     6650    2.465    0.000    2.465    0.000 {built-in method numpy.array}
+ 16000032    1.805    0.000    1.805    0.000 {method 'bit_length' of 'int' objects}
+  8106534    1.326    0.000    1.326    0.000 {method 'append' of 'list' objects}
+  7032982    0.910    0.000    0.910    0.000 {method 'values' of 'dict' objects}
+        8    0.647    0.081    0.647    0.081 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\graph_discount_factor.py:26(<listcomp>)
+  3925417    0.521    0.000    0.521    0.000 {method 'keys' of 'dict' objects}
+       12    0.439    0.037    0.439    0.037 {built-in method _pickle.dump}
+183675/47    0.251    0.000    0.617    0.013 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:128(deepcopy)
+        1    0.142    0.142    0.142    0.142 {built-in method _tkinter.create}
+  5660/47    0.069    0.000    0.616    0.013 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:227(_deepcopy_dict)
+    61680    0.062    0.000    0.062    0.000 {method '__deepcopy__' of 'numpy.generic' objects}
+    91400    0.054    0.000    0.077    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:243(_keep_alive)
+      166    0.051    0.000    0.051    0.000 {method 'call' of '_tkinter.tkapp' objects}
+    10119    0.047    0.000    0.047    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+   301703    0.045    0.000    0.045    0.000 {method 'get' of 'dict' objects}
+        5    0.042    0.008    0.042    0.008 {built-in method _imp.create_dynamic}
+   297695    0.036    0.000    0.036    0.000 {built-in method builtins.id}
+        1    0.035    0.035  323.367  323.367 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\graph_discount_factor.py:13(main)
+      170    0.032    0.000    0.032    0.000 {method 'read' of '_io.BufferedReader' objects}
+      816    0.031    0.000    0.146    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_numdiff.py:276(approx_derivative)
+11040/7440    0.031    0.000    0.070    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:210(_deepcopy_tuple)
+     4492    0.030    0.000    0.060    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\config.py:10(Share)
+        8    0.022    0.003    0.027    0.003 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:18(initialize)
+      189    0.018    0.000    0.018    0.000 {built-in method nt.stat}
+       68    0.017    0.000    0.299    0.004 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_optimize.py:1412(_minimize_bfgs)
+        8    0.017    0.002    0.017    0.002 {method 'encode' of 'ImagingEncoder' objects}
+    78790    0.013    0.000    0.014    0.000 {built-in method builtins.getattr}
+     7586    0.012    0.000    0.038    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:71(_wrapreduction)
+    76775    0.012    0.000    0.012    0.000 {built-in method builtins.issubclass}
+        1    0.011    0.011    0.011    0.011 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\font_manager.py:1493(_get_font)
+     3592    0.011    0.000    0.059    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\lib.py:4(Profit)
+     1328    0.010    0.000    0.027    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_dcsrch.py:269(_iterate)
+        1    0.009    0.009    0.009    0.009 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\linalg\linalg.py:492(inv)
+     1632    0.009    0.000    0.017    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:1407(resize)
+      816    0.009    0.000    0.056    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_numdiff.py:580(_dense_difference)
+       22    0.008    0.000    0.008    0.000 {built-in method io.open}
+
+
+         294021320 function calls (293821624 primitive calls) in 323.337 seconds
+
+   Ordered by: call count
+   List reduced from 1818 to 100 due to restriction <100>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+71037063/71037051    8.274    0.000    8.274    0.000 {built-in method builtins.len}
+ 28335704    3.472    0.000    3.472    0.000 {method 'getrandbits' of '_random.Random' objects}
+ 16000032   13.115    0.000   35.772    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\random.py:367(choice)
+ 16000032   13.739    0.000   19.015    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\random.py:235(_randbelow_with_getrandbits)
+ 16000032    1.805    0.000    1.805    0.000 {method 'bit_length' of 'int' objects}
+ 16000016   26.914    0.000  127.796    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:46(get_action)
+ 16000016   23.496    0.000   23.496    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\config.py:18(Calvani_Exploration_Rate)
+ 16000016    9.105    0.000  136.901    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\FIRM.py:36(get_action)
+ 16000016   41.093    0.000   41.093    0.000 {method 'uniform' of 'numpy.random.mtrand.RandomState' objects}
+ 16000000    8.308    0.000  128.618    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\FIRM.py:47(update_strategy)
+ 16000000   40.913    0.000  120.311    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:67(update_strategy)
+ 16000000   38.995    0.000   79.397    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:82(update_best_actions)
+  8106534    1.326    0.000    1.326    0.000 {method 'append' of 'list' objects}
+  7033491    7.877    0.000    7.877    0.000 {built-in method builtins.max}
+  7032982    0.910    0.000    0.910    0.000 {method 'values' of 'dict' objects}
+  7030280   30.756    0.000   30.756    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:110(<listcomp>)
+  3925417    0.521    0.000    0.521    0.000 {method 'keys' of 'dict' objects}
+   301703    0.045    0.000    0.045    0.000 {method 'get' of 'dict' objects}
+   297695    0.036    0.000    0.036    0.000 {built-in method builtins.id}
+183675/47    0.251    0.000    0.617    0.013 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:128(deepcopy)
+    91400    0.054    0.000    0.077    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:243(_keep_alive)
+    78790    0.013    0.000    0.014    0.000 {built-in method builtins.getattr}
+    76775    0.012    0.000    0.012    0.000 {built-in method builtins.issubclass}
+    61680    0.062    0.000    0.062    0.000 {method '__deepcopy__' of 'numpy.generic' objects}
+    33168    0.007    0.000    0.010    0.000 {built-in method builtins.isinstance}
+    18534    0.003    0.000    0.003    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:182(_deepcopy_atomic)
+    18534    0.003    0.000    0.003    0.000 {method 'items' of 'dict' objects}
+11040/7440    0.008    0.000    0.056    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:211(<listcomp>)
+11040/7440    0.031    0.000    0.070    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:210(_deepcopy_tuple)
+    10119    0.047    0.000    0.047    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     9156    0.003    0.000    0.004    0.000 {built-in method numpy.asarray}
+     7586    0.012    0.000    0.038    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:71(_wrapreduction)
+     7586    0.006    0.000    0.006    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:72(<dictcomp>)
+     7541    0.001    0.000    0.001    0.000 {built-in method builtins.abs}
+     7313    0.007    0.000    0.007    0.000 {method '__deepcopy__' of 'numpy.ndarray' objects}
+     6650    2.465    0.000    2.465    0.000 {built-in method numpy.array}
+  5660/47    0.069    0.000    0.616    0.013 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:227(_deepcopy_dict)
+     5341    0.002    0.000    0.002    0.000 {built-in method numpy.asanyarray}
+     5300    0.007    0.000    0.033    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:2177(sum)
+     5300    0.001    0.000    0.001    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:2172(_sum_dispatcher)
+     4864    0.001    0.000    0.001    0.000 {built-in method builtins.hasattr}
+     4492    0.030    0.000    0.060    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\config.py:10(Share)
+     3962    0.001    0.000    0.005    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:264(<genexpr>)
+3648/3616    0.006    0.000    0.443    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:201(_deepcopy_list)
+     3624    0.003    0.000    0.003    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+     3592    0.011    0.000    0.059    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\lib.py:4(Profit)
+     3564    0.001    0.000    0.001    0.000 {function RcParams.__getitem__ at 0x000001F58163C7C0}
+     3559    0.002    0.000    0.003    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\__init__.py:703(_get)
+     3557    0.003    0.000    0.006    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\__init__.py:754(__getitem__)
+     3524    0.002    0.000    0.004    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\numerictypes.py:283(issubclass_)
+3499/3236    0.002    0.000    0.003    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\artist.py:317(stale)
+     3467    0.004    0.000    0.004    0.000 {method 'astype' of 'numpy.ndarray' objects}
+     3128    0.000    0.000    0.000    0.000 {built-in method numpy.geterrobj}
+     2880    0.001    0.000    0.001    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\multiarray.py:741(dot)
+     2608    0.001    0.000    0.004    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\_lib\array_api_compat\array_api_compat\common\_aliases.py:232(astype)
+     2584    0.001    0.000    0.001    0.000 {method 'ravel' of 'numpy.ndarray' objects}
+     2448    0.002    0.000    0.004    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:1768(ravel)
+     2448    0.000    0.000    0.000    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:1764(_ravel_dispatcher)
+     2448    0.001    0.000    0.002    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_numdiff.py:205(<genexpr>)
+2420/2417    0.001    0.000    0.001    0.000 {built-in method __new__ of type object at 0x00007FFD4D570FD0}
+     2324    0.002    0.000    0.008    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:53(_wrapfunc)
+     2228    0.001    0.000    0.001    0.000 {method 'update' of 'dict' objects}
+     2226    0.001    0.000    0.007    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\_methods.py:61(_all)
+     2226    0.001    0.000    0.008    0.000 {method 'all' of 'numpy.ndarray' objects}
+     2188    0.006    0.000    0.014    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\numeric.py:2378(array_equal)
+     2188    0.000    0.000    0.000    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\numeric.py:2374(_array_equal_dispatcher)
+     2172    0.001    0.000    0.002    0.000 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copyreg.py:104(__newobj__)
+ 2172/316    0.008    0.000    0.613    0.002 C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\copy.py:259(_reconstruct)
+     2172    0.002    0.000    0.002    0.000 {method '__reduce_ex__' of 'object' objects}
+     2122    0.001    0.000    0.003    0.000 <frozen abc>:117(__instancecheck__)
+     2122    0.001    0.000    0.002    0.000 {built-in method _abc._abc_instancecheck}
+     2048    0.001    0.000    0.029    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_differentiable_functions.py:260(_update_fun)
+     2037    0.000    0.000    0.000    0.000 {method 'lower' of 'str' objects}
+     1860    0.001    0.000    0.003    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\lib\function_base.py:873(copy)
+     1860    0.000    0.000    0.000    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\lib\function_base.py:869(_copy_dispatcher)
+     1801    0.001    0.000    0.001    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\numeric.py:1855(isscalar)
+     1800    0.003    0.000    0.003    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:43(<listcomp>)
+     1792    0.005    0.000    0.053    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\optimize\_differentiable_functions.py:140(fun_wrapped)
+     1762    0.003    0.000    0.007    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\numerictypes.py:357(issubdtype)
+     1761    0.003    0.000    0.006    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\shape_base.py:23(atleast_1d)
+     1761    0.000    0.000    0.000    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\shape_base.py:19(_atleast_1d_dispatcher)
+     1756    0.003    0.000    0.010    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\_lib\array_api_compat\array_api_compat\common\_aliases.py:484(isdtype)
+     1756    0.002    0.000    0.012    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\_lib\array_api_compat\array_api_compat\_internal.py:25(wrapped_f)
+     1736    0.006    0.000    0.011    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\_lib\array_api_compat\array_api_compat\common\_aliases.py:270(_asarray)
+     1736    0.003    0.000    0.013    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\_lib\_array_api.py:157(atleast_nd)
+     1736    0.002    0.000    0.002    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\_lib\array_api_compat\array_api_compat\common\_helpers.py:119(_check_device)
+     1736    0.002    0.000    0.002    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\_lib\array_api_compat\array_api_compat\common\_helpers.py:13(_is_numpy_array)
+     1696    0.000    0.000    0.000    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:195(_reshape_dispatcher)
+     1696    0.002    0.000    0.005    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:200(reshape)
+     1671    0.000    0.000    0.000    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\multiarray.py:153(concatenate)
+     1632    0.009    0.000    0.017    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:1407(resize)
+     1632    0.000    0.000    0.000    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\fromnumeric.py:1403(_resize_dispatcher)
+     1624    0.002    0.000    0.039    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\lib.py:27(<lambda>)
+     1624    0.007    0.000    0.007    0.000 c:\Users\ludvi\OneDrive\Dokument\GitHub\BachelorProject\utils\lib.py:21(Set_Price)
+     1564    0.002    0.000    0.003    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\_ufunc_config.py:132(geterr)
+     1564    0.003    0.000    0.007    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\core\_ufunc_config.py:33(seterr)
+     1564    0.001    0.000    0.001    0.000 {built-in method numpy.seterrobj}
+     1478    0.000    0.000    0.000    0.000 {method 'endswith' of 'str' objects}
+     1411    0.001    0.000    0.002    0.000 C:\Users\ludvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\matplotlib\_api\__init__.py:99(check_in_list)
+     1359    0.000    0.000    0.000    0.000 {method 'rstrip' of 'str' objects}
+
+

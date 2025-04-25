@@ -10,14 +10,7 @@ import copy
 filename =  basename(__file__).replace('.py', '')
 
 
-
-def main():
-    # Start
-    sessions = 2
-    iterations = 100000000
-    numb_firms = 3
-
-    def new_session(market, iterations, start_period = 1, convergence = None):
+def new_session(market, iterations, start_period = 1, convergence = None):
         new_market = copy.deepcopy(market)
         before = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
         new_market.merge(0,1)
@@ -25,12 +18,18 @@ def main():
         return before + after
 
 
+def main():
+    # Start
+    sessions = 2
+    iterations = 1000000
+    numb_firms = 3
+
+    
+
+
     new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms)
 
     market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=False, savedData=False, session= new_session)
-
-
-
     # Collusion Quotient:
     min_length = min(len(result) for result in results)
     collusion_quotients = [[state.collussion_quotient for state in result[:min_length]] for result in results]

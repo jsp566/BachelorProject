@@ -12,19 +12,17 @@ filename =  basename(__file__)
 def main():
     sessions =2
     iterations = 1000000
-
-    firm_count = range(2, 11)
+    firm_count = range(2, 5)
 
     collusion_quotients_list = []
     ticks = []
+
+
     for numb_firms in firm_count:
         new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms)
-        market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, savedData=False)
-        collusion_quotients = [[state.collussion_quotient for state in result] for result in results]
-        
+        market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=False, savedData=False)
+        collusion_quotients = [[state.collussion_quotient for state in result[:-25000]] for result in results]
         collusion_quotients = np.array(collusion_quotients)
-        collusion_quotients = collusion_quotients[:,-25000:,:]
-        print(collusion_quotients.shape)
         collusion_quotients = np.mean(collusion_quotients, axis=(1,2))
         collusion_quotients = np.transpose(collusion_quotients)
         ticks.append(str(numb_firms) + "firms")
