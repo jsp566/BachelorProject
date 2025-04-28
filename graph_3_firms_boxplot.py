@@ -10,8 +10,8 @@ filename =  basename(__file__)
 
 
 def main():
-    sessions =2
-    iterations = 1000000
+    sessions = 100
+    iterations = 10**7
     firm_count = range(2, 5)
 
     collusion_quotients_list = []
@@ -20,8 +20,8 @@ def main():
 
     for numb_firms in firm_count:
         new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms)
-        market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=False, savedData=False)
-        collusion_quotients = [[state.collussion_quotient for state in result[:-25000]] for result in results]
+        market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=True, savedData=False)
+        collusion_quotients = [[state.collussion_quotient for state in result[-100000:]] for result in results]
         collusion_quotients = np.array(collusion_quotients)
         collusion_quotients = np.mean(collusion_quotients, axis=(1,2))
         collusion_quotients = np.transpose(collusion_quotients)

@@ -20,8 +20,8 @@ def new_session(market, iterations, start_period = 1, convergence = None):
 
 def main():
     # Start
-    sessions = 2
-    iterations = 1000000
+    sessions = 100
+    iterations = 10**7
     numb_firms = 3
 
     
@@ -29,7 +29,7 @@ def main():
 
     new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms)
 
-    market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=False, savedData=False, session= new_session)
+    market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=True, savedData=False, session= new_session)
     # Collusion Quotient:
     min_length = min(len(result) for result in results)
     collusion_quotients = [[state.collussion_quotient for state in result[:min_length]] for result in results]

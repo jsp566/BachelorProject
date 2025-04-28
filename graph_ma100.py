@@ -14,8 +14,8 @@ filename =  basename(__file__).replace('.py', '')
 
 def main():
     # Start
-    sessions = 8
-    iterations = 10000000
+    sessions = 100
+    iterations = 10**7
     numb_firms = 2
 
     
