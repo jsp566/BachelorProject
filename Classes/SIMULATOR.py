@@ -6,13 +6,11 @@ import Classes.PRODUCT as PRODUCT
 
 import copy
 from multiprocessing import Pool, cpu_count
-import time
-import signal
+from functools import partial
 
 import os
 import pickle
 
-import time
 
 def list_creator(input, numb):
     if type(input) == list:
@@ -31,6 +29,7 @@ def fix_config(config):
 
     config['strategy'] = list_creator(config['strategy'], config['numb_firms'])
     config['exploration_rate'] = list_creator(config['exploration_rate'], config['numb_firms'])
+    config['exploration_rate_params'] = list_creator(config['exploration_rate_params'], config['numb_firms'])
     config['discount_factor'] = list_creator(config['discount_factor'], config['numb_firms'])
     config['learning_rate'] = list_creator(config['learning_rate'], config['numb_firms'])
 
@@ -52,11 +51,18 @@ def fix_config(config):
 
 def setup(config):
     fix_config(config)
-
-    market = MARKET.Market(DEMAND.DemandFunction(config['demand_function']))
+    share = partial(config['demand_function'], **config['demand_function_params'])
+    # check demand function is callable
+    assert callable(share), 'Demand function must be callable'
+    # check demand function is callable
+    market = MARKET.Market(DEMAND.DemandFunction(share))
 
     for i in range(config['numb_firms']):
-        firm  = FIRM.Firm(config['strategy'][i](config['discount_factor'][i], config['learning_rate'][i], config['exploration_rate'][i]))
+        exploration_rate = partial(config['exploration_rate'][i], **config['exploration_rate_params'][i])
+        # check exploration rate is callable
+        assert callable(exploration_rate), 'Exploration rate must be callable'
+
+        firm  = FIRM.Firm(config['strategy'][i](config['discount_factor'][i], config['learning_rate'][i], exploration_rate))
         market.add_firm(firm)
         for j in range(config['numb_products'][i]):
             product = PRODUCT.Product(config['marginal_cost'][i][j], config['quality'][i][j])

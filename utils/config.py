@@ -6,16 +6,15 @@ import cProfile
 import pstats
 
 # Demand function
-mu = 0.25
-def Share(P, A):
+def Share(P, A, mu):
     numer = np.exp((A-P)/mu)
     denom = 1 + np.sum(numer)
     result = numer/denom
     return result
 
 # Exloration rates
-beta = 4 * 10**-6
-def Calvani_Exploration_Rate(t):
+
+def Calvani_Exploration_Rate(t, beta):
     return np.exp(-beta*t)
 
 defaultconfig = {# Simulation config
@@ -27,13 +26,15 @@ defaultconfig = {# Simulation config
 
                  # Market config  
                  "demand_function": Share,
+                 "demand_function_params": {"mu": 0.25}, # Demand function parameters
                  "numb_firms": 2,
 
                  # Agent config
                  "numb_products": 1,
                  "strategy": Qlearning.Qlearning,
                  # Strategy config 
-                 "exploration_rate": Calvani_Exploration_Rate, 
+                 "exploration_rate": Calvani_Exploration_Rate,
+                 "exploration_rate_params": {"beta": 4 * 10**-6}, # Exploration rate parameters 
                  "discount_factor": 0.95, 
                  "learning_rate": 0.15, 
 

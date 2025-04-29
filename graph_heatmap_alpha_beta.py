@@ -12,19 +12,20 @@ filename = basename(__file__).replace('.py', '')
 
 def main():
     # Start
-    alphas = np.linspace(0.0, 0.25, 10, endpoint=False) #SET Alpha values
-    betas = np.linspace(0.0, 2*10**-5, 10, endpoint=False) #SET Beta values
-    sessions = 100
+    alphas = np.linspace(0.0, 0.25, 2, endpoint=False) #SET Alpha values
+    betas = np.linspace(0.0, 2*10**-5, 2, endpoint=False) #SET Beta values
+    sessions = 2
     iterations = 10**7
     numb_firms = 2
+    parallel=True
 
     average_collusion_quotient = [] #List to store average collusion quotients
     for alpha in alphas:
         for beta in betas: 
-            fun = lambda t: np.exp(-beta*t) #lambda function for exploration rate
+            
             print(f"alpha = {alpha}, beta = {beta}")
-            new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms, alpha=alpha, beta=beta)
-            market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=True, savedData=False)
+            new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms, learning_rate=alpha, exploration_rate_params={"beta": beta})
+            market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=False)
             min_length = min(len(result) for result in results)
             collusion_quotients = [[state.collussion_quotient for state in result[-100000:]] for result in results]
             collusion_quotients = np.array(collusion_quotients)
