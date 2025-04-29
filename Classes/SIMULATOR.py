@@ -85,12 +85,14 @@ def simulate(config):
 
 
 def simulate_sessions(config, filename = None, parallel = True, savedData = False, session = session):
+    output_dir = os.path.join(os.getcwd(), 'Output', 'Data')
+
     market = setup(config)
     if savedData:  
-        with open('Output/Data/' + filename + '/config.pkl', 'rb') as f:
+        with open(os.path.join(output_dir, filename, 'config.pkl'), 'rb') as f:
             old_config = pickle.load(f)
         assert old_config == config, 'Configurations do not match'
-        with open('Output/Data/' + filename + '/results.pkl', 'rb') as f:
+        with open(os.path.join(output_dir, filename, 'results.pkl'), 'rb') as f:
             results = pickle.load(f)
     else:
         
@@ -103,17 +105,17 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
                 results.append(session(market, config['iterations'], start_period=config['start_period'], convergence=config['convergence']))
 
         if filename:
-            os.makedirs('Output/Data/' + filename, exist_ok=True)
+            os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
 
             # Save config
-            with open('Output/Data/' + filename + '/config.pkl', 'wb') as f:
+            with open(os.path.join(output_dir, filename, 'config.pkl'), 'wb') as f:
                 pickle.dump(config, f)
 
             # Save market
-            with open('Output/Data/' + filename + '/market.pkl', 'wb') as f:
+            with open(os.path.join(output_dir, filename, 'market.pkl'), 'wb') as f:
                 pickle.dump(market, f)
 
             # Save results
-            with open('Output/Data/' + filename + '/results.pkl', 'wb') as f:
+            with open(os.path.join(output_dir, filename, 'results.pkl'), 'wb') as f:
                 pickle.dump(results, f)
     return market, results

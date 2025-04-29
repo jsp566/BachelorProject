@@ -61,7 +61,7 @@ def create_config(**kwargs):
 
 
 def create_filepath(filename):
-    save_dir = 'Output/Graphs'
+    save_dir = os.path.join(os.getcwd(), 'Output', 'Graphs')
     os.makedirs(save_dir, exist_ok=True)
     filepath = os.path.join(save_dir, filename + '.png')
     return filepath

@@ -19,8 +19,9 @@ def main():
     numb_firms = 2
 
     average_collusion_quotient = [] #List to store average collusion quotients
-    for gamma in discount_factors:    
-        new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms, gamma=gamma)
+    for gamma in discount_factors:
+        print(f"gamma = {gamma}")     
+        new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms, discount_factor=gamma)
         market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=True, savedData=False)
         min_length = min(len(result) for result in results)
         collusion_quotients = [[state.collussion_quotient for state in result[-100000:]] for result in results]
