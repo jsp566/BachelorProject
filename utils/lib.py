@@ -54,7 +54,8 @@ def Newton(P0, A, MC, Share, tol=1e-10):
     fun = lambda p: np.array(p) - np.array([Best_Response(p, A, MC, Share, i) for i in range(len(P0))])
 
     return fsolve(fun, P0, xtol=tol)
-    
+
+
 
 def Make_Price_Ranges(Nash, Mono, num_p, include_NE_and_Mono=True, extra=0.1):
 

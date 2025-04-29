@@ -89,8 +89,8 @@ class Qlearning():
         if new_Q_val > old_Q_val:
             # check if new Q value is the best action
             if new_Q_val > max_val:
-                new_best = (action,)
-                if new_best != self.best_actions[state.p]:
+                # set new best action to the action with the highest Q value
+                if (action,) != self.best_actions[state.p]:
                     update_to_best = True
                 
                 self.best_actions[state.p] = (action,)
