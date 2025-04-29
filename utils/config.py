@@ -50,7 +50,12 @@ defaultconfig = {# Simulation config
 
 def create_config(**kwargs):
     config = defaultconfig.copy()
-    config.update(kwargs)
+    for key, value in kwargs.items():
+        if key in config:
+            config[key] = value
+        else:
+            raise KeyError(f"Key '{key}' not found in default configuration.")
+        
     return config
 
 
