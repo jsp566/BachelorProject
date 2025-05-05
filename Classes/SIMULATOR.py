@@ -7,6 +7,8 @@ import Classes.PRODUCT as PRODUCT
 import copy
 from multiprocessing import Pool, cpu_count
 from functools import partial
+import itertools
+
 
 import os
 import pickle
@@ -83,8 +85,9 @@ def simulate(config):
     market = setup(config)
     return market, market.simulate(config['iterations'], start_period=config['start_period'], convergence=config['convergence'])
 
+# variations is a dict of settings, with variables and a list of values
 
-def simulate_sessions(config, filename = None, parallel = True, savedData = False, session = session):
+def simulate_sessions(config, filename = None, parallel = True, savedData = False, session = session, variations = None):
     output_dir = os.path.join(os.getcwd(), 'Output', 'Data')
 
     market = setup(config)
@@ -106,16 +109,20 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
 
         if filename:
             os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
+            try:
+                # Save config
+                with open(os.path.join(output_dir, filename, 'config.pkl'), 'wb') as f:
+                    pickle.dump(config, f)
 
-            # Save config
-            with open(os.path.join(output_dir, filename, 'config.pkl'), 'wb') as f:
-                pickle.dump(config, f)
+                # Save market
+                with open(os.path.join(output_dir, filename, 'market.pkl'), 'wb') as f:
+                    pickle.dump(market, f)
 
-            # Save market
-            with open(os.path.join(output_dir, filename, 'market.pkl'), 'wb') as f:
-                pickle.dump(market, f)
-
-            # Save results
-            with open(os.path.join(output_dir, filename, 'results.pkl'), 'wb') as f:
-                pickle.dump(results, f)
+                # Save results
+                with open(os.path.join(output_dir, filename, 'results.pkl'), 'wb') as f:
+                    pickle.dump(results, f)
+            except Exception as e:
+                print(f"Error saving data: {e}")
+                
+            
     return market, results
