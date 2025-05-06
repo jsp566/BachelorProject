@@ -9,7 +9,7 @@ from multiprocessing import Pool, cpu_count
 from functools import partial
 import itertools
 
-
+import datetime
 import os
 import pickle
 
@@ -108,14 +108,16 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
     results = {}
 
     for combination in combinations:
-        resultkey = frozenset()
+        print(f"{datetime.datetime.now()} Simulating combination: {combination}")
+        resultkey = []
         # create a copy of the config
         for key, value in combination:
             assert key in config, f'Key {key} not in config'
             config[key] = value
-            resultkey.add((key, value))
+            resultkey.append((key, value))
+        resultkey = frozenset(resultkey)
         
-        market, result = simulate_sessions(config, filename=None, parallel=parallel, savedData=savedData, session=session)
+        market, result = simulate_sessions(config, filename=None, parallel=parallel, savedData=False, session=session)
 
         # save the results
         results[resultkey] = market, result
