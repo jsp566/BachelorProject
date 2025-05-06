@@ -31,7 +31,7 @@ def main():
     for gamma in discount_factors:
         key = frozenset([("discount_factor", gamma)])
              
-        collusion_quotients = [[state.collussion_quotient for state in result[-100000:]] for result in results]
+        collusion_quotients = [[state.collussion_quotient for state in result[-100000:]] for result in results[key]]
         collusion_quotients = np.array(collusion_quotients)
         average_collusion_quotient.append(np.mean(collusion_quotients))
 
