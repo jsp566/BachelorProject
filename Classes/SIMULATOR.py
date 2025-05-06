@@ -86,43 +86,100 @@ def simulate(config):
     return market, market.simulate(config['iterations'], start_period=config['start_period'], convergence=config['convergence'])
 
 # variations is a dict of settings, with variables and a list of values
+def simulate_variations(config, variations, filename = None, parallel = True, savedData = False, session = session):
+    output_dir = os.path.join(os.getcwd(), 'Output', 'Data')
+    
+    if savedData:  
+        with open(os.path.join(output_dir, filename, 'config.pkl'), 'rb') as f:
+            old_config = pickle.load(f)
+        assert old_config == config, 'Configurations do not match'
+        
+        with open(os.path.join(output_dir, filename, 'variations.pkl'), 'rb') as f:
+            old_variations = pickle.load(f)
+        assert old_variations == variations, 'Variations do not match'
+
+        with open(os.path.join(output_dir, filename, 'results.pkl'), 'rb') as f:
+            results = pickle.load(f)
+        return market, results    
+    
+    # simulate for all combinations of variations
+
+    combinations = list(itertools.product(*[[(key, value) for value in variations[key]] for key in variations.keys()]))
+    results = {}
+
+    for combination in combinations:
+        resultkey = frozenset()
+        # create a copy of the config
+        for key, value in combination:
+            assert key in config, f'Key {key} not in config'
+            config[key] = value
+            resultkey.add((key, value))
+        
+        market, result = simulate_sessions(config, filename=None, parallel=parallel, savedData=savedData, session=session)
+
+        # save the results
+        results[resultkey] = market, result
+
+    if filename:
+        os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
+        try:
+            # Save config
+            with open(os.path.join(output_dir, filename, 'config.pkl'), 'wb') as f:
+                pickle.dump(config, f)
+
+            # Save variations
+            with open(os.path.join(output_dir, filename, 'variations.pkl'), 'wb') as f:
+                pickle.dump(variations, f)
+
+            # Save results
+            with open(os.path.join(output_dir, filename, 'results.pkl'), 'wb') as f:
+                pickle.dump(results, f)
+        except Exception as e:
+            print(f"Error saving data: {e}")
+
+    return results
+
+
 
 def simulate_sessions(config, filename = None, parallel = True, savedData = False, session = session, variations = None):
     output_dir = os.path.join(os.getcwd(), 'Output', 'Data')
+
+    if variations:
+        return simulate_variations(config, variations, filename=filename, parallel=parallel, savedData=savedData, session=session)
 
     market = setup(config)
     if savedData:  
         with open(os.path.join(output_dir, filename, 'config.pkl'), 'rb') as f:
             old_config = pickle.load(f)
         assert old_config == config, 'Configurations do not match'
+        
         with open(os.path.join(output_dir, filename, 'results.pkl'), 'rb') as f:
             results = pickle.load(f)
-    else:
+        return market, results
+    
         
-        if parallel:
-            with Pool(processes=cpu_count()) as pool:
-                results = pool.starmap(session, [(market, config['iterations'], config['start_period'], config['convergence'])] * config['sessions'])
-        else:
-            results = []
-            for i in range(config['sessions']):
-                results.append(session(market, config['iterations'], start_period=config['start_period'], convergence=config['convergence']))
+    if parallel:
+        with Pool(processes=cpu_count()) as pool:
+            results = pool.starmap(session, [(market, config['iterations'], config['start_period'], config['convergence'])] * config['sessions'])
+    else:
+        results = []
+        for i in range(config['sessions']):
+            results.append(session(market, config['iterations'], start_period=config['start_period'], convergence=config['convergence']))
 
-        if filename:
-            os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
-            try:
-                # Save config
-                with open(os.path.join(output_dir, filename, 'config.pkl'), 'wb') as f:
-                    pickle.dump(config, f)
+    if filename:
+        os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
+        try:
+            # Save config
+            with open(os.path.join(output_dir, filename, 'config.pkl'), 'wb') as f:
+                pickle.dump(config, f)
 
-                # Save market
-                with open(os.path.join(output_dir, filename, 'market.pkl'), 'wb') as f:
-                    pickle.dump(market, f)
+            # Save market
+            with open(os.path.join(output_dir, filename, 'market.pkl'), 'wb') as f:
+                pickle.dump(market, f)
 
-                # Save results
-                with open(os.path.join(output_dir, filename, 'results.pkl'), 'wb') as f:
-                    pickle.dump(results, f)
-            except Exception as e:
-                print(f"Error saving data: {e}")
-                
-            
+            # Save results
+            with open(os.path.join(output_dir, filename, 'results.pkl'), 'wb') as f:
+                pickle.dump(results, f)
+        except Exception as e:
+            print(f"Error saving data: {e}")
     return market, results

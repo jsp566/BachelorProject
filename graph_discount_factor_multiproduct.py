@@ -14,12 +14,13 @@ def main():
 
     # Start
     discount_factors = np.linspace(0.0, 1.0, 10, endpoint=False)
-    sessions = 1
+    sessions = 100
     iterations = 10**7
     numb_firms = 2
 
     average_collusion_quotient = [] #List to store average collusion quotients
-    for gamma in discount_factors:    
+    for gamma in discount_factors:
+        print(f"gamma = {gamma}")    
         new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms, discount_factor=gamma)
         market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=True, savedData=False)
         min_length = min(len(result) for result in results)
