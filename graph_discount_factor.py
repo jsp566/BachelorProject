@@ -13,7 +13,7 @@ filename =  basename(__file__).replace('.py', '')
 def main():
 
     # Start
-    discount_factors = np.linspace(0.0, 1.0, 10, endpoint=False)
+    discount_factors = np.linspace(0.0, 1.0, 2, endpoint=False)
     sessions = 2
     iterations = 10**7
     numb_firms = 2
@@ -30,10 +30,11 @@ def main():
     
     for gamma in discount_factors:
         key = frozenset([("discount_factor", gamma)])
+        market, specificresults = results[key]
              
-        collusion_quotients = [[state.collussion_quotient for state in result[-100000:]] for result in results[key]]
-        collusion_quotients = np.array(collusion_quotients)
-        average_collusion_quotient.append(np.mean(collusion_quotients))
+        collussion_quotients = [[state.collussion_quotient for state in result[-100000:]] for result in specificresults]
+        collussion_quotients = np.array(collussion_quotients)
+        average_collusion_quotient.append(np.mean(collussion_quotients))
 
     #plot
     plt.plot(discount_factors, average_collusion_quotient)
