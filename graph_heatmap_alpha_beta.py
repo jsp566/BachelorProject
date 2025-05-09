@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 from os.path import basename
 import cProfile
 import pstats
+import pickle
+import os
 
 filename = basename(__file__).replace('.py', '')
 
@@ -18,18 +20,30 @@ def main():
     iterations = 10**7
     numb_firms = 2
     parallel=True
+    savedData = True
+
+    new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms)
+    
+    variations = {
+        "learning_rate": alphas,
+        "exploration_rate_params": [(beta,) for beta in betas]
+    }
+
+    SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData, variations=variations)
 
     average_collusion_quotient = [] #List to store average collusion quotients
     for alpha in alphas:
-        for beta in betas: 
+        for beta in betas:
+            this_collusion_quotient = []
+            for i in range(sessions):
+                with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, f"(('exploration_rate_params', ({beta},)), ('learning_rate', {alpha}))_" + str(i) + ".pkl"), 'rb') as f:
+                    result = pickle.load(f)
+                
+                collusion_quotients = [state.collussion_quotient for state in result[-100000:]]
+                collusion_quotients = np.array(collusion_quotients)
+                this_collusion_quotient.append(np.mean(collusion_quotients))
             
-            print(f"alpha = {alpha}, beta = {beta}")
-            new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms, learning_rate=alpha, exploration_rate_params={"beta": beta})
-            market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=False)
-            min_length = min(len(result) for result in results)
-            collusion_quotients = [[state.collussion_quotient for state in result[-100000:]] for result in results]
-            collusion_quotients = np.array(collusion_quotients)
-            average_collusion_quotient.append(np.mean(collusion_quotients))
+            average_collusion_quotient.append(np.mean(this_collusion_quotient))
 
 
     #Plotting heatmap of collusion quotients for different beta and alpha values

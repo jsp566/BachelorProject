@@ -4,6 +4,8 @@ import Classes.SIMULATOR as SIMULATOR
 import utils.config as config
 import matplotlib.pyplot as plt
 from os.path import basename
+import os
+import pickle
 
 
 filename =  basename(__file__).replace('.py', '')
@@ -12,18 +14,23 @@ filename =  basename(__file__).replace('.py', '')
 
 def main():
     # Start
-    sessions = 1
+    sessions = 2
     iterations = 10**7
+    parallel=True
+    savedData = True
 
     new_config = config.create_config(sessions=sessions, iterations=iterations)
 
-    market, results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=True, savedData=False)
-
+    market= SIMULATOR.setup(new_config)
+    SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData)
+    
 
     # State frequency
     state_frec = {state: 0 for state in market.state_space}
 
-    for result in results:
+    for i in range(sessions):
+        with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, str(i) + ".pkl"), 'rb') as f:
+            result = pickle.load(f)
         for state in result[-100000:]:
             state_frec[state.p] += 1
 
@@ -65,8 +72,20 @@ def main():
     plt.clf()
 
     # Collusion Quotient:
-    min_length = min(len(result) for result in results)
-    collusion_quotients = [[state.collussion_quotient for state in result[:min_length]] for result in results]
+    lengths = []
+    for i in range(sessions):
+        with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, str(i) + ".pkl"), 'rb') as f:
+            result = pickle.load(f)
+        lengths.append(len(result))
+
+    min_length = min(lengths)
+
+
+    collusion_quotients = []
+    for i in range(sessions):
+        with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, str(i) + ".pkl"), 'rb') as f:
+            result = pickle.load(f)
+        collusion_quotients.append([state.collussion_quotient for state in result[:min_length]])
     
     collusion_quotients = np.array(collusion_quotients)
 

@@ -5,6 +5,8 @@ import utils.config as config
 import matplotlib.pyplot as plt
 from os.path import basename
 from multiprocessing import Pool, cpu_count
+import os
+import pickle
 
 filename =  basename(__file__).replace('.py', '')
 
@@ -18,23 +20,26 @@ def main():
     iterations = 10**7
     numb_firms = 2
     parallel=True
-
-    average_collusion_quotient = [] #List to store average collusion quotients
+    savedData = True
+    
     new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms)
 
     variations = {
         "discount_factor": discount_factors,
     }
 
-    results = SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=False, variations=variations)
+    SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData, variations=variations)
     
+    average_collusion_quotient = [] #List to store average collusion quotients
     for gamma in discount_factors:
-        key = frozenset([("discount_factor", gamma)])
-        market, specificresults = results[key]
-             
-        collussion_quotients = [[state.collussion_quotient for state in result[-100000:]] for result in specificresults]
-        collussion_quotients = np.array(collussion_quotients)
-        average_collusion_quotient.append(np.mean(collussion_quotients))
+        gammacollusion_quotients = []
+        for i in range(sessions):
+            with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, f"(('discount_factor', {gamma}),)_" + str(i) + ".pkl"), 'rb') as f:
+                result = pickle.load(f)
+            
+            collussion_quotients = [state.collussion_quotient for state in result[-100000:]]
+            gammacollusion_quotients.append(np.mean(collussion_quotients))
+        average_collusion_quotient.append(np.mean(gammacollusion_quotients))
 
     #plot
     plt.plot(discount_factors, average_collusion_quotient)
