@@ -12,10 +12,9 @@ filename =  basename(__file__).replace('.py', '')
 
 
 def new_session(i, market, iterations, start_period = 1, convergence = None, foldername = None, variation = None):
-    new_market = copy.deepcopy(market)
-    before = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
-    new_market.merge(0,1)
-    after = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
+    before = market.simulate(iterations, start_period=start_period, convergence=convergence)
+    market.merge(0,1)
+    after = market.simulate(iterations, start_period=start_period, convergence=convergence)
     if foldername:
         filename = str(i) + ".pkl"
         if variation:
@@ -29,7 +28,7 @@ def new_session(i, market, iterations, start_period = 1, convergence = None, fol
 
 def main():
     # Start
-    sessions = 2
+    sessions = 100
     iterations = 10**7
     numb_firms = 3
     parallel=True
@@ -48,7 +47,20 @@ def main():
             result = pickle.load(f)
         lengths.append(len(result))
 
+    plt.hist(lengths, bins=100)
+    plt.xlabel('Length of session')
+    plt.ylabel('Frequency')
+    plt.title('Length of session')
+    plt.savefig(config.create_filepath(filename + "_totallengths"))
+
+    plt.clf()
+    
+    
+    
     min_length = min(lengths)
+
+
+
 
     collusion_quotients = []
     for i in range(sessions):
@@ -65,6 +77,80 @@ def main():
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Period')
     plt.savefig(config.create_filepath(filename + "_collusion_quotient"))
+
+    plt.clf()
+
+    # Moving average
+    ma100=  lib.moving_average(average_collusion_quotient, 100)
+    repetitions = np.linspace(0, len(ma100), len(ma100))
+
+    plt.plot(repetitions, ma100)
+    plt.ylabel('Collusion Quotient')
+    plt.xlabel('Period')
+    
+
+    plt.savefig(config.create_filepath(filename + "_ma100"))
+    plt.clf()
+
+    mergerperiod = []
+    for i in range(sessions):
+        with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, str(i) + ".pkl"), 'rb') as f:
+            result = pickle.load(f)
+        
+        i= 0
+        merged = False
+        while not merged:
+            if len(result[i].firm_profits) < numb_firms:
+                merged = True
+                mergerperiod.append(i)
+            i+=1
+        collusion_quotients.append([state.collussion_quotient for state in result[i-10 ** 5:]])
+    
+    plt.hist(mergerperiod, bins=100)
+    plt.xlabel('Periods until merger')
+    plt.ylabel('Frequency')
+    plt.title('Periods until merger')
+    plt.savefig(config.create_filepath(filename + "_periods_before_merger"))
+
+    plt.clf()
+
+    plt.hist([lengths[i] - mergerperiod[i] for i in range(len(mergerperiod))], bins=100)
+    plt.xlabel('Periods after merger')
+    plt.ylabel('Frequency')
+    plt.title('Periods after merger')
+    plt.savefig(config.create_filepath(filename + "_periods_after_merger"))
+
+    plt.clf()
+
+
+    min_length = min([len(c) for c in collusion_quotients])
+    collusion_quotients = [c[:min_length] for c in collusion_quotients]
+
+    collusion_quotients = np.array(collusion_quotients)
+
+    average_collusion_quotient = np.mean(collusion_quotients, axis=(0,2))
+
+    period = range(len(average_collusion_quotient))
+    plt.plot(period, average_collusion_quotient)
+    plt.ylabel('Collusion Quotient')
+    plt.xlabel('Period')
+    plt.savefig(config.create_filepath(filename + "_collusion_quotient_merged"))
+
+    plt.clf()
+
+    # Moving average
+    ma100=  lib.moving_average(average_collusion_quotient, 100)
+    repetitions = np.linspace(0, len(ma100), len(ma100))
+
+    plt.plot(repetitions, ma100)
+    plt.ylabel('Collusion Quotient')
+    plt.xlabel('Period')
+    
+
+    plt.savefig(config.create_filepath(filename + "_ma100_merged"))
+    plt.clf()
+        
+        
 
 
 if __name__ == "__main__":

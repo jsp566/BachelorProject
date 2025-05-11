@@ -13,9 +13,12 @@ def execute_scripts(scripts):
             print(e)
         except FileNotFoundError:
             print(f'{script} not found')
+        except Exception as e:
+            print(f'An unexpected error occurred while executing {script}')
+            print(e)
 
 def main():
-    scripts = ['graph_3_firms_boxplot.py', 'graph_discount_factor.py', 'graph_heatmap_alpha_beta.py']
+    scripts = ['graph_default_assymetric.py', 'graph_merger.py']
     execute_scripts(scripts)
 
 if __name__ == "__main__":

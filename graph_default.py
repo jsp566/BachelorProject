@@ -14,12 +14,13 @@ filename =  basename(__file__).replace('.py', '')
 
 def main():
     # Start
-    sessions = 2
+    sessions = 100 
     iterations = 10**7
+    extra = 0.1
     parallel=True
     savedData = True
 
-    new_config = config.create_config(sessions=sessions, iterations=iterations)
+    new_config = config.create_config(sessions=sessions, iterations=iterations, extra=extra)
 
     market= SIMULATOR.setup(new_config)
     SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData)
@@ -78,6 +79,15 @@ def main():
             result = pickle.load(f)
         lengths.append(len(result))
 
+    plt.hist(lengths, bins=100)
+    plt.xlabel('Length of session')
+    plt.ylabel('Frequency')
+    plt.title('Length of session')
+    plt.savefig(config.create_filepath(filename + "_lengths"))
+
+    plt.clf()
+
+
     min_length = min(lengths)
 
 
@@ -96,6 +106,20 @@ def main():
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Period')
     plt.savefig(config.create_filepath(filename + "_collusion_quotient"))
+
+    plt.clf()
+
+    # Moving average
+    ma100=  lib.moving_average(average_collusion_quotient, 100)
+    repetitions = np.linspace(0, len(ma100), len(ma100))
+
+    plt.plot(repetitions, ma100)
+    plt.ylabel('Collusion Quotient')
+    plt.xlabel('Period')
+    
+
+    plt.savefig(config.create_filepath(filename + "_ma100"))
+
 
 
 if __name__ == "__main__":

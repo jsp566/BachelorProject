@@ -119,10 +119,11 @@ class Market():
             
             states.append(self.current_state)
 
+        number_of_products = len(self.products)
         period = start_period
         while period < num_periods+start_period and not converged:
 
-            prices = [None] * len(self.products)
+            prices = [None] * number_of_products
 
             for firm in self.firms:
                 action = firm.get_action(self.current_state, period)
@@ -142,9 +143,6 @@ class Market():
             period += 1
             if convergence is not None:
 
-                
-               
-                
                 # if similar to previous period then add and check if reached else reset and update
                 if update_to_best:
                     similar_periods = 1
@@ -213,6 +211,21 @@ class Market():
         P = np.array(self.get_nash_prices())
         return lib.Profit(P, self.A, self.MC, self.demand_function.fun) 
     
+    def get_get_true_nash_prices(self):
+        '''
+        Gives true Nash prices
+        '''
+        owner_structure = [[product.index for product in firm.products] for firm in self.firms]
+        return lib.Newton(self.MC, self.A, self.MC, self.demand_function.fun, owner_structure=owner_structure)
+
+
+    def get_true_nash_profits(self):
+        P = np.array(self.get_true_nash_prices())
+        return lib.Profit(P, self.A, self.MC, self.demand_function.fun) 
+    
+
+
+
     def get_monopoly_prices(self):
         '''
         Gives monopoly prices
