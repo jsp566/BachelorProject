@@ -6,12 +6,12 @@ import Classes.PRODUCT as PRODUCT
 
 import copy
 from multiprocessing import Pool, cpu_count
-from functools import partial
 import itertools
 import numpy as np
 import datetime
 import os
 import pickle
+import numpy as np
 
 
 def list_creator(inputlist, numb):
@@ -122,7 +122,7 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
             if old_config != config:
                 print(f"Configurations do not match, running simulation")
                 same = False
-            
+
             if list(old_variations.keys()) != list(variations.keys()):
                 print(f"Variations do not match, running simulation")
                 same = False
@@ -133,11 +133,21 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
                         same = False
                     if not same:
                         print(f"Variations do not match, running simulation")
+<<<<<<< Updated upstream
                 
             if same: return
         except Exception as e:
             print("No files to compare")
             print(f"Error: {e}") 
+=======
+   
+            if same: 
+                print(f"Configurations match, skipping simulation")
+                return
+        except Exception as e:
+            print("No files to compare")
+            print(f"Error: {e}")    
+>>>>>>> Stashed changes
     os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
     
     # simulate for all combinations of variations

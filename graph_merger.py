@@ -4,10 +4,9 @@ import Classes.SIMULATOR as SIMULATOR
 import utils.config as config
 import matplotlib.pyplot as plt
 from os.path import basename
-import copy
 import pickle
 import os
-import itertools
+
 
 filename =  basename(__file__).replace('.py', '')
 
@@ -42,6 +41,7 @@ def main():
     SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData, session=new_session)
     # Collusion Quotient:
 
+    print("Reading data")
     lengths = []
     collusion_quotients = []
     for i in range(sessions):
@@ -66,10 +66,10 @@ def main():
 
 
 
-
+    print("Extending data")
     for cq in collusion_quotients:
         if len(cq) < max_length:
-            cq.extend([np.mean(cq[-100:], axis=0)]*(max_length - len(cq)))
+            cq.extend([np.mean(cq[-100:])]*(max_length - len(cq)))
     
 
     collusion_quotients = np.array(collusion_quotients)
@@ -104,6 +104,7 @@ def main():
     plt.savefig(config.create_filepath(filename + "_ma100"))
     plt.clf()
 
+    print("Getting mergers periods data")
     mergerperiods = []
     collusion_quotients = []
     for i in range(sessions):
@@ -113,7 +114,7 @@ def main():
 
         mergerperiod = next(i for i, state in enumerate(result) if len(state.firm_profits) < numb_firms)
         mergerperiods.append(mergerperiod)
-        collusion_quotients.append([state.collussion_quotient for state in result[mergerperiod-10 ** 5:]])
+        collusion_quotients.append([np.mean(state.collussion_quotient) for state in result[mergerperiod-10 ** 5:]])
     
     plt.hist(mergerperiods, bins=100)
     plt.xlabel('Periods until merger')
@@ -131,13 +132,14 @@ def main():
 
     plt.clf()
 
+    print("Calculating lengths of collusion quotients")
     lengths = [len(c) for c in collusion_quotients]
     min_length = min(lengths)
     max_length = max(lengths)
 
     for cq in collusion_quotients:
         if len(cq) < max_length:
-            cq.extend([np.mean(cq[-100:], axis=0)]*(max_length - len(cq)))
+            cq.extend([np.mean(cq[-100:])]*(max_length - len(cq)))
     
     collusion_quotients = np.array(collusion_quotients)
 

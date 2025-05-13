@@ -19,11 +19,11 @@ def main():
     sessions = 100
     iterations = 10**7
     numb_firms = 2
-    parallel=True
+    parallel=False
     savedData = True
-
-    new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms)
     
+    new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms)
+    market= SIMULATOR.setup(new_config)
     variations = {
         "learning_rate": alphas,
         "exploration_rate_params": [(beta,) for beta in betas]
