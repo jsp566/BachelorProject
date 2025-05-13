@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from os.path import basename
 import os
 import pickle
+import itertools
 
 
 filename =  basename(__file__).replace('.py', '')
@@ -28,10 +29,13 @@ def main():
 
     # Collusion Quotient:
     lengths = []
+    collusion_quotients = []
     for i in range(sessions):
         with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, str(i) + ".pkl"), 'rb') as f:
             result = pickle.load(f)
         lengths.append(len(result))
+        collusion_quotients.append([state.collussion_quotient for state in result])
+    
 
     plt.hist(lengths, bins=100)
     plt.xlabel('Length of session')
@@ -42,23 +46,30 @@ def main():
     plt.clf()
 
     min_length = min(lengths)
+    max_length = max(lengths)
 
 
-    collusion_quotients = []
-    for i in range(sessions):
-        with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, str(i) + ".pkl"), 'rb') as f:
-            result = pickle.load(f)
-        collusion_quotients.append([state.collussion_quotient for state in result[:min_length]])
+    for cq in collusion_quotients:
+        if len(cq) < max_length:
+            cq.extend([np.mean(cq[-100:], axis=0)]*(max_length - len(cq)))
     
+
     collusion_quotients = np.array(collusion_quotients)
 
     average_collusion_quotient = np.mean(collusion_quotients, axis=(0,2))
+
+    plt.plot(range(min_length), average_collusion_quotient[:min_length])
+    plt.ylabel('Collusion Quotient')
+    plt.xlabel('Period')
+    plt.savefig(config.create_filepath(filename + "_collusion_quotient"))
+
+    plt.clf()
 
     period = range(len(average_collusion_quotient))
     plt.plot(period, average_collusion_quotient)
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Period')
-    plt.savefig(config.create_filepath(filename + "_collusion_quotient"))
+    plt.savefig(config.create_filepath(filename + "_collusion_quotient_full"))
 
     plt.clf()
 

@@ -1,0 +1,224 @@
+         6351293817 function calls (6350952799 primitive calls) in 12971.137 seconds
+
+   Ordered by: cumulative time
+   List reduced from 1902 to 50 due to restriction <50>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    7.842    7.842 12974.523 12974.523 c:\Users\anton\Documents\GitHub\BachelorProject\graph_default_2x2.py:16(main)
+        1    0.485    0.485 12630.335 12630.335 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\SIMULATOR.py:186(simulate_sessions)
+      100    0.004    0.000 11073.921  110.739 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\SIMULATOR.py:84(session)
+      100  969.758    9.698 10936.940  109.369 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:99(simulate)
+370646734  165.350    0.000 7085.924    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\FIRM.py:47(update_strategy)
+370646734  789.205    0.000 6920.574    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:67(update_strategy)
+370646734  655.513    0.000 6131.368    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:82(update_best_actions)
+119374875 4647.318    0.000 4647.318    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:110(<listcomp>)
+370646934  203.369    0.000 2798.857    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\FIRM.py:36(get_action)
+370646934  668.254    0.000 2595.489    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:46(get_action)
+      101    0.007    0.000 1582.845   15.672 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\SIMULATOR.py:61(setup)
+      101    0.058    0.001 1582.831   15.672 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:55(set_priceranges)
+      202 1070.118    5.298 1199.508    5.938 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:18(initialize)
+129602175  837.327    0.000  837.327    0.000 {built-in method builtins.max}
+370646934  787.732    0.000  787.732    0.000 {method 'uniform' of 'numpy.random.mtrand.RandomState' objects}
+370647134  195.824    0.000  632.736    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\random.py:375(choice)
+370646934  499.180    0.000  499.180    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:38(__call__)
+370647134  285.590    0.000  396.595    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\random.py:239(_randbelow_with_getrandbits)
+      101    5.727    0.057  364.788    3.612 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:81(set_state_space)
+  5113125   42.000    0.000  359.061    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\STATE.py:11(__init__)
+ 15549859   76.560    0.000  182.749    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:18(__call__)
+      100  158.383    1.584  158.383    1.584 {built-in method _pickle.load}
+ 10436734   24.866    0.000  144.153    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:4(Profit)
+ 26002866  141.916    0.000  141.916    0.000 {built-in method numpy.array}
+      101  136.869    1.355  136.870    1.355 {built-in method _pickle.dump}
+1046355015/1046354887  109.808    0.000  109.808    0.000 {built-in method builtins.len}
+ 15570665   10.836    0.000  106.340    0.000 <__array_function__ internals>:177(sum)
+17008687/16684029   10.761    0.000  104.391    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+ 10226250   87.363    0.000   87.363    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:43(<listcomp>)
+ 15570665   18.707    0.000   83.926    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2188(sum)
+  5113125    5.754    0.000   80.676    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:207(get_nash_profits)
+  5113125    5.564    0.000   79.273    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:237(get_monopoly_profits)
+  5113125    6.167    0.000   74.774    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\DEMAND.py:14(get_shares)
+698340883   72.027    0.000   72.027    0.000 {method 'getrandbits' of '_random.Random' objects}
+  5113125   63.552    0.000   66.939    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\STATE.py:13(<listcomp>)
+ 15675134   21.749    0.000   62.950    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:69(_wrapreduction)
+370647134   38.979    0.000   38.979    0.000 {method 'bit_length' of 'int' objects}
+ 16012415   38.018    0.000   38.018    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+206088035   27.882    0.000   27.882    0.000 {method 'append' of 'list' objects}
+129605912   19.397    0.000   19.397    0.000 {method 'values' of 'dict' objects}
+      202    0.001    0.000   18.457    0.091 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:72(Newton)
+      202    0.002    0.000   18.455    0.091 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_minpack_py.py:47(fsolve)
+      202    0.005    0.000   18.454    0.091 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_minpack_py.py:183(_root_hybr)
+     1818    0.006    0.000   18.434    0.010 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:77(<lambda>)
+     1818    0.018    0.000   18.426    0.010 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:55(market_reaction)
+     4848    0.038    0.000   18.406    0.004 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:41(Best_Response)
+     4848    0.066    0.000   18.361    0.004 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_minimize.py:51(minimize)
+     4848    0.454    0.000   18.187    0.004 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_optimize.py:1375(_minimize_bfgs)
+      202    0.008    0.000   18.163    0.090 {built-in method scipy.optimize._minpack._hybrd}
+      100   15.539    0.155   15.539    0.155 c:\Users\anton\Documents\GitHub\BachelorProject\graph_default_2x2.py:40(<listcomp>)
+
+
+         6351293817 function calls (6350952799 primitive calls) in 12971.137 seconds
+
+   Ordered by: internal time
+   List reduced from 1902 to 50 due to restriction <50>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+119374875 4647.318    0.000 4647.318    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:110(<listcomp>)
+      202 1070.118    5.298 1199.508    5.938 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:18(initialize)
+      100  969.758    9.698 10936.940  109.369 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:99(simulate)
+129602175  837.327    0.000  837.327    0.000 {built-in method builtins.max}
+370646734  789.205    0.000 6920.574    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:67(update_strategy)
+370646934  787.732    0.000  787.732    0.000 {method 'uniform' of 'numpy.random.mtrand.RandomState' objects}
+370646934  668.254    0.000 2595.489    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:46(get_action)
+370646734  655.513    0.000 6131.368    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:82(update_best_actions)
+370646934  499.180    0.000  499.180    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:38(__call__)
+370647134  285.590    0.000  396.595    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\random.py:239(_randbelow_with_getrandbits)
+370646934  203.369    0.000 2798.857    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\FIRM.py:36(get_action)
+370647134  195.824    0.000  632.736    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\random.py:375(choice)
+370646734  165.350    0.000 7085.924    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\FIRM.py:47(update_strategy)
+      100  158.383    1.584  158.383    1.584 {built-in method _pickle.load}
+ 26002866  141.916    0.000  141.916    0.000 {built-in method numpy.array}
+      101  136.869    1.355  136.870    1.355 {built-in method _pickle.dump}
+1046355015/1046354887  109.808    0.000  109.808    0.000 {built-in method builtins.len}
+ 10226250   87.363    0.000   87.363    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:43(<listcomp>)
+ 15549859   76.560    0.000  182.749    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:18(__call__)
+698340883   72.027    0.000   72.027    0.000 {method 'getrandbits' of '_random.Random' objects}
+  5113125   63.552    0.000   66.939    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\STATE.py:13(<listcomp>)
+  5113125   42.000    0.000  359.061    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\STATE.py:11(__init__)
+370647134   38.979    0.000   38.979    0.000 {method 'bit_length' of 'int' objects}
+ 16012415   38.018    0.000   38.018    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+206088035   27.882    0.000   27.882    0.000 {method 'append' of 'list' objects}
+ 10436734   24.866    0.000  144.153    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:4(Profit)
+ 15675134   21.749    0.000   62.950    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:69(_wrapreduction)
+129605912   19.397    0.000   19.397    0.000 {method 'values' of 'dict' objects}
+ 15570665   18.707    0.000   83.926    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2188(sum)
+      100   15.539    0.155   15.539    0.155 c:\Users\anton\Documents\GitHub\BachelorProject\graph_default_2x2.py:40(<listcomp>)
+ 15570665   10.836    0.000  106.340    0.000 <__array_function__ internals>:177(sum)
+17008687/16684029   10.761    0.000  104.391    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+  5113125    8.061    0.000    8.061    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:126(get_collusion_quotient)
+        1    7.842    7.842 12974.523 12974.523 c:\Users\anton\Documents\GitHub\BachelorProject\graph_default_2x2.py:16(main)
+ 49851853    7.586    0.000    7.586    0.000 {method 'keys' of 'dict' objects}
+ 15675134    7.180    0.000    7.180    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:70(<dictcomp>)
+  5113125    6.167    0.000   74.774    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\DEMAND.py:14(get_shares)
+  5113125    5.754    0.000   80.676    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:207(get_nash_profits)
+      101    5.727    0.057  364.788    3.612 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:81(set_state_space)
+  5113125    5.564    0.000   79.273    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:237(get_monopoly_profits)
+ 25918558    3.296    0.000    3.296    0.000 {method 'items' of 'dict' objects}
+ 16048700    2.915    0.000    2.923    0.000 {built-in method builtins.isinstance}
+ 15570665    2.480    0.000    2.480    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2183(_sum_dispatcher)
+  5113125    1.218    0.000    1.218    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:199(get_nash_prices)
+  5113125    1.093    0.000    1.093    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:229(get_monopoly_prices)
+    40400    1.026    0.000   12.207    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:275(approx_derivative)
+      215    1.025    0.005    1.025    0.005 {built-in method io.open}
+    40400    0.979    0.000    7.813    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:566(_dense_difference)
+      333    0.954    0.003    0.954    0.003 {method 'extend' of 'list' objects}
+   210484    0.948    0.000    5.366    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:13(Specific_Profit)
+
+
+         6351293817 function calls (6350952799 primitive calls) in 12971.137 seconds
+
+   Ordered by: call count
+   List reduced from 1902 to 100 due to restriction <100>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+1046355015/1046354887  109.808    0.000  109.808    0.000 {built-in method builtins.len}
+698340883   72.027    0.000   72.027    0.000 {method 'getrandbits' of '_random.Random' objects}
+370647134  285.590    0.000  396.595    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\random.py:239(_randbelow_with_getrandbits)
+370647134  195.824    0.000  632.736    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\random.py:375(choice)
+370647134   38.979    0.000   38.979    0.000 {method 'bit_length' of 'int' objects}
+370646934  203.369    0.000 2798.857    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\FIRM.py:36(get_action)
+370646934  499.180    0.000  499.180    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:38(__call__)
+370646934  668.254    0.000 2595.489    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:46(get_action)
+370646934  787.732    0.000  787.732    0.000 {method 'uniform' of 'numpy.random.mtrand.RandomState' objects}
+370646734  165.350    0.000 7085.924    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\FIRM.py:47(update_strategy)
+370646734  789.205    0.000 6920.574    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:67(update_strategy)
+370646734  655.513    0.000 6131.368    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:82(update_best_actions)
+206088035   27.882    0.000   27.882    0.000 {method 'append' of 'list' objects}
+129605912   19.397    0.000   19.397    0.000 {method 'values' of 'dict' objects}
+129602175  837.327    0.000  837.327    0.000 {built-in method builtins.max}
+119374875 4647.318    0.000 4647.318    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:110(<listcomp>)
+ 49851853    7.586    0.000    7.586    0.000 {method 'keys' of 'dict' objects}
+ 26002866  141.916    0.000  141.916    0.000 {built-in method numpy.array}
+ 25918558    3.296    0.000    3.296    0.000 {method 'items' of 'dict' objects}
+17008687/16684029   10.761    0.000  104.391    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+ 16048700    2.915    0.000    2.923    0.000 {built-in method builtins.isinstance}
+ 16012415   38.018    0.000   38.018    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+ 15675134    7.180    0.000    7.180    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:70(<dictcomp>)
+ 15675134   21.749    0.000   62.950    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:69(_wrapreduction)
+ 15570665    2.480    0.000    2.480    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2183(_sum_dispatcher)
+ 15570665   18.707    0.000   83.926    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2188(sum)
+ 15570665   10.836    0.000  106.340    0.000 <__array_function__ internals>:177(sum)
+ 15549859   76.560    0.000  182.749    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:18(__call__)
+ 10436734   24.866    0.000  144.153    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:4(Profit)
+ 10226250   87.363    0.000   87.363    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:43(<listcomp>)
+  5113125    8.061    0.000    8.061    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:126(get_collusion_quotient)
+  5113125    1.218    0.000    1.218    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:199(get_nash_prices)
+  5113125    5.754    0.000   80.676    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:207(get_nash_profits)
+  5113125    1.093    0.000    1.093    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:229(get_monopoly_prices)
+  5113125    5.564    0.000   79.273    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:237(get_monopoly_profits)
+  5113125   63.552    0.000   66.939    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\STATE.py:13(<listcomp>)
+  5113125   42.000    0.000  359.061    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\STATE.py:11(__init__)
+  5113125    6.167    0.000   74.774    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\DEMAND.py:14(get_shares)
+   476739    0.215    0.000    0.216    0.000 {built-in method numpy.asarray}
+   465417    0.406    0.000    0.406    0.000 {built-in method numpy.asanyarray}
+   296339    0.042    0.000    0.042    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\shape_base.py:19(_atleast_1d_dispatcher)
+   296339    0.459    0.000    1.032    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\shape_base.py:23(atleast_1d)
+   296339    0.215    0.000    1.660    0.000 <__array_function__ internals>:177(atleast_1d)
+   289347    0.182    0.000    0.182    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+   215332    0.040    0.000    0.040    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\function_base.py:867(_copy_dispatcher)
+   215332    0.086    0.000    0.298    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\function_base.py:871(copy)
+   215332    0.153    0.000    0.608    0.000 <__array_function__ internals>:177(copy)
+   210891    0.083    0.000    0.130    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\numeric.py:1878(isscalar)
+   210538    0.087    0.000    0.491    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:47(_sum)
+   210538    0.135    0.000    0.625    0.000 {method 'sum' of 'numpy.ndarray' objects}
+   210484    0.948    0.000    5.366    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:13(Specific_Profit)
+   210484    0.208    0.000    0.208    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:25(Set_Price)
+   210484    0.188    0.000    5.761    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:42(<lambda>)
+   210484    0.481    0.000    6.968    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:132(fun_wrapped)
+   161600    0.246    0.000    6.387    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:455(fun_wrapped)
+   126315    0.059    0.000    0.059    0.000 {method 'ravel' of 'numpy.ndarray' objects}
+   122242    0.055    0.000    0.332    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:61(_all)
+   122242    0.076    0.000    0.408    0.000 {method 'all' of 'numpy.ndarray' objects}
+   121762    0.023    0.000    0.023    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:740(dot)
+   121762    0.089    0.000    0.344    0.000 <__array_function__ internals>:177(dot)
+   121200    0.020    0.000    0.020    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:1777(_ravel_dispatcher)
+   121200    0.123    0.000    0.218    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:1781(ravel)
+   121200    0.085    0.000    0.382    0.000 <__array_function__ internals>:177(ravel)
+   121200    0.048    0.000    0.098    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:204(<genexpr>)
+   121099    0.023    0.000    0.023    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\numeric.py:2403(_array_equal_dispatcher)
+   121099    0.293    0.000    0.746    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\numeric.py:2407(array_equal)
+   121099    0.093    0.000    0.942    0.000 <__array_function__ internals>:177(array_equal)
+   110696    0.051    0.000    1.791    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:249(_update_fun)
+   109506    0.043    0.000    0.046    0.000 {built-in method builtins.getattr}
+    89822    0.129    0.000    0.129    0.000 {method 'astype' of 'numpy.ndarray' objects}
+    81638    0.066    0.000    0.161    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:51(_wrapfunc)
+    81408    0.013    0.000    0.013    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:193(_reshape_dispatcher)
+    81408    0.062    0.000    0.220    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:198(reshape)
+    81408    0.058    0.000    0.333    0.000 <__array_function__ internals>:177(reshape)
+    81058    0.017    0.000    0.017    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:152(concatenate)
+    81058    0.068    0.000    0.347    0.000 <__array_function__ internals>:177(concatenate)
+    80800    0.014    0.000    0.014    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:1416(_resize_dispatcher)
+    80800    0.272    0.000    1.153    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:1420(resize)
+    80800    0.059    0.000    1.272    0.000 <__array_function__ internals>:177(resize)
+    76358    0.049    0.000    0.049    0.000 {built-in method numpy.zeros}
+    65448    0.110    0.000    2.495    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:264(fun)
+    60499    0.042    0.000   12.415    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:254(_update_grad)
+    55651    0.069    0.000   11.358    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:270(grad)
+    50197    0.189    0.000    2.141    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:73(phi)
+    50197    0.217    0.000   11.485    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:77(derphi)
+    49800    0.009    0.000    0.009    0.000 {built-in method numpy.geterrobj}
+    48884    0.034    0.000    1.740    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:154(update_fun)
+    48482    0.032    0.000    0.032    0.000 {built-in method numpy.empty}
+    45378    0.011    0.000    0.011    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2328(_any_dispatcher)
+    45378    0.059    0.000    0.309    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2333(any)
+    45378    0.041    0.000    0.425    0.000 <__array_function__ internals>:177(any)
+    44036    0.064    0.000    0.258    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:240(update_x)
+    43483    0.008    0.000    0.008    0.000 {built-in method builtins.abs}
+    40454    0.008    0.000    0.008    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2427(_all_dispatcher)
+    40454    0.048    0.000    0.239    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2432(all)
+    40454    0.036    0.000    0.312    0.000 <__array_function__ internals>:177(all)
+    40401    0.007    0.000    0.007    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:1079(copyto)
+    40401    0.035    0.000    0.115    0.000 <__array_function__ internals>:177(copyto)
+    40400    0.007    0.000    0.007    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:84(empty_like)
+    40400    0.010    0.000    0.010    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:345(where)
+
+
