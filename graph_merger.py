@@ -29,7 +29,7 @@ def new_session(i, market, iterations, start_period = 1, convergence = None, fol
 
 def main():
     # Start
-    sessions = 2
+    sessions = 100
     iterations = 10**7
     numb_firms = 3
     parallel=True

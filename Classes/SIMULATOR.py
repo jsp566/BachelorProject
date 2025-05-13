@@ -8,7 +8,7 @@ import copy
 from multiprocessing import Pool, cpu_count
 from functools import partial
 import itertools
-
+import numpy as np
 import datetime
 import os
 import pickle
@@ -129,14 +129,15 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
 
             if same:
                 for key in variations.keys():
-                    if not (variations[key] == old_variations[key]):
+                    if not (np.array(variations[key]) == np.array(old_variations[key])).all():
                         same = False
                     if not same:
                         print(f"Variations do not match, running simulation")
                 
             if same: return
-        except:
-            print("No files to compare")    
+        except Exception as e:
+            print("No files to compare")
+            print(f"Error: {e}") 
     os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
     
     # simulate for all combinations of variations

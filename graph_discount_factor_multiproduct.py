@@ -15,11 +15,11 @@ filename =  basename(__file__).replace('.py', '')
 def main():
 
     # Start
-    discount_factors = np.linspace(0.0, 1.0, 2, endpoint=False)
-    sessions = 2
+    discount_factors = np.linspace(0.0, 1.0, 25, endpoint=False)
+    sessions = 100
     iterations = 10**7
     numb_firms = 2
-    numb_products = 2
+    numb_products = (2,1)
     parallel=True
     savedData = True
 

@@ -15,7 +15,7 @@ def execute_scripts(scripts):
             print(f'{script} not found')
 
 def main():
-    scripts = ['graph_3_firms_boxplot.py', 'graph_discount_factor.py', 'graph_heatmap_alpha_beta.py']
+    scripts = ['graph_heatmap_alpha_beta.py','graph_merger.py', 'graph_discount_factor.py','graph_discount_factor_multifirm.py', 'graph_discount_factor_multiproduct.py', 'graph_3_firms_boxplot.py' ]
     execute_scripts(scripts)
 
 if __name__ == "__main__":

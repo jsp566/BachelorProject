@@ -12,9 +12,9 @@ filename =  basename(__file__)
 
 
 def main():
-    sessions = 2
+    sessions = 100
     iterations = 10**7
-    firm_count = range(2, 4)
+    firm_count = range(2, 6 )
     parallel=True
     savedData = True
 
@@ -35,7 +35,7 @@ def main():
         for i in range(sessions):
             with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, f"(('numb_firms', {numb_firms}),)_" + str(i) + ".pkl"), 'rb') as f:
                 result = pickle.load(f)
-            collusion_quotients.append([state.collussion_quotient for state in result[-100000:]])   
+            collusion_quotients.append([state.collussion_quotient for state in result[-1000:]])   
         collusion_quotients = np.array(collusion_quotients)
         collusion_quotients = np.mean(collusion_quotients, axis=(1,2))
         collusion_quotients = np.transpose(collusion_quotients)

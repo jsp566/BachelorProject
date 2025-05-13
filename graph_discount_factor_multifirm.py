@@ -18,10 +18,10 @@ def main():
     discount_factors = np.linspace(0.0, 1.0, 25, endpoint=False)
     sessions = 100
     iterations = 10**7
-    numb_firms = 2
+    numb_firms = 3
     parallel=True
     savedData = True
-    
+
     new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms)
 
     variations = {
@@ -30,6 +30,7 @@ def main():
 
     SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData, variations=variations)
     
+
     average_collusion_quotient = [] #List to store average collusion quotients
     for gamma in discount_factors:
         gammacollusion_quotients = []
