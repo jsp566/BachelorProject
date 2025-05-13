@@ -82,9 +82,9 @@ def setup(config):
 
 
 def session(i, market, iterations, start_period = 1, convergence = None, foldername = None, variation = None):
-    new_market = copy.deepcopy(market)
 
-    states = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
+
+    states = market.simulate(iterations, start_period=start_period, convergence=convergence)
 
     if foldername:
         filename = str(i) + ".pkl"
@@ -156,18 +156,17 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
             resultkey.append((key, value))
         resultkey = frozenset(resultkey)
 
-        market = setup(new_config)
         
         if parallel:
 
-            inputparams = [(i, market, new_config['iterations'], new_config['start_period'], new_config['convergence'], filename, combination) for i in range(new_config['sessions'])]
+            inputparams = [(i, setup(new_config), new_config['iterations'], new_config['start_period'], new_config['convergence'], filename, combination) for i in range(new_config['sessions'])]
 
             with Pool(processes=cpu_count()) as pool:
                 results = pool.starmap(session, inputparams)
         else:
             results = []
             for i in range(new_config['sessions']):
-                results.append(session(i, market, new_config['iterations'], start_period=new_config['start_period'], convergence=new_config['convergence'], foldername=filename, variation=combination))
+                results.append(session(i, setup(new_config), new_config['iterations'], start_period=new_config['start_period'], convergence=new_config['convergence'], foldername=filename, variation=combination))
     if filename:
         os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
         try:
@@ -192,8 +191,7 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
     if variations:
         return simulate_variations(config, variations, filename=filename, parallel=parallel, savedData=savedData, session=session)
 
-    
-    market = setup(config)
+
     if savedData:
         try:
             with open(os.path.join(output_dir, filename, '_config.pkl'), 'rb') as f:
@@ -207,14 +205,14 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
     os.makedirs(os.path.join(output_dir, filename), exist_ok=True) 
     
     if parallel:
-        inputparams = [(i, market, config['iterations'], config['start_period'], config['convergence'], filename) for i in range(config['sessions'])]
+        inputparams = [(i, setup(config), config['iterations'], config['start_period'], config['convergence'], filename) for i in range(config['sessions'])]
 
         with Pool(processes=cpu_count()) as pool:
             results = pool.starmap(session, inputparams)
     else:
         results = []
         for i in range(config['sessions']):
-            results.append(session(i, market, config['iterations'], start_period=config['start_period'], convergence=config['convergence'], filename=filename))
+            results.append(session(i, setup(config), config['iterations'], config['start_period'], config['convergence'], filename))
 
     if filename:
         os.makedirs(os.path.join(output_dir, filename), exist_ok=True)

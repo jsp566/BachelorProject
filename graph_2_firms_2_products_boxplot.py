@@ -12,7 +12,7 @@ filename =  basename(__file__)
 
 def main():
     sessions = 2
-    iterations = 10**7
+    iterations = 10**5
     numb_firms = 2
     numb_products = 2
     parallel=True
