@@ -44,11 +44,15 @@ def main():
     print("Reading data")
     lengths = []
     collusion_quotients = []
+    mergerperiods = []
     for i in range(sessions):
+        print(i)
         with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, str(i) + ".pkl"), 'rb') as f:
             result = pickle.load(f)
         lengths.append(len(result))
-        collusion_quotients.append([np.mean(state.collussion_quotient)  for state in result])
+        mergerperiod = next(i for i, state in enumerate(result) if len(state.firm_profits) < numb_firms)
+        mergerperiods.append(mergerperiod)
+        collusion_quotients.append(np.mean([state.collussion_quotient  for state in result], axis=1))
     
 
     plt.hist(lengths, bins=100)
@@ -67,9 +71,11 @@ def main():
 
 
     print("Extending data")
-    for cq in collusion_quotients:
+    for i in range(sessions):
+        cq = np.array(collusion_quotients[i])
         if len(cq) < max_length:
-            cq.extend([np.mean(cq[-100:])]*(max_length - len(cq)))
+            collusion_quotients[i] = np.append(cq, [np.mean(cq[-100:])]*(max_length - len(cq)))
+
     
 
     collusion_quotients = np.array(collusion_quotients)
@@ -105,17 +111,7 @@ def main():
     plt.clf()
 
     print("Getting mergers periods data")
-    mergerperiods = []
-    collusion_quotients = []
-    for i in range(sessions):
-        with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, str(i) + ".pkl"), 'rb') as f:
-            result = pickle.load(f)
-        
 
-        mergerperiod = next(i for i, state in enumerate(result) if len(state.firm_profits) < numb_firms)
-        mergerperiods.append(mergerperiod)
-        collusion_quotients.append([np.mean(state.collussion_quotient) for state in result[mergerperiod-10 ** 5:]])
-    
     plt.hist(mergerperiods, bins=100)
     plt.xlabel('Periods until merger')
     plt.ylabel('Frequency')
@@ -133,22 +129,33 @@ def main():
     plt.clf()
 
     print("Calculating lengths of collusion quotients")
-    lengths = [len(c) for c in collusion_quotients]
+    
+
+    new_collusion_quotients = [None] * sessions
+    for i in range(sessions):
+        new_collusion_quotients[i] = collusion_quotients[i][mergerperiods[i]-10**5:]
+        
+
+        
+    lengths = [len(c) for c in new_collusion_quotients]
     min_length = min(lengths)
     max_length = max(lengths)
-
-    for cq in collusion_quotients:
-        if len(cq) < max_length:
-            cq.extend([np.mean(cq[-100:])]*(max_length - len(cq)))
     
-    collusion_quotients = np.array(collusion_quotients)
+    print("Extending data")
+    for i in range(sessions):
+        cq = np.array(new_collusion_quotients[i])
+        if len(cq) < max_length:
+            new_collusion_quotients[i] = np.append(cq, [np.mean(cq[-100:])]*(max_length - len(cq)))
 
-    average_collusion_quotient = np.mean(collusion_quotients, axis=(0,2))
 
+    new_collusion_quotients = np.array(new_collusion_quotients)
+    
+    average_collusion_quotient = np.mean(new_collusion_quotients, axis=0)
+    
     plt.plot(range(min_length), average_collusion_quotient[:min_length])
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Period')
-    plt.savefig(config.create_filepath(filename + "_collusion_quotient"))
+    plt.savefig(config.create_filepath(filename + "_collusion_quotient_merged"))
 
     plt.clf()
 

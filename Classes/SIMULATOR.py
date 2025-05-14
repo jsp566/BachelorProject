@@ -133,13 +133,6 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
                         same = False
                     if not same:
                         print(f"Variations do not match, running simulation")
-<<<<<<< Updated upstream
-                
-            if same: return
-        except Exception as e:
-            print("No files to compare")
-            print(f"Error: {e}") 
-=======
    
             if same: 
                 print(f"Configurations match, skipping simulation")
@@ -147,7 +140,6 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
         except Exception as e:
             print("No files to compare")
             print(f"Error: {e}")    
->>>>>>> Stashed changes
     os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
     
     # simulate for all combinations of variations
