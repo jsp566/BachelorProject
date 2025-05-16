@@ -211,7 +211,7 @@ class Market():
         P = np.array(self.get_nash_prices())
         return lib.Profit(P, self.A, self.MC, self.demand_function.fun) 
     
-    def get_get_true_nash_prices(self):
+    def get_true_nash_prices(self):
         '''
         Gives true Nash prices
         '''

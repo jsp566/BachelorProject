@@ -5,6 +5,7 @@ import io
 import cProfile
 import pstats
 
+
 # Demand function
 class Share():
     def __init__(self):
@@ -80,7 +81,8 @@ def create_config(**kwargs):
             config[key] = value
         else:
             raise KeyError(f"Key '{key}' not found in default configuration.")
-        
+    
+    fix_config(config)
     return config
 
 
@@ -111,4 +113,42 @@ def profile_main(main, filename):
         stats.sort_stats('calls')
         stats.print_stats(100)
 
+def list_creator(inputlist, numb):
+    if type(inputlist) == tuple:
+        assert len(inputlist) == numb, 'List must be of length numb'
+        return inputlist
+    else:
+        return (inputlist,) * numb
+
+def fix_config(config):
+    # check numb firms is int
+    assert type(config['numb_firms']) == int, 'numb_firms must be an integer'
+
+    # check numb products is int
+    config['numb_products'] = list_creator(config['numb_products'], config['numb_firms'])
+
+    config['strategy'] = list_creator(config['strategy'], config['numb_firms'])
+    config['exploration_rate'] = list_creator(config['exploration_rate'], config['numb_firms'])
+    
+    if type(config['exploration_rate_params']) != tuple:
+        config['exploration_rate_params'] = tuple([(config['exploration_rate_params'],) * numb for numb in config['numb_firms']])
+    else:
+        if type(config['exploration_rate_params'][0]) != tuple:
+            config['exploration_rate_params'] = (config['exploration_rate_params'],) * config['numb_firms']
+
+
+    config['discount_factor'] = list_creator(config['discount_factor'], config['numb_firms'])
+    config['learning_rate'] = list_creator(config['learning_rate'], config['numb_firms'])
+
+    if type(config['quality']) != tuple:
+        config['quality'] = tuple([(config['quality'],) * numb for numb in config['numb_products']])
+    else:
+        if type(config['quality'][0]) != tuple:
+            config['quality'] = (config['quality'],) * config['numb_firms']
+    
+    if type(config['marginal_cost']) != tuple:
+        config['marginal_cost'] = tuple([(config['marginal_cost'],) * numb for numb in config['numb_products']])
+    else:
+        if type(config['marginal_cost'][0]) != tuple:
+            config['marginal_cost'] = (config['marginal_cost'],) * config['numb_firms']
 

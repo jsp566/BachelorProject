@@ -59,7 +59,7 @@ def fix_config(config):
 
 
 def setup(config):
-    fix_config(config)
+    #fix_config(config)
     share = config['demand_function'].set(config['demand_function_params'])
     # check demand function is callable
     assert callable(share), 'Demand function must be callable'
@@ -81,9 +81,9 @@ def setup(config):
     return market
 
 
-def session(i, market, iterations, start_period = 1, convergence = None, foldername = None, variation = None):
+def session(i, config, iterations, start_period = 1, convergence = None, foldername = None, variation = None):
 
-
+    market = setup(config)
     states = market.simulate(iterations, start_period=start_period, convergence=convergence)
 
     if foldername:
@@ -107,6 +107,7 @@ def simulate(config):
 
 # variations is a dict of settings, with variables and a list of values
 def simulate_variations(config, variations, filename = None, parallel = True, savedData = False, session = session):
+    fix_config(config)
     output_dir = os.path.join(os.getcwd(), 'Output', 'Data')
     
 
@@ -157,18 +158,18 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
             new_config[key] = value
             resultkey.append((key, value))
         resultkey = frozenset(resultkey)
-
+        fix_config(new_config)
         
         if parallel:
 
-            inputparams = [(i, setup(new_config), new_config['iterations'], new_config['start_period'], new_config['convergence'], filename, combination) for i in range(new_config['sessions'])]
+            inputparams = [(i, new_config, new_config['iterations'], new_config['start_period'], new_config['convergence'], filename, combination) for i in range(new_config['sessions'])]
 
             with Pool(processes=cpu_count()) as pool:
                 results = pool.starmap(session, inputparams)
         else:
             results = []
             for i in range(new_config['sessions']):
-                results.append(session(i, setup(new_config), new_config['iterations'], start_period=new_config['start_period'], convergence=new_config['convergence'], foldername=filename, variation=combination))
+                results.append(session(i, new_config, new_config['iterations'], start_period=new_config['start_period'], convergence=new_config['convergence'], foldername=filename, variation=combination))
     if filename:
         os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
         try:
@@ -187,6 +188,7 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
 
 
 def simulate_sessions(config, filename = None, parallel = True, savedData = False, session = session, variations = None):
+    fix_config(config)
     output_dir = os.path.join(os.getcwd(), 'Output', 'Data')
     
 
@@ -207,14 +209,14 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
     os.makedirs(os.path.join(output_dir, filename), exist_ok=True) 
     
     if parallel:
-        inputparams = [(i, setup(config), config['iterations'], config['start_period'], config['convergence'], filename) for i in range(config['sessions'])]
+        inputparams = [(i, config, config['iterations'], config['start_period'], config['convergence'], filename) for i in range(config['sessions'])]
 
         with Pool(processes=cpu_count()) as pool:
             results = pool.starmap(session, inputparams)
     else:
         results = []
         for i in range(config['sessions']):
-            results.append(session(i, setup(config), config['iterations'], config['start_period'], config['convergence'], filename))
+            results.append(session(i, config, config['iterations'], config['start_period'], config['convergence'], filename))
 
     if filename:
         os.makedirs(os.path.join(output_dir, filename), exist_ok=True)

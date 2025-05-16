@@ -11,7 +11,8 @@ import os
 filename =  basename(__file__).replace('.py', '')
 
 
-def new_session(i, market, iterations, start_period = 1, convergence = None, foldername = None, variation = None):
+def new_session(i, config, iterations, start_period = 1, convergence = None, foldername = None, variation = None):
+    market = SIMULATOR.setup(config)
     before = market.simulate(iterations, start_period=start_period, convergence=convergence)
     market.merge(0,1)
     after = market.simulate(iterations, start_period=start_period, convergence=convergence)
