@@ -1,224 +1,224 @@
-         304325746 function calls (304276596 primitive calls) in 482.741 seconds
+         305185120 function calls (305107517 primitive calls) in 973.901 seconds
 
    Ordered by: cumulative time
-   List reduced from 1917 to 50 due to restriction <50>
+   List reduced from 1921 to 50 due to restriction <50>
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-        1    7.399    7.399  482.743  482.743 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:29(main)
-34775/29843    4.287    0.000  243.696    0.008 {built-in method numpy.core._multiarray_umath.implement_array_function}
-      300    0.006    0.000  223.545    0.745 <__array_function__ internals>:177(mean)
-      300    1.075    0.004  223.535    0.745 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:3345(mean)
-      300    0.664    0.002  222.460    0.742 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:164(_mean)
-     9153  220.967    0.024  220.967    0.024 {built-in method numpy.asanyarray}
-10330/9698    0.010    0.000  100.411    0.010 {built-in method builtins.next}
-      200   73.496    0.367  100.328    0.502 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:53(<genexpr>)
-      100   52.358    0.524   52.358    0.524 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:55(<listcomp>)
-      101   42.143    0.417   42.143    0.417 {built-in method _pickle.load}
-    27990   29.809    0.001   29.809    0.001 {built-in method numpy.array}
-302529954/302529600   26.839    0.000   26.839    0.000 {built-in method builtins.len}
-      198    0.002    0.000   16.860    0.085 <__array_function__ internals>:177(append)
-      198    0.004    0.000   16.731    0.084 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\function_base.py:5444(append)
-    23624   15.896    0.001   15.896    0.001 {method 'reduce' of 'numpy.ufunc' objects}
-     1266    0.001    0.000   12.900    0.010 <__array_function__ internals>:177(ravel)
-     1266    0.003    0.000   12.897    0.010 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:1781(ravel)
-        6    0.000    0.000    4.123    0.687 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\pyplot.py:3570(plot)
-     1613    0.005    0.000    4.112    0.003 <__array_function__ internals>:177(concatenate)
-        6    0.000    0.000    3.853    0.642 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_axes.py:1476(plot)
-        9    0.000    0.000    3.720    0.413 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\pyplot.py:1114(savefig)
-        9    0.001    0.000    3.720    0.413 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\figure.py:3234(savefig)
-        9    0.001    0.000    3.719    0.413 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backend_bases.py:2052(print_figure)
-        9    0.000    0.000    3.710    0.412 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backend_bases.py:2043(<lambda>)
-        9    0.000    0.000    3.710    0.412 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backends\backend_agg.py:450(print_png)
-        9    0.002    0.000    3.709    0.412 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backends\backend_agg.py:440(_print_pil)
-        9    0.000    0.000    3.495    0.388 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backends\backend_agg.py:381(draw)
-        9    0.000    0.000    3.461    0.385 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:93(draw_wrapper)
-   1209/9    0.007    0.000    3.461    0.385 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:54(draw_wrapper)
-        9    0.001    0.000    3.461    0.385 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\figure.py:3134(draw)
-     18/9    0.001    0.000    3.441    0.382 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\image.py:114(_draw_list_compositing_images)
-        9    0.000    0.000    3.441    0.382 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_base.py:3005(draw)
-      363    0.006    0.000    2.380    0.007 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\lines.py:738(draw)
-       12    0.007    0.001    2.287    0.191 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_base.py:233(__call__)
-        6    0.001    0.000    2.280    0.380 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_base.py:401(_plot_args)
-      360    0.002    0.000    2.138    0.006 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backends\backend_agg.py:95(draw_path)
-     2245    0.002    0.000    2.136    0.001 <__array_function__ internals>:177(atleast_1d)
-      360    2.101    0.006    2.136    0.006 {method 'draw_path' of 'matplotlib.backends._backend_agg.RendererAgg' objects}
-     2245    0.004    0.000    2.131    0.001 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\shape_base.py:23(atleast_1d)
-       12    0.000    0.000    2.126    0.177 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\cbook.py:1348(_check_1d)
-        6    0.000    0.000    1.565    0.261 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_base.py:2300(add_line)
-        6    0.000    0.000    1.562    0.260 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_base.py:2328(_update_line_limits)
-        3    0.000    0.000    0.982    0.327 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\pyplot.py:3199(hist)
-      212    0.017    0.000    0.939    0.004 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\lines.py:1029(get_path)
-      331    0.092    0.000    0.935    0.003 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\lines.py:666(recache)
-       30    0.001    0.000    0.799    0.027 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\pyplot.py:2526(gca)
-       18    0.001    0.000    0.750    0.042 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axis.py:1379(draw)
-      306    0.003    0.000    0.656    0.002 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:858(update_from_path)
-      306    0.652    0.002    0.653    0.002 {built-in method matplotlib._path.update_path_extents}
-        2    0.044    0.022    0.639    0.319 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:130(moving_average)
+        1   46.273   46.273  973.908  973.908 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:30(main)
+    34488  576.898    0.017  576.898    0.017 {built-in method numpy.array}
+16580/15512    0.012    0.000   94.604    0.006 {built-in method builtins.next}
+        1    0.001    0.001   94.486   94.486 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:62(<listcomp>)
+      200   68.333    0.342   94.484    0.472 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:62(<genexpr>)
+      101   66.614    0.660   66.614    0.660 {built-in method _pickle.load}
+      100   49.895    0.499   49.895    0.499 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:67(<listcomp>)
+      100   47.207    0.472   47.207    0.472 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:71(<listcomp>)
+      100   26.788    0.268   26.788    0.268 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:208(<listcomp>)
+302533040/302532650   26.160    0.000   26.161    0.000 {built-in method builtins.len}
+58116/48508   15.125    0.000   25.612    0.001 {built-in method numpy.core._multiarray_umath.implement_array_function}
+      100   23.495    0.235   23.495    0.235 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:212(<listcomp>)
+     3127    0.013    0.000   14.949    0.005 <__array_function__ internals>:177(concatenate)
+      400    0.003    0.000   13.898    0.035 <__array_function__ internals>:177(append)
+      400    0.003    0.000   13.892    0.035 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\function_base.py:5444(append)
+       20    0.000    0.000    8.655    0.433 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\pyplot.py:3570(plot)
+       15    0.000    0.000    7.293    0.486 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\pyplot.py:1114(savefig)
+       15    0.000    0.000    7.293    0.486 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\figure.py:3234(savefig)
+       15    0.001    0.000    7.292    0.486 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backend_bases.py:2052(print_figure)
+       15    0.000    0.000    7.284    0.486 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backend_bases.py:2043(<lambda>)
+       15    0.000    0.000    7.284    0.486 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backends\backend_agg.py:450(print_png)
+       15    0.002    0.000    7.284    0.486 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backends\backend_agg.py:440(_print_pil)
+       15    0.000    0.000    7.025    0.468 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backends\backend_agg.py:381(draw)
+       15    0.000    0.000    7.017    0.468 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:93(draw_wrapper)
+  1877/15    0.009    0.000    7.017    0.468 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:54(draw_wrapper)
+       15    0.001    0.000    7.017    0.468 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\figure.py:3134(draw)
+    30/15    0.001    0.000    7.004    0.467 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\image.py:114(_draw_list_compositing_images)
+       15    0.000    0.000    7.004    0.467 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_base.py:3005(draw)
+       20    0.001    0.000    6.926    0.346 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_axes.py:1476(plot)
+      650    0.012    0.000    5.593    0.009 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\lines.py:738(draw)
+       38    0.001    0.000    5.023    0.132 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_base.py:2300(add_line)
+       38    0.001    0.000    5.009    0.132 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_base.py:2328(_update_line_limits)
+      428    0.002    0.000    4.615    0.011 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backends\backend_agg.py:95(draw_path)
+      428    4.588    0.011    4.612    0.011 {method 'draw_path' of 'matplotlib.backends._backend_agg.RendererAgg' objects}
+      400    0.002    0.000    4.059    0.010 <__array_function__ internals>:177(tile)
+      400    0.013    0.000    4.056    0.010 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\shape_base.py:1191(tile)
+      400    4.037    0.010    4.037    0.010 {method 'repeat' of 'numpy.ndarray' objects}
+       16    0.354    0.022    3.893    0.243 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:130(moving_average)
+       16    0.000    0.000    3.538    0.221 <__array_function__ internals>:177(convolve)
+       16    0.000    0.000    3.538    0.221 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\numeric.py:755(convolve)
+       16    3.538    0.221    3.538    0.221 {built-in method numpy.core._multiarray_umath.correlate}
+      389    0.023    0.000    3.166    0.008 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\lines.py:1029(get_path)
+      593    0.301    0.001    3.164    0.005 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\lines.py:666(recache)
+        1    0.000    0.000    2.089    2.089 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\SIMULATOR.py:61(setup)
+        1    0.000    0.000    2.089    2.089 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:55(set_priceranges)
+       74    0.000    0.000    2.048    0.028 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\pyplot.py:2526(gca)
+       40    0.008    0.000    1.963    0.049 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_base.py:233(__call__)
+       20    0.001    0.000    1.954    0.098 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_base.py:401(_plot_args)
+    26199    1.938    0.000    1.939    0.000 {built-in method numpy.asarray}
+      338    0.003    0.000    1.827    0.005 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:858(update_from_path)
 
 
-         304325746 function calls (304276596 primitive calls) in 482.741 seconds
+         305185120 function calls (305107517 primitive calls) in 973.901 seconds
 
    Ordered by: internal time
-   List reduced from 1917 to 50 due to restriction <50>
+   List reduced from 1921 to 50 due to restriction <50>
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-     9153  220.967    0.024  220.967    0.024 {built-in method numpy.asanyarray}
-      200   73.496    0.367  100.328    0.502 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:53(<genexpr>)
-      100   52.358    0.524   52.358    0.524 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:55(<listcomp>)
-      101   42.143    0.417   42.143    0.417 {built-in method _pickle.load}
-    27990   29.809    0.001   29.809    0.001 {built-in method numpy.array}
-302529954/302529600   26.839    0.000   26.839    0.000 {built-in method builtins.len}
-    23624   15.896    0.001   15.896    0.001 {method 'reduce' of 'numpy.ufunc' objects}
-        1    7.399    7.399  482.743  482.743 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:29(main)
-34775/29843    4.287    0.000  243.696    0.008 {built-in method numpy.core._multiarray_umath.implement_array_function}
-      360    2.101    0.006    2.136    0.006 {method 'draw_path' of 'matplotlib.backends._backend_agg.RendererAgg' objects}
-      300    1.075    0.004  223.535    0.745 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:3345(mean)
-      300    0.664    0.002  222.460    0.742 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:164(_mean)
-      306    0.652    0.002    0.653    0.002 {built-in method matplotlib._path.update_path_extents}
-        2    0.594    0.297    0.594    0.297 {built-in method numpy.core._multiarray_umath.correlate}
-    16325    0.582    0.000    0.582    0.000 {built-in method numpy.asarray}
-        1    0.197    0.197    0.197    0.197 {built-in method _tkinter.create}
-       16    0.175    0.011    0.175    0.011 {method 'encode' of 'ImagingEncoder' objects}
-     1119    0.166    0.000    0.166    0.000 {method 'astype' of 'numpy.ndarray' objects}
-       12    0.148    0.012    0.148    0.012 {method '__copy__' of 'numpy.ndarray' objects}
-        3    0.094    0.031    0.109    0.036 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:18(initialize)
-      331    0.092    0.000    0.935    0.003 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\lines.py:666(recache)
-      306    0.071    0.000    0.108    0.000 {built-in method builtins.print}
-      198    0.068    0.000    0.068    0.000 {method 'call' of '_tkinter.tkapp' objects}
-    33708    0.062    0.000    0.072    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\__init__.py:703(_get)
-    11607    0.058    0.000    0.140    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:18(__call__)
-        6    0.057    0.009    0.057    0.009 {built-in method matplotlib._path.is_sorted_and_has_non_nan}
-     8103    0.052    0.000    0.054    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:182(set_children)
-        4    0.050    0.012    0.050    0.012 {built-in method _imp.create_dynamic}
-      202    0.045    0.000    0.045    0.000 {method 'set_text' of 'matplotlib.ft2font.FT2Font' objects}
-        2    0.044    0.022    0.639    0.319 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:130(moving_average)
-      119    0.044    0.000    0.044    0.000 {built-in method io.open}
-20996/348    0.043    0.000    0.096    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:128(deepcopy)
-     4325    0.039    0.000    0.173    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:1176(_update_props)
-     1634    0.035    0.000    0.035    0.000 {built-in method numpy.arange}
-     2525    0.034    0.000    0.040    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\_api\__init__.py:64(check_isinstance)
-   111627    0.033    0.000    0.049    0.000 {built-in method builtins.isinstance}
-      191    0.031    0.000    0.031    0.000 {built-in method nt.stat}
-    50382    0.030    0.000    0.044    0.000 {built-in method builtins.getattr}
-        8    0.030    0.004    0.061    0.008 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\function_base.py:23(linspace)
-    33706    0.029    0.000    0.102    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\__init__.py:754(__getitem__)
-     3375    0.028    0.000    0.202    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\STATE.py:11(__init__)
-43627/39541    0.025    0.000    0.040    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:317(stale)
-      441    0.025    0.000    0.161    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\text.py:358(_get_layout)
-    14854    0.025    0.000    0.072    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:69(_wrapreduction)
-     8987    0.025    0.000    0.041    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\cbook.py:285(process)
-     2797    0.024    0.000    0.040    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\cbook.py:1743(normalize_kwargs)
-     9378    0.022    0.000    0.031    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\cbook.py:2011(_setattr_cm)
-      624    0.021    0.000    0.296    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\lines.py:287(__init__)
-     1715    0.021    0.000    0.040    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:180(__init__)
-     1500    0.020    0.000    0.029    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\bezier.py:191(__init__)
+    34488  576.898    0.017  576.898    0.017 {built-in method numpy.array}
+      200   68.333    0.342   94.484    0.472 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:62(<genexpr>)
+      101   66.614    0.660   66.614    0.660 {built-in method _pickle.load}
+      100   49.895    0.499   49.895    0.499 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:67(<listcomp>)
+      100   47.207    0.472   47.207    0.472 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:71(<listcomp>)
+        1   46.273   46.273  973.908  973.908 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:30(main)
+      100   26.788    0.268   26.788    0.268 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:208(<listcomp>)
+302533040/302532650   26.160    0.000   26.161    0.000 {built-in method builtins.len}
+      100   23.495    0.235   23.495    0.235 c:\Users\anton\Documents\GitHub\BachelorProject\graph_merger.py:212(<listcomp>)
+58116/48508   15.125    0.000   25.612    0.001 {built-in method numpy.core._multiarray_umath.implement_array_function}
+      428    4.588    0.011    4.612    0.011 {method 'draw_path' of 'matplotlib.backends._backend_agg.RendererAgg' objects}
+      400    4.037    0.010    4.037    0.010 {method 'repeat' of 'numpy.ndarray' objects}
+       16    3.538    0.221    3.538    0.221 {built-in method numpy.core._multiarray_umath.correlate}
+    26199    1.938    0.000    1.939    0.000 {built-in method numpy.asarray}
+      338    1.823    0.005    1.823    0.005 {built-in method matplotlib._path.update_path_extents}
+    16013    1.445    0.000    1.445    0.000 {built-in method numpy.asanyarray}
+     6549    1.336    0.000    1.400    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:2348(__init__)
+     2469    0.671    0.000    0.671    0.000 {method 'astype' of 'numpy.ndarray' objects}
+    33613    0.603    0.000    0.603    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       40    0.519    0.013    0.519    0.013 {method '__copy__' of 'numpy.ndarray' objects}
+        3    0.363    0.121    0.422    0.141 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:18(initialize)
+       16    0.354    0.022    3.893    0.243 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:130(moving_average)
+      593    0.301    0.001    3.164    0.005 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\lines.py:666(recache)
+    13670    0.298    0.000    0.668    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:19(__call__)
+       22    0.208    0.009    0.208    0.009 {method 'encode' of 'ImagingEncoder' objects}
+    10214    0.204    0.000    0.206    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:182(set_children)
+       20    0.137    0.007    0.137    0.007 {built-in method matplotlib._path.is_sorted_and_has_non_nan}
+    19305    0.119    0.000    0.314    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:69(_wrapreduction)
+    10295    0.118    0.000    0.644    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:4(Profit)
+        1    0.112    0.112    0.112    0.112 {built-in method _tkinter.create}
+     1712    0.110    0.000    0.110    0.000 {built-in method numpy.arange}
+      854    0.109    0.000    1.099    0.001 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:275(approx_derivative)
+       14    0.107    0.008    0.214    0.015 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\function_base.py:23(linspace)
+     3375    0.091    0.000    0.684    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\STATE.py:11(__init__)
+     3542    0.088    0.000    0.478    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:13(Specific_Profit)
+      854    0.087    0.000    0.668    0.001 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:566(_dense_difference)
+       90    0.069    0.001    1.776    0.020 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_optimize.py:1375(_minimize_bfgs)
+    27483    0.069    0.000    0.074    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\_api\__init__.py:99(check_in_list)
+    14198    0.067    0.000    0.310    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2188(sum)
+36381/603    0.064    0.000    0.149    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:128(deepcopy)
+    14594    0.059    0.000    0.069    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\cbook.py:2011(_setattr_cm)
+     6715    0.052    0.000    0.254    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:1176(_update_props)
+      404    0.049    0.000    0.425    0.001 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:164(_mean)
+   153752    0.048    0.000    0.064    0.000 {built-in method builtins.isinstance}
+      327    0.046    0.000    0.046    0.000 {method 'set_text' of 'matplotlib.ft2font.FT2Font' objects}
+    14198    0.044    0.000    0.391    0.000 <__array_function__ internals>:177(sum)
+     3542    0.044    0.000    0.619    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:132(fun_wrapped)
+      125    0.044    0.000    0.044    0.000 {built-in method io.open}
+      344    0.043    0.000    1.361    0.004 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:91(scalar_search_wolfe1)
+    77571    0.038    0.000    0.056    0.000 {built-in method builtins.getattr}
 
 
-         304325746 function calls (304276596 primitive calls) in 482.741 seconds
+         305185120 function calls (305107517 primitive calls) in 973.901 seconds
 
    Ordered by: call count
-   List reduced from 1917 to 100 due to restriction <100>
+   List reduced from 1921 to 100 due to restriction <100>
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-302529954/302529600   26.839    0.000   26.839    0.000 {built-in method builtins.len}
-   111627    0.033    0.000    0.049    0.000 {built-in method builtins.isinstance}
-    71441    0.014    0.000    0.014    0.000 {method 'get' of 'dict' objects}
-    69223    0.016    0.000    0.016    0.000 {method 'items' of 'dict' objects}
-    50382    0.030    0.000    0.044    0.000 {built-in method builtins.getattr}
-43627/39541    0.025    0.000    0.040    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:317(stale)
-    43301    0.007    0.000    0.007    0.000 {method 'append' of 'list' objects}
-    36465    0.007    0.000    0.007    0.000 {built-in method builtins.id}
-34775/29843    4.287    0.000  243.696    0.008 {built-in method numpy.core._multiarray_umath.implement_array_function}
-    33713    0.011    0.000    0.011    0.000 {function RcParams.__getitem__ at 0x0000026565B3A7A0}
-    33708    0.062    0.000    0.072    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\__init__.py:703(_get)
-    33706    0.029    0.000    0.102    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\__init__.py:754(__getitem__)
-    27990   29.809    0.001   29.809    0.001 {built-in method numpy.array}
-    23624   15.896    0.001   15.896    0.001 {method 'reduce' of 'numpy.ufunc' objects}
-    22706    0.004    0.000    0.004    0.000 {method 'values' of 'dict' objects}
-20996/348    0.043    0.000    0.096    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:128(deepcopy)
-    20378    0.016    0.000    0.016    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:113(__init__)
-    17025    0.004    0.000    0.004    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:293(axes)
-    16704    0.018    0.000    0.023    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\_api\__init__.py:99(check_in_list)
-    16325    0.582    0.000    0.582    0.000 {built-in method numpy.asarray}
-    16240    0.003    0.000    0.003    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:182(_deepcopy_atomic)
-    14854    0.008    0.000    0.008    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:70(<dictcomp>)
-    14854    0.025    0.000    0.072    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:69(_wrapreduction)
-    13346    0.004    0.000    0.004    0.000 {method 'pop' of 'dict' objects}
-    13079    0.009    0.000    0.010    0.000 {built-in method builtins.max}
-    11807    0.002    0.000    0.002    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2183(_sum_dispatcher)
-    11807    0.014    0.000    0.066    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2188(sum)
-    11807    0.009    0.000    0.084    0.000 <__array_function__ internals>:177(sum)
-    11607    0.058    0.000    0.140    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:18(__call__)
-    11562    0.020    0.000    0.020    0.000 {method 'copy' of 'numpy.ndarray' objects}
-    11090    0.005    0.000    0.008    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:198(<lambda>)
-    10983    0.005    0.000    0.005    0.000 {built-in method builtins.hasattr}
-    10960    0.017    0.000    0.026    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1769(__init__)
-    10533    0.004    0.000    0.004    0.000 {built-in method builtins.iter}
-10330/9698    0.010    0.000  100.411    0.010 {built-in method builtins.next}
-    10125    0.008    0.000    0.008    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:43(<listcomp>)
-     9571    0.005    0.000    0.016    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\abc.py:117(__instancecheck__)
-     9571    0.008    0.000    0.011    0.000 {built-in method _abc._abc_instancecheck}
-     9537    0.007    0.000    0.011    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\function_base.py:346(iterable)
-     9378    0.022    0.000    0.031    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\cbook.py:2011(_setattr_cm)
-     9153  220.967    0.024  220.967    0.024 {built-in method numpy.asanyarray}
-     8987    0.025    0.000    0.041    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\cbook.py:285(process)
-     8906    0.008    0.000    0.048    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:416(pchanged)
-8323/7597    0.009    0.000    0.010    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:167(_invalidate_internal)
-     8232    0.020    0.000    0.117    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:4(Profit)
-     8103    0.052    0.000    0.054    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:182(set_children)
-     8100    0.002    0.000    0.002    0.000 {built-in method math.factorial}
-     7718    0.002    0.000    0.002    0.000 {built-in method builtins.callable}
-     7597    0.008    0.000    0.018    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:158(invalidate)
-     7135    0.003    0.000    0.005    0.000 {built-in method builtins.setattr}
-     6742    0.009    0.000    0.091    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1340(__add__)
-     6742    0.011    0.000    0.082    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:2498(composite_transform_factory)
-     6648    0.017    0.000    0.188    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:66(copy)
-     6562    0.003    0.000    0.003    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1929(get_matrix)
-     6272    0.002    0.000    0.002    0.000 {built-in method builtins.issubclass}
-     6199    0.007    0.000    0.010    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\enum.py:359(__call__)
-     6199    0.003    0.000    0.003    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\enum.py:678(__new__)
-     5895    0.003    0.000    0.003    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1036(get_points)
-5822/4475    0.006    0.000    0.248    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\_api\deprecation.py:289(wrapper)
-     5812    0.007    0.000    0.007    0.000 {method 'reshape' of 'numpy.ndarray' objects}
-     5485    0.019    0.000    0.067    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:2348(__init__)
-5438/3308    0.003    0.000    0.014    0.000 {built-in method builtins.hash}
-     5417    0.003    0.000    0.003    0.000 {built-in method __new__ of type object at 0x00007FFC86423920}
-5412/2412    0.008    0.000    0.045    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:2391(_iter_break_from_left_to_right)
-     5122    0.013    0.000    0.035    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1889(__init__)
-     5031    0.013    0.000    0.014    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\contextlib.py:102(__init__)
-5031/4873    0.006    0.000    0.061    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\contextlib.py:130(__enter__)
-5031/4873    0.009    0.000    0.036    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\contextlib.py:139(__exit__)
-     5031    0.006    0.000    0.021    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\contextlib.py:279(helper)
-     4892    0.006    0.000    0.011    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\colors.py:216(_is_nth_color)
-     4637    0.005    0.000    0.005    0.000 {method 'match' of 're.Pattern' objects}
-     4438    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:700(get_size)
-     4333    0.003    0.000    0.020    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:61(_all)
-     4333    0.004    0.000    0.023    0.000 {method 'all' of 'numpy.ndarray' objects}
-     4325    0.039    0.000    0.173    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:1176(_update_props)
-     4325    0.002    0.000    0.002    0.000 {built-in method builtins.delattr}
-     4312    0.002    0.000    0.002    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:655(get_family)
-4233/1827    0.006    0.000    0.045    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:2384(__eq__)
-     4200    0.004    0.000    0.019    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:269(convert_xunits)
-     4200    0.003    0.000    0.014    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:281(convert_yunits)
-     4116    0.003    0.000    0.008    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1355(_iter_break_from_left_to_right)
-     4110    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:671(get_style)
-     4110    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:677(get_variant)
-     4110    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:683(get_weight)
-     4110    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:692(get_stretch)
-     3911    0.001    0.000    0.001    0.000 {built-in method builtins.abs}
-     3906    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1809(get_affine)
-     3849    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:2119(get_matrix)
-     3838    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:740(dot)
-     3838    0.005    0.000    0.025    0.000 <__array_function__ internals>:177(dot)
-     3802    0.004    0.000    0.148    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:1212(_internal_update)
-     3712    0.004    0.000    0.005    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:243(_keep_alive)
-     3675    0.014    0.000    0.058    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:259(_reconstruct)
-     3632    0.001    0.000    0.001    0.000 {method 'copy' of 'list' objects}
-3623/2314    0.003    0.000    0.004    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:2398(<lambda>)
-     3604    0.008    0.000    0.030    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\colors.py:268(to_rgba)
-     3480    0.002    0.000    0.006    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:264(<genexpr>)
-     3412    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:1128(sticky_edges)
-     3375    0.005    0.000    0.005    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:126(get_collusion_quotient)
-     3375    0.001    0.000    0.001    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:199(get_nash_prices)
+302533040/302532650   26.160    0.000   26.161    0.000 {built-in method builtins.len}
+   153752    0.048    0.000    0.064    0.000 {built-in method builtins.isinstance}
+   120212    0.019    0.000    0.019    0.000 {method 'get' of 'dict' objects}
+   100852    0.026    0.000    0.026    0.000 {method 'items' of 'dict' objects}
+    77571    0.038    0.000    0.056    0.000 {built-in method builtins.getattr}
+70999/64585    0.031    0.000    0.049    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:317(stale)
+    59149    0.009    0.000    0.009    0.000 {built-in method builtins.id}
+58116/48508   15.125    0.000   25.612    0.001 {built-in method numpy.core._multiarray_umath.implement_array_function}
+    56613    0.017    0.000    0.017    0.000 {method 'append' of 'list' objects}
+    53789    0.013    0.000    0.013    0.000 {function RcParams.__getitem__ at 0x0000022025AD29E0}
+    53784    0.030    0.000    0.042    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\__init__.py:703(_get)
+    53782    0.035    0.000    0.077    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\__init__.py:754(__getitem__)
+36381/603    0.064    0.000    0.149    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:128(deepcopy)
+    34488  576.898    0.017  576.898    0.017 {built-in method numpy.array}
+    33613    0.603    0.000    0.603    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+    30038    0.008    0.000    0.008    0.000 {method 'values' of 'dict' objects}
+    28140    0.004    0.000    0.004    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:182(_deepcopy_atomic)
+    27483    0.069    0.000    0.074    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\_api\__init__.py:99(check_in_list)
+    27050    0.018    0.000    0.018    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:113(__init__)
+    26199    1.938    0.000    1.939    0.000 {built-in method numpy.asarray}
+    24687    0.005    0.000    0.005    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:293(axes)
+    19305    0.029    0.000    0.029    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:70(<dictcomp>)
+    19305    0.119    0.000    0.314    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:69(_wrapreduction)
+    17531    0.004    0.000    0.004    0.000 {method 'pop' of 'dict' objects}
+16580/15512    0.012    0.000   94.604    0.006 {built-in method builtins.next}
+    16013    1.445    0.000    1.445    0.000 {built-in method numpy.asanyarray}
+    15938    0.020    0.000    0.020    0.000 {method 'copy' of 'numpy.ndarray' objects}
+    15097    0.005    0.000    0.005    0.000 {built-in method builtins.hasattr}
+    15033    0.004    0.000    0.004    0.000 {built-in method builtins.iter}
+    14910    0.019    0.000    0.030    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1769(__init__)
+    14594    0.059    0.000    0.069    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\cbook.py:2011(_setattr_cm)
+    14361    0.033    0.000    0.054    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\cbook.py:285(process)
+    14220    0.011    0.000    0.063    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:416(pchanged)
+    14198    0.011    0.000    0.011    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2183(_sum_dispatcher)
+    14198    0.067    0.000    0.310    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2188(sum)
+    14198    0.044    0.000    0.391    0.000 <__array_function__ internals>:177(sum)
+    14130    0.022    0.000    0.023    0.000 {built-in method builtins.max}
+    13971    0.008    0.000    0.012    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\function_base.py:346(iterable)
+    13670    0.298    0.000    0.668    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:19(__call__)
+    13607    0.004    0.000    0.007    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:198(<lambda>)
+    13024    0.002    0.000    0.002    0.000 {built-in method builtins.callable}
+    12354    0.005    0.000    0.015    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\abc.py:117(__instancecheck__)
+    12354    0.008    0.000    0.010    0.000 {built-in method _abc._abc_instancecheck}
+    11434    0.004    0.000    0.007    0.000 {built-in method builtins.setattr}
+    11137    0.022    0.000    0.574    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:66(copy)
+11011/9631    0.010    0.000    0.012    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:167(_invalidate_internal)
+    10867    0.032    0.000    0.032    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+    10295    0.118    0.000    0.644    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:4(Profit)
+    10214    0.204    0.000    0.206    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:182(set_children)
+    10125    0.031    0.000    0.031    0.000 c:\Users\anton\Documents\GitHub\BachelorProject\Classes\Strategies\Qlearning.py:43(<listcomp>)
+     9876    0.003    0.000    0.003    0.000 {built-in method builtins.issubclass}
+     9631    0.009    0.000    0.021    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:158(invalidate)
+     9515    0.004    0.000    0.004    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\enum.py:678(__new__)
+     9515    0.009    0.000    0.013    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\enum.py:359(__call__)
+8849/5373    0.004    0.000    0.019    0.000 {built-in method builtins.hash}
+     8822    0.003    0.000    0.003    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1929(get_matrix)
+     8747    0.005    0.000    0.005    0.000 {built-in method __new__ of type object at 0x00007FFF7DBF3920}
+8484/6644    0.008    0.000    0.453    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\_api\deprecation.py:289(wrapper)
+     8100    0.001    0.000    0.001    0.000 {built-in method math.factorial}
+     8098    0.017    0.000    0.020    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\contextlib.py:102(__init__)
+8098/7831    0.008    0.000    0.093    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\contextlib.py:130(__enter__)
+8098/7831    0.012    0.000    0.048    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\contextlib.py:139(__exit__)
+     8098    0.010    0.000    0.030    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\contextlib.py:279(helper)
+     7842    0.006    0.000    1.420    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1340(__add__)
+     7842    0.010    0.000    1.413    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:2498(composite_transform_factory)
+     7741    0.003    0.000    0.003    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1036(get_points)
+     7568    0.007    0.000    0.015    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\colors.py:216(_is_nth_color)
+     7313    0.006    0.000    0.006    0.000 {method 'match' of 're.Pattern' objects}
+     6818    0.017    0.000    0.040    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:1889(__init__)
+     6715    0.052    0.000    0.254    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:1176(_update_props)
+     6715    0.002    0.000    0.002    0.000 {built-in method builtins.delattr}
+     6676    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:700(get_size)
+     6549    1.336    0.000    1.400    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:2348(__init__)
+     6478    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:655(get_family)
+     6432    0.006    0.000    0.008    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:243(_keep_alive)
+     6258    0.001    0.000    0.001    0.000 {method 'copy' of 'list' objects}
+     6219    0.023    0.000    0.093    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:259(_reconstruct)
+     6151    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:671(get_style)
+     6151    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:677(get_variant)
+     6151    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:683(get_weight)
+     6151    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:692(get_stretch)
+     6083    0.003    0.000    0.003    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:740(dot)
+     6083    0.014    0.000    0.053    0.000 <__array_function__ internals>:177(dot)
+     6071    0.006    0.000    0.046    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:61(_all)
+     6071    0.011    0.000    0.057    0.000 {method 'all' of 'numpy.ndarray' objects}
+     6030    0.003    0.000    0.009    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copy.py:264(<genexpr>)
+     5830    0.005    0.000    0.187    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:1212(_internal_update)
+5638/2584    0.006    0.000    0.032    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:2391(_iter_break_from_left_to_right)
+     5550    0.002    0.000    0.002    0.000 {built-in method builtins.abs}
+     5357    0.002    0.000    0.002    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\shape_base.py:19(_atleast_1d_dispatcher)
+     5357    0.032    0.000    1.486    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\shape_base.py:23(atleast_1d)
+     5357    0.015    0.000    1.533    0.000 <__array_function__ internals>:177(atleast_1d)
+     5355    0.009    0.000    0.027    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\colors.py:268(to_rgba)
+     5350    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:1128(sticky_edges)
+     5293    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:706(get_file)
+     5291    0.018    0.000    0.027    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:638(__hash__)
+     5291    0.001    0.000    0.001    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\font_manager.py:864(get_math_fontfamily)
+     5273    0.004    0.000    0.015    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:269(convert_xunits)
+     5273    0.003    0.000    0.011    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:281(convert_yunits)
+     5013    0.004    0.000    0.007    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\copyreg.py:100(__newobj__)
 
 
