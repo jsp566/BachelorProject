@@ -214,9 +214,9 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
         with Pool(processes=cpu_count()) as pool:
             results = pool.starmap(session, inputparams)
     else:
-        results = []
+        
         for i in range(config['sessions']):
-            results.append(session(i, config, config['iterations'], config['start_period'], config['convergence'], filename))
+            session(i, config, config['iterations'], config['start_period'], config['convergence'], filename)
 
     if filename:
         os.makedirs(os.path.join(output_dir, filename), exist_ok=True)

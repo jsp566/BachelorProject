@@ -17,9 +17,11 @@ def main():
     # Start
     sessions = 100
     iterations = 10**7
-    numb_firms = 5
+    numb_firms = 5 
     parallel=True
     savedData = True
+
+
 
     new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms)
     SIMULATOR.fix_config(new_config)
@@ -56,7 +58,7 @@ def main():
 
     collusion_quotients = np.array(collusion_quotients)
 
-    average_collusion_quotient = np.mean(collusion_quotients, axis=(0,2))
+    average_collusion_quotient = np.mean(collusion_quotients, axis=0)
 
     plt.plot(range(min_length), average_collusion_quotient[:min_length])
     plt.ylabel('Collusion Quotient')
