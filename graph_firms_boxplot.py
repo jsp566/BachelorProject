@@ -19,6 +19,7 @@ def main():
     output_dir = os.path.join(os.getcwd(), 'Output', 'Data')
 
     collusion_quotients_list = []
+    lengths_list = []
     ticks = []
     file_exists = True
     while file_exists:
@@ -33,6 +34,7 @@ def main():
             file_exists = False
             break
         collusion_quotients = []
+        lengths = []
         for i in range(sessions):
             try:
                 with open(os.path.join(output_dir, new_filename, str(i) + ".pkl"), 'rb') as f:
@@ -41,10 +43,14 @@ def main():
                 file_exists = False
                 break
             collusion_quotients.append(np.mean([state.collussion_quotient  for state in result[-100000:]]))
+            lengths.append(len(result))
+
 
         collusion_quotients = np.transpose(collusion_quotients)
+        lengths = np.transpose(lengths)
         ticks.append(str(firms) + " firms")
         collusion_quotients_list.append(collusion_quotients)
+        lengths_list.append(lengths)
 
         firms += 1
 
@@ -54,7 +60,14 @@ def main():
     plt.xlabel('Number of firms')
     
     plt.savefig(config.create_filepath(filename + "_boxplot"))
+    plt.clf()
 
+    plt.boxplot(lengths_list)
+    plt.xticks(range(1, len(ticks) + 1), ticks)
+    plt.ylabel('Length of session')
+    plt.xlabel('Number of firms')
+    plt.savefig(config.create_filepath(filename + "_lengths_boxplot"))
+    plt.clf()
 if __name__ == "__main__":
     config.profile_main(main,filename)
     
