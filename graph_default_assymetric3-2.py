@@ -17,7 +17,7 @@ def main():
     # Start
     sessions = 100
     iterations = 10**7
-    numb_products = (2, 1)
+    numb_products = (3, 2)
     parallel=True
     savedData = True
 
@@ -102,15 +102,14 @@ def main():
     # Moving average
     ma100=  lib.moving_average(collusion_quotients[0], 100)
     repetitions = np.linspace(0, len(ma100), len(ma100))
-    plt.plot(repetitions, ma100, label='Product 1')
-    ma100=  lib.moving_average(collusion_quotients[1], 100)
-    plt.plot(repetitions, ma100, label='Product 2')
-    ma100=  lib.moving_average(collusion_quotients[2], 100)
-    plt.plot(repetitions, ma100, label='Product 3')
 
-    plt.axhline(y=true_nash_cq[0], color='r', linestyle='--', label='True Nash CQ Product 1')
-    plt.axhline(y=true_nash_cq[1], color='g', linestyle='--', label='True Nash CQ Product 2')
-    plt.axhline(y=true_nash_cq[2], color='b', linestyle='--', label='True Nash CQ Product 3')
+    for i in range(len(collusion_quotients)):
+        ma100=  lib.moving_average(collusion_quotients[i], 100)
+        repetitions = np.linspace(0, len(ma100), len(ma100))
+        plt.plot(repetitions, ma100, label='Product ' + str(i+1))
+        plt.axhline(y=true_nash_cq[i], linestyle='--', label='True Nash CQ Product ' + str(i+1))
+
+
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Period')
     
@@ -133,18 +132,13 @@ def main():
     # Moving average
     ma100=  lib.moving_average(prices[0], 100)
     repetitions = np.linspace(0, len(ma100), len(ma100))
-    plt.plot(repetitions, ma100, label='Product 1')
-    ma100=  lib.moving_average(prices[1], 100)
-    plt.plot(repetitions, ma100, label='Product 2')
-    ma100=  lib.moving_average(prices[2], 100)
-    plt.plot(repetitions, ma100, label='Product 3')
 
-    plt.axhline(y=true_nash_prices[0], color='r', linestyle='--', label='True Nash Prices Product 1')
-    plt.axhline(y=true_nash_prices[1], color='g', linestyle='--', label='True Nash Prices Product 2')
-    plt.axhline(y=true_nash_prices[2], color='b', linestyle='--', label='True Nash Prices Product 3')
-    plt.axhline(y=monopoly_prices[0], color='g', linestyle='--', label='Monopoly Prices Product 1')
-    plt.axhline(y=monopoly_prices[1], color='g', linestyle='--', label='Monopoly Prices Product 2')
-    plt.axhline(y=monopoly_prices[2], color='g', linestyle='--', label='Monopoly Prices Product 3')
+    for i in range(len(prices)):
+        ma100=  lib.moving_average(prices[i], 100)
+        repetitions = np.linspace(0, len(ma100), len(ma100))
+        plt.plot(repetitions, ma100, label='Product ' + str(i+1))
+        plt.axhline(y=true_nash_prices[i], linestyle='--', label='True Nash Prices Product ' + str(i+1))
+        plt.axhline(y=monopoly_prices[i], linestyle='--', label='Monopoly Prices Product ' + str(i+1))
 
     plt.ylabel('Prices')
     plt.xlabel('Period')
