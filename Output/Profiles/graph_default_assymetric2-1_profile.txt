@@ -1,0 +1,224 @@
+         174435000 function calls (170401252 primitive calls) in 644.008 seconds
+
+   Ordered by: cumulative time
+   List reduced from 2073 to 50 due to restriction <50>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1   24.870   24.870  644.013  644.013 C:\Users\anton\Documents\GitHub\BachelorProject\graph_default_assymetric2-1.py:16(main)
+  4373875  284.826    0.000  284.826    0.000 {built-in method numpy.array}
+        1    0.000    0.000  200.132  200.132 C:\Users\anton\Documents\GitHub\BachelorProject\Classes\SIMULATOR.py:62(setup)
+        1    0.000    0.000  200.132  200.132 C:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:55(set_priceranges)
+        1    0.012    0.012  199.568  199.568 C:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:81(set_state_space)
+     3375    0.051    0.000  199.556    0.059 C:\Users\anton\Documents\GitHub\BachelorProject\Classes\STATE.py:11(__init__)
+     3379    0.009    0.000  199.429    0.059 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:72(Newton)
+     3379    0.013    0.000  199.420    0.059 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_minpack_py.py:47(fsolve)
+     3379    0.048    0.000  199.406    0.059 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_minpack_py.py:183(_root_hybr)
+     3376    0.009    0.000  199.315    0.059 C:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:222(get_true_nash_profits)
+     3377    0.009    0.000  199.301    0.059 C:\Users\anton\Documents\GitHub\BachelorProject\Classes\MARKET.py:214(get_true_nash_prices)
+    30411    0.085    0.000  199.183    0.007 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:77(<lambda>)
+    30411    0.213    0.000  199.068    0.007 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:55(market_reaction)
+    60822    0.450    0.000  198.833    0.003 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:41(Best_Response)
+    60822    0.727    0.000  198.296    0.003 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_minimize.py:51(minimize)
+     3379    0.104    0.000  196.426    0.058 {built-in method scipy.optimize._minpack._hybrd}
+    60822    7.663    0.000  196.360    0.003 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_optimize.py:1375(_minimize_bfgs)
+   270292    0.981    0.000  157.677    0.001 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_optimize.py:1199(_line_search_wolfe12)
+   270292    0.740    0.000  148.596    0.001 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:31(line_search_wolfe1)
+   270292    3.638    0.000  147.332    0.001 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:91(scalar_search_wolfe1)
+   753582    0.446    0.000  124.298    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:254(_update_grad)
+   500152    1.682    0.000  123.852    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:170(update_grad)
+   500152   11.711    0.000  122.075    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:275(approx_derivative)
+   631936    2.454    0.000  117.884    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:77(derphi)
+   692760    0.823    0.000  114.287    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:270(grad)
+19729946/15727327   27.361    0.000   93.030    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+   500152    9.237    0.000   71.003    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:566(_dense_difference)
+  2081714    4.485    0.000   65.479    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:132(fun_wrapped)
+  1500456    2.178    0.000   56.652    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:455(fun_wrapped)
+  2081714    1.863    0.000   54.163    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:42(<lambda>)
+  2081714    9.133    0.000   50.279    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:13(Specific_Profit)
+  2095217    6.106    0.000   34.234    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:4(Profit)
+        7    0.000    0.000   31.541    4.506 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\pyplot.py:1114(savefig)
+        7    0.000    0.000   31.541    4.506 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\figure.py:3234(savefig)
+        7    0.000    0.000   31.541    4.506 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backend_bases.py:2052(print_figure)
+        7    0.000    0.000   31.538    4.505 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backend_bases.py:2043(<lambda>)
+        7    0.000    0.000   31.537    4.505 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backends\backend_agg.py:450(print_png)
+        7    0.001    0.000   31.537    4.505 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backends\backend_agg.py:440(_print_pil)
+        7    0.000    0.000   31.429    4.490 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\backends\backend_agg.py:381(draw)
+        7    0.000    0.000   31.426    4.489 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:93(draw_wrapper)
+    820/7    0.003    0.000   31.426    4.489 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\artist.py:54(draw_wrapper)
+        7    0.000    0.000   31.426    4.489 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\figure.py:3134(draw)
+     14/7    0.000    0.000   31.422    4.489 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\image.py:114(_draw_list_compositing_images)
+        7    0.000    0.000   31.421    4.489 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\axes\_base.py:3005(draw)
+        3    0.000    0.000   28.262    9.421 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\legend.py:751(draw)
+       28    0.000    0.000   28.174    1.006 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\offsetbox.py:54(get_offset)
+  2098592   11.573    0.000   28.173    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:19(__call__)
+       28    0.000    0.000   28.163    1.006 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\offsetbox.py:297(get_offset)
+        6    0.122    0.020   28.163    4.694 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\legend.py:734(_findoffset)
+        6    0.002    0.000   28.042    4.674 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\legend.py:1160(_find_best_position)
+
+
+         174435000 function calls (170401252 primitive calls) in 644.008 seconds
+
+   Ordered by: internal time
+   List reduced from 2073 to 50 due to restriction <50>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+  4373875  284.826    0.000  284.826    0.000 {built-in method numpy.array}
+19729946/15727327   27.361    0.000   93.030    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+  7501473   25.758    0.000   25.758    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+      101   24.978    0.247   24.978    0.247 {built-in method _pickle.load}
+        1   24.870   24.870  644.013  644.013 C:\Users\anton\Documents\GitHub\BachelorProject\graph_default_assymetric2-1.py:16(main)
+      100   21.207    0.212   21.207    0.212 C:\Users\anton\Documents\GitHub\BachelorProject\graph_default_assymetric2-1.py:63(<listcomp>)
+      100   21.187    0.212   21.187    0.212 C:\Users\anton\Documents\GitHub\BachelorProject\graph_default_assymetric2-1.py:67(<listcomp>)
+      100   21.130    0.211   21.130    0.211 C:\Users\anton\Documents\GitHub\BachelorProject\graph_default_assymetric2-1.py:59(<listcomp>)
+   500152   11.711    0.000  122.075    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:275(approx_derivative)
+  2098592   11.573    0.000   28.173    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:19(__call__)
+      332    9.569    0.029   19.104    0.058 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\transforms.py:569(count_contains)
+   500152    9.237    0.000   71.003    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:566(_dense_difference)
+  2081714    9.133    0.000   50.279    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:13(Specific_Profit)
+    60822    7.663    0.000  196.360    0.003 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_optimize.py:1375(_minimize_bfgs)
+      284    7.408    0.026    7.408    0.026 {built-in method matplotlib._path.path_intersects_rectangle}
+  3894694    6.357    0.000   18.255    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:69(_wrapreduction)
+  2095217    6.106    0.000   34.234    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:4(Profit)
+  3146222    4.861    0.000    8.037    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\shape_base.py:23(atleast_1d)
+  2081714    4.485    0.000   65.479    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:132(fun_wrapped)
+   270292    3.638    0.000  147.332    0.001 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:91(scalar_search_wolfe1)
+      300    3.543    0.012    3.543    0.012 {method 'repeat' of 'numpy.ndarray' objects}
+  1490270    3.430    0.000    8.617    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\numeric.py:2407(array_equal)
+  2531048    3.383    0.000   15.497    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2188(sum)
+  1000304    3.331    0.000   13.381    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:1420(resize)
+   500152    2.891    0.000   10.832    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:11(_adjust_scheme_to_bounds)
+   631936    2.454    0.000  117.884    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:77(derphi)
+      180    2.205    0.012    2.213    0.012 {method 'draw_path' of 'matplotlib.backends._backend_agg.RendererAgg' objects}
+  3146222    2.199    0.000   14.259    0.000 <__array_function__ internals>:177(atleast_1d)
+  5800562    2.196    0.000    2.196    0.000 {built-in method numpy.asarray}
+  1500456    2.178    0.000   56.652    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:455(fun_wrapped)
+   631936    2.137    0.000   25.362    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:73(phi)
+       12    2.106    0.175    2.106    0.175 {built-in method numpy.core._multiarray_umath.correlate}
+  2081714    2.021    0.000    2.021    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:25(Set_Price)
+  2531048    1.985    0.000   19.556    0.000 <__array_function__ internals>:177(sum)
+  3894694    1.926    0.000    1.926    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:70(<dictcomp>)
+   500152    1.873    0.000    2.422    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\twodim_base.py:240(diag)
+  2081714    1.863    0.000   54.163    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:42(<lambda>)
+  3064698    1.823    0.000    1.823    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+   733167    1.815    0.000    7.176    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_optimize.py:286(vecnorm)
+   500152    1.682    0.000  123.852    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:170(update_grad)
+  7511913    1.574    0.000    1.580    0.000 {built-in method builtins.isinstance}
+   500152    1.551    0.000   17.430    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:193(_prepare_bounds)
+  2142536    1.502    0.000    5.791    0.000 <__array_function__ internals>:177(copy)
+  1500456    1.501    0.000    2.602    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:1781(ravel)
+     1551    1.499    0.001    1.499    0.001 {built-in method matplotlib._path.affine_transform}
+  5210935    1.485    0.000    1.485    0.000 {built-in method numpy.asanyarray}
+  1081733    1.417    0.000    1.417    0.000 {method 'astype' of 'numpy.ndarray' objects}
+  2082088    1.310    0.000    6.459    0.000 {method 'sum' of 'numpy.ndarray' objects}
+  1920558    1.267    0.000    4.633    0.000 <__array_function__ internals>:177(dot)
+   797510    1.239    0.000   27.998    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:264(fun)
+
+
+         174435000 function calls (170401252 primitive calls) in 644.008 seconds
+
+   Ordered by: call count
+   List reduced from 2073 to 100 due to restriction <100>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+19729946/15727327   27.361    0.000   93.030    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+  7511913    1.574    0.000    1.580    0.000 {built-in method builtins.isinstance}
+  7501473   25.758    0.000   25.758    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+  5800562    2.196    0.000    2.196    0.000 {built-in method numpy.asarray}
+  5210935    1.485    0.000    1.485    0.000 {built-in method numpy.asanyarray}
+  4373875  284.826    0.000  284.826    0.000 {built-in method numpy.array}
+  3934363    0.841    0.000    0.841    0.000 {method 'items' of 'dict' objects}
+  3894694    1.926    0.000    1.926    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:70(<dictcomp>)
+  3894694    6.357    0.000   18.255    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:69(_wrapreduction)
+3874156/3873994    0.600    0.000    0.600    0.000 {built-in method builtins.len}
+  3235547    0.528    0.000    0.528    0.000 {method 'append' of 'list' objects}
+  3146222    0.440    0.000    0.440    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\shape_base.py:19(_atleast_1d_dispatcher)
+  3146222    4.861    0.000    8.037    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\shape_base.py:23(atleast_1d)
+  3146222    2.199    0.000   14.259    0.000 <__array_function__ internals>:177(atleast_1d)
+  3064698    1.823    0.000    1.823    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+  2531048    0.521    0.000    0.521    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2183(_sum_dispatcher)
+  2531048    3.383    0.000   15.497    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2188(sum)
+  2531048    1.985    0.000   19.556    0.000 <__array_function__ internals>:177(sum)
+  2142536    0.407    0.000    0.407    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\function_base.py:867(_copy_dispatcher)
+  2142536    0.861    0.000    2.810    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\function_base.py:871(copy)
+  2142536    1.502    0.000    5.791    0.000 <__array_function__ internals>:177(copy)
+  2098592   11.573    0.000   28.173    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\config.py:19(__call__)
+  2095217    6.106    0.000   34.234    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:4(Profit)
+  2082088    0.837    0.000    5.149    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:47(_sum)
+  2082088    1.310    0.000    6.459    0.000 {method 'sum' of 'numpy.ndarray' objects}
+  2081747    0.793    0.000    1.188    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\numeric.py:1878(isscalar)
+  2081714    9.133    0.000   50.279    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:13(Specific_Profit)
+  2081714    2.021    0.000    2.021    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:25(Set_Price)
+  2081714    1.863    0.000   54.163    0.000 C:\Users\anton\Documents\GitHub\BachelorProject\utils\lib.py:42(<lambda>)
+  2081714    4.485    0.000   65.479    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:132(fun_wrapped)
+  1920558    0.350    0.000    0.350    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:740(dot)
+  1920558    1.267    0.000    4.633    0.000 <__array_function__ internals>:177(dot)
+  1561859    0.672    0.000    0.672    0.000 {method 'ravel' of 'numpy.ndarray' objects}
+  1500456    0.239    0.000    0.239    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:1777(_ravel_dispatcher)
+  1500456    1.501    0.000    2.602    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:1781(ravel)
+  1500456    1.010    0.000    4.532    0.000 <__array_function__ internals>:177(ravel)
+  1500456    0.534    0.000    1.109    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:204(<genexpr>)
+  1500456    2.178    0.000   56.652    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:455(fun_wrapped)
+  1491857    0.639    0.000   12.680    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:61(_all)
+  1491857    0.866    0.000   13.546    0.000 {method 'all' of 'numpy.ndarray' objects}
+  1490270    0.298    0.000    0.298    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\numeric.py:2403(_array_equal_dispatcher)
+  1490270    3.430    0.000    8.617    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\numeric.py:2407(array_equal)
+  1490270    1.083    0.000   10.890    0.000 <__array_function__ internals>:177(array_equal)
+  1358484    0.573    0.000   19.888    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:249(_update_fun)
+  1156982    0.339    0.000    0.345    0.000 {built-in method builtins.getattr}
+  1131977    0.643    0.000    0.643    0.000 {built-in method numpy.zeros}
+  1081733    1.417    0.000    1.417    0.000 {method 'astype' of 'numpy.ndarray' objects}
+  1002120    0.790    0.000    1.824    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:51(_wrapfunc)
+  1001621    0.164    0.000    0.164    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:193(_reshape_dispatcher)
+  1001621    0.729    0.000    2.548    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:198(reshape)
+  1001621    0.661    0.000    3.871    0.000 <__array_function__ internals>:177(reshape)
+  1001046    0.203    0.000    0.203    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:152(concatenate)
+  1001046    0.769    0.000   11.328    0.000 <__array_function__ internals>:177(concatenate)
+  1000304    0.169    0.000    0.169    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:1416(_resize_dispatcher)
+  1000304    3.331    0.000   13.381    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:1420(resize)
+  1000304    0.683    0.000   14.770    0.000 <__array_function__ internals>:177(resize)
+   797510    1.239    0.000   27.998    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:264(fun)
+   753582    0.446    0.000  124.298    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:254(_update_grad)
+   733167    1.815    0.000    7.176    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_optimize.py:286(vecnorm)
+   692760    0.823    0.000  114.287    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:270(grad)
+   631936    2.137    0.000   25.362    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:73(phi)
+   631936    2.454    0.000  117.884    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:77(derphi)
+   581258    0.406    0.000   19.315    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:154(update_fun)
+   567755    0.347    0.000    0.347    0.000 {built-in method numpy.empty}
+   561158    0.126    0.000    0.126    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2328(_any_dispatcher)
+   561158    0.602    0.000    3.493    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2333(any)
+   561158    0.474    0.000    4.859    0.000 <__array_function__ internals>:177(any)
+   520436    0.752    0.000    2.954    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:240(update_x)
+   503268    0.091    0.000    0.091    0.000 {built-in method builtins.abs}
+   500242    0.097    0.000    0.097    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2427(_all_dispatcher)
+   500242    0.544    0.000    2.810    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2432(all)
+   500242    0.432    0.000    3.678    0.000 <__array_function__ internals>:177(all)
+   500180    0.087    0.000    0.087    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:1079(copyto)
+   500180    0.421    0.000    1.296    0.000 <__array_function__ internals>:177(copyto)
+   500168    0.084    0.000    0.084    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:84(empty_like)
+   500168    0.477    0.000    1.223    0.000 <__array_function__ internals>:177(empty_like)
+   500152    0.118    0.000    0.118    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\multiarray.py:345(where)
+   500152    0.408    0.000    2.251    0.000 <__array_function__ internals>:177(where)
+   500152    0.085    0.000    0.085    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\numeric.py:215(_ones_like_dispatcher)
+   500152    0.816    0.000    3.335    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\numeric.py:219(ones_like)
+   500152    0.521    0.000    4.264    0.000 <__array_function__ internals>:177(ones_like)
+   500152    0.082    0.000    0.082    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\twodim_base.py:236(_diag_dispatcher)
+   500152    1.873    0.000    2.422    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\twodim_base.py:240(diag)
+   500152    0.370    0.000    3.150    0.000 <__array_function__ internals>:177(diag)
+   500152    2.891    0.000   10.832    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:11(_adjust_scheme_to_bounds)
+   500152    1.551    0.000   17.430    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:193(_prepare_bounds)
+   500152   11.711    0.000  122.075    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:275(approx_derivative)
+   500152    9.237    0.000   71.003    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_numdiff.py:566(_dense_difference)
+   500152    1.682    0.000  123.852    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_differentiable_functions.py:170(update_grad)
+   474448    0.075    0.000    0.075    0.000 {built-in method numpy.geterrobj}
+   431386    0.064    0.000    0.064    0.000 {built-in method builtins.callable}
+   331576    0.174    0.000    0.175    0.000 {built-in method builtins.min}
+   301483    0.060    0.000    0.060    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2698(_amax_dispatcher)
+   301483    0.351    0.000    1.904    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:2703(amax)
+   301483    0.252    0.000    2.413    0.000 <__array_function__ internals>:177(amax)
+   280634    0.074    0.000    0.074    0.000 {method 'pop' of 'dict' objects}
+   270292    0.981    0.000  157.677    0.001 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_optimize.py:1199(_line_search_wolfe12)
+   270292    0.740    0.000  148.596    0.001 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:31(line_search_wolfe1)
+   270292    3.638    0.000  147.332    0.001 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_linesearch.py:91(scalar_search_wolfe1)
+   239889    0.063    0.000    0.063    0.000 C:\Users\anton\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\optimize\_optimize.py:156(_call_callback_maybe_halt)
+
+

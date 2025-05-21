@@ -1,5 +1,6 @@
 import numpy as np
 import random
+from sortedcontainers import SortedDict
 
 
 class Qlearning():
@@ -12,7 +13,7 @@ class Qlearning():
         self.exploration_rate = exploration_rate
 
         self.Q = None
-        self.best_actions = None
+        self.Q_values = None
 
 
     def initialize(self, state_space, action_space, firmindex):
@@ -21,28 +22,27 @@ class Qlearning():
         '''
         
         action_profit_sums = {action: 0 for action in action_space}
-        action_counter = {action: 0 for action in action_space}
+        action_counter = len(state_space)/len(action_space)
 
         for state in state_space:
             action = state_space[state].actions[firmindex]
             firmprofit = state_space[state].firm_profits[firmindex]
 
             action_profit_sums[action] += firmprofit
-            action_counter[action] += 1
 
-        self.Q = {}
+        initial_Q_values = {action: (action_profit_sums[action]) / ((1 - self.discount_factor) * action_counter) for action in action_space}
 
-        for state in state_space:
-            self.Q[state] = {}
-            for action in action_space:
-                self.Q[state][action] = (action_profit_sums[action]) / ((1 - self.discount_factor) * action_counter[action])
-        
-        self.best_actions = {}
-        for state in self.Q:
-            max_val = max(self.Q[state].values())
-            self.best_actions[state] = tuple([action for action, value in self.Q[state].items() if value == max_val])
+        self.Q = {state : {action : initial_Q_values[action] for action in action_space} for state in state_space}
 
-    
+        value_dict = {}
+        for k, v in initial_Q_values.items():
+            if v in value_dict:
+                value_dict[v] += (k,)
+            else:
+                value_dict[v] = (k,)
+
+        self.Q_values = {state: SortedDict(value_dict) for state in state_space}
+
     def get_action(self, state, t):
         '''
         Takes state
@@ -59,8 +59,9 @@ class Qlearning():
             action = random.choice(list(self.Q[state].keys()))
             
         else:
-            action = random.choice(self.best_actions[state])
-        
+            maxval, actions = self.Q_values[state].peekitem(-1)
+            action = random.choice(actions)
+
         return action
         
 
@@ -69,52 +70,30 @@ class Qlearning():
         Takes state, action, next state
         Updates Q values
         '''
+        next_state_max_val, actions = self.Q_values[next_state.p].peekitem(-1)
 
-        next_max_val = self.Q[next_state.p][self.best_actions[next_state.p][0]]
+        new_Q_val = (1 - self.learning_rate) * self.Q[state.p][action] + self.learning_rate * (profit + self.discount_factor * next_state_max_val)
 
-        new_Q_val = (1 - self.learning_rate) * self.Q[state.p][action] + self.learning_rate * (profit + self.discount_factor * next_max_val)
-        
-        update_to_best = self.update_best_actions(state, action, new_Q_val)
+        old_Q_val = self.Q[state.p][action]
+
+
+        old_state_max_val, old_max_actions = self.Q_values[state.p].peekitem(-1)
 
         self.Q[state.p][action] = new_Q_val
-        return update_to_best
 
-    def update_best_actions(self, state, action, new_Q_val):
-        # check if best actions need to be updated
-        
-        max_val = self.Q[state.p][self.best_actions[state.p][0]]
-        old_Q_val = self.Q[state.p][action]
-        update_to_best = False
+        if len(self.Q_values[state.p][old_Q_val]) > 1:
+            self.Q_values[state.p][old_Q_val] = tuple(k for k in self.Q_values[state.p][old_Q_val] if k != action)
+        else:
+            del self.Q_values[state.p][old_Q_val]
 
-        if new_Q_val > old_Q_val:
-            # check if new Q value is the best action
-            if new_Q_val > max_val:
-                new_best = (action,)
-                if new_best != self.best_actions[state.p]:
-                    update_to_best = True
-                
-                self.best_actions[state.p] = (action,)
-            # check if new Q value is equal to the best action
-            elif new_Q_val == max_val:
-                self.best_actions[state.p] += (action,)
-                update_to_best = True
+        if new_Q_val in self.Q_values[state.p]:
+            self.Q_values[state.p][new_Q_val] += (action,)
+        else:
+            self.Q_values[state.p][new_Q_val] = (action,)
 
-            
-        elif new_Q_val < old_Q_val:
-            # check if old Q value was the best action
-            if old_Q_val == max_val:
-                if len(self.best_actions[state.p]) == 1:
-                    # set new best action to the action with the highest Q value
-                    self.Q[state.p][action] = new_Q_val
-                    max_val = max(self.Q[state.p].values())
-                    self.best_actions[state.p] = tuple([a for a in self.Q[state.p] if self.Q[state.p][a] == max_val])
-                    if self.best_actions[state.p] != (action,):
-                        update_to_best = True
+        new_state_max_val, new_max_actions = self.Q_values[state.p].peekitem(-1)
 
-                else:
-                    # remove action from best actions
-                    self.best_actions[state.p] = tuple([a for a in self.best_actions[state.p] if a != action])
-                    update_to_best = True
+        update_to_best = old_max_actions != new_max_actions
 
         return update_to_best
 
@@ -126,18 +105,23 @@ class Qlearning():
         '''
         if isinstance(strategy, Qlearning):
             new_Q = {}
-            
+            new_Q_values = {}
+
             for state in self.Q:
                 new_Q[state] = {}
+                new_Q_values[state] = SortedDict()
 
                 for action in self.Q[state]:
                     for other_action in strategy.Q[state]:
                         new_action = action + other_action
-                        new_Q[state][new_action] = (self.Q[state][action] + strategy.Q[state][other_action])
+                        new_value = (self.Q[state][action] + strategy.Q[state][other_action])
+                        new_Q[state][new_action] = new_value
+                        if new_value in new_Q_values[state]:
+                            new_Q_values[state][new_value] += (new_action,)
+                        else:
+                            new_Q_values[state][new_value] = (new_action,)
+
     
             self.Q = new_Q
 
-            self.best_actions = {}
-            for state in self.Q:
-                max_val = max(self.Q[state].values())
-                self.best_actions[state] = tuple([action for action, value in self.Q[state].items() if value == max_val])
+            self.Q_values = new_Q_values

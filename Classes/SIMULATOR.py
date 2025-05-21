@@ -8,11 +8,12 @@ import copy
 from multiprocessing import Pool, cpu_count
 import itertools
 import numpy as np
-import datetime
 import os
 import pickle
 import numpy as np
+from datetime import datetime
 
+from copy import deepcopy
 
 def list_creator(inputlist, numb):
     if type(inputlist) == tuple:
@@ -23,6 +24,9 @@ def list_creator(inputlist, numb):
 
 
 def fix_config(config):
+    share = config['demand_function'].set(config['demand_function_params'])
+    # check demand function is callable
+    assert callable(share), 'Demand function must be callable'
     # check numb firms is int
     assert type(config['numb_firms']) == int, 'numb_firms must be an integer'
 
@@ -53,6 +57,10 @@ def fix_config(config):
     else:
         if type(config['marginal_cost'][0]) != tuple:
             config['marginal_cost'] = (config['marginal_cost'],) * config['numb_firms']
+    for i in range(config['numb_firms']):
+        exploration_rate = config['exploration_rate'][i].set(config['exploration_rate_params'][i])
+        # check exploration rate is callable
+        assert callable(exploration_rate), 'Exploration rate must be callable'
 
 
 
@@ -60,17 +68,13 @@ def fix_config(config):
 
 def setup(config):
     #fix_config(config)
-    share = config['demand_function'].set(config['demand_function_params'])
+    
     # check demand function is callable
-    assert callable(share), 'Demand function must be callable'
-    # check demand function is callable
-    market = MARKET.Market(DEMAND.DemandFunction(share))
+    market = MARKET.Market(DEMAND.DemandFunction(config['demand_function']))
 
     for i in range(config['numb_firms']):
-        exploration_rate = config['exploration_rate'][i].set(config['exploration_rate_params'][i])
+        exploration_rate = config['exploration_rate'][i]
         # check exploration rate is callable
-        assert callable(exploration_rate), 'Exploration rate must be callable'
-
         firm  = FIRM.Firm(config['strategy'][i](config['discount_factor'][i], config['learning_rate'][i], exploration_rate))
         market.add_firm(firm)
         for j in range(config['numb_products'][i]):
@@ -78,13 +82,13 @@ def setup(config):
             firm.add_product(product)
 
     market.set_priceranges(config['numb_prices'], config['include_NE_and_Mono'], config['extra'])
+
     return market
 
 
 def session(i, config, iterations, start_period = 1, convergence = None, foldername = None, variation = None):
-
-    market = setup(config)
-    states = market.simulate(iterations, start_period=start_period, convergence=convergence)
+    new_market = setup(config)
+    states = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
 
     if foldername:
         filename = str(i) + ".pkl"
@@ -149,7 +153,7 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
     results = {}
 
     for combination in combinations:
-        print(f"{datetime.datetime.now()} Simulating combination: {combination}")
+        print(f"{datetime.now()} Simulating combination: {combination}")
         resultkey = []
         # create a copy of the config
         new_config = copy.deepcopy(config)
@@ -161,15 +165,15 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
         fix_config(new_config)
         
         if parallel:
-
+            
             inputparams = [(i, new_config, new_config['iterations'], new_config['start_period'], new_config['convergence'], filename, combination) for i in range(new_config['sessions'])]
 
             with Pool(processes=cpu_count()) as pool:
-                results = pool.starmap(session, inputparams)
+                pool.starmap(session, inputparams)
         else:
-            results = []
+            
             for i in range(new_config['sessions']):
-                results.append(session(i, new_config, new_config['iterations'], start_period=new_config['start_period'], convergence=new_config['convergence'], foldername=filename, variation=combination))
+                session(i, new_config, new_config['iterations'], start_period=new_config['start_period'], convergence=new_config['convergence'], foldername=filename, variation=combination)
     if filename:
         os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
         try:
@@ -195,26 +199,25 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
     if variations:
         return simulate_variations(config, variations, filename=filename, parallel=parallel, savedData=savedData, session=session)
 
-
     if savedData:
         try:
             with open(os.path.join(output_dir, filename, '_config.pkl'), 'rb') as f:
                 old_config = pickle.load(f)
             
             if old_config == config:
-                print(f"Configurations match, skipping simulation")
+                print(f"{datetime.now()} Configurations match, skipping simulation")
                 return
         except:
-            print("No files to compare")
-    os.makedirs(os.path.join(output_dir, filename), exist_ok=True) 
-    
+            print(f"{datetime.now()} No files to compare")
+    os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
+    print(f"{datetime.now()} Simulating sessions")
     if parallel:
+        
         inputparams = [(i, config, config['iterations'], config['start_period'], config['convergence'], filename) for i in range(config['sessions'])]
 
         with Pool(processes=cpu_count()) as pool:
-            results = pool.starmap(session, inputparams)
+            pool.starmap(session, inputparams)
     else:
-        
         for i in range(config['sessions']):
             session(i, config, config['iterations'], config['start_period'], config['convergence'], filename)
 

@@ -15,6 +15,7 @@ class State():
         self.shares = market.demand_function.get_shares(self.prices, market.A)
         self.profits = (self.prices - market.MC) * self.shares
         self.collussion_quotient = lib.get_collusion_quotient(self.profits, market.get_nash_profits(), market.get_monopoly_profits())
+        self.true_collussion_quotient = lib.get_collusion_quotient(self.profits, market.get_true_nash_profits(), market.get_monopoly_profits())
 
         self.firm_shares = []
         self.firm_profits = []

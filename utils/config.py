@@ -4,6 +4,7 @@ import os
 import io
 import cProfile
 import pstats
+from datetime import datetime
 
 
 # Demand function
@@ -94,12 +95,14 @@ def create_filepath(filename):
     
 
 def profile_main(main, filename):
-    profiler = cProfile.Profile()
     
+    profiler = cProfile.Profile()
+    print(f"{datetime.now()} Profiling {filename}")
     profiler.enable()
     main()
     profiler.disable()
-    
+    print(f"{datetime.now()} Profiling {filename} completed")
+
     save_dir = 'Output/Profiles'
     os.makedirs(save_dir, exist_ok=True)
     profile_name = filename + '_profile.txt'
@@ -121,6 +124,9 @@ def list_creator(inputlist, numb):
         return (inputlist,) * numb
 
 def fix_config(config):
+    share = config['demand_function'].set(config['demand_function_params'])
+    # check demand function is callable
+    assert callable(share), 'Demand function must be callable'
     # check numb firms is int
     assert type(config['numb_firms']) == int, 'numb_firms must be an integer'
 
@@ -151,4 +157,7 @@ def fix_config(config):
     else:
         if type(config['marginal_cost'][0]) != tuple:
             config['marginal_cost'] = (config['marginal_cost'],) * config['numb_firms']
-
+    for i in range(config['numb_firms']):
+        exploration_rate = config['exploration_rate'][i].set(config['exploration_rate_params'][i])
+        # check exploration rate is callable
+        assert callable(exploration_rate), 'Exploration rate must be callable'

@@ -45,6 +45,25 @@ def main():
 
     plt.clf()
 
+    converged = []
+    not_converged = []
+
+    for cq in collusion_quotients:
+        mean_cq = np.mean(cq[-100000:])
+        if len(cq) < iterations:
+            converged.append(mean_cq)
+        else:
+            not_converged.append(mean_cq)
+
+    plt.boxplot([converged,not_converged], showmeans=True)
+    plt.xticks([1, 2], ['Converged', 'Not Converged'])
+    plt.ylabel('Collusion Quotient')
+    plt.savefig(config.create_filepath(filename + "_boxplot"))
+    plt.clf()
+
+
+
+
     min_length = min(lengths)
     max_length = max(lengths)
 

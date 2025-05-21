@@ -54,7 +54,7 @@ def main():
 
         firms += 1
 
-    plt.boxplot(collusion_quotients_list)
+    plt.boxplot(collusion_quotients_list, showmeans=True)
     plt.xticks(range(1, len(ticks) + 1), ticks)
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Number of firms')

@@ -3,6 +3,7 @@ import itertools
 import utils.lib as lib
 import numpy as np
 import Classes.STATE as STATE
+from datetime import datetime
 
 class Market():
     '''
@@ -27,7 +28,11 @@ class Market():
         self.A = None
         self.MC = None
         self.Nash = None
+        self.NashProfits = None
+        self.TrueNash = None
+        self.TrueNashProfits = None
         self.Mono = None
+        self.MonoProfits = None
 
     def add_firm(self, firm):
         '''
@@ -61,18 +66,17 @@ class Market():
         self.MC = np.array([product.marginal_cost for product in self.products])
         self.Nash = lib.Newton(self.MC, self.A, self.MC, self.demand_function.fun)
         self.Mono = lib.Monopoly_Prices(self.MC, self.A, self.MC, self.demand_function.fun)
-
         priceranges = lib.Make_Price_Ranges(self.Nash, self.Mono, num_prices, include_NE_and_Mono, extra)
-        
-        i = 0
-        for firm in self.firms:
-            for product in firm.products:
-                product.pricerange = priceranges[i]
-                i += 1
+
+    
+        for i in range(len(self.products)):
+            self.products[i].pricerange = priceranges[i]
+
 
         for firm in self.firms:
             firm.set_action_space()
-        
+    
+
         self.set_state_space()
 
         for firm in self.firms:
@@ -105,17 +109,18 @@ class Market():
         states = []
         converged = False
         similar_periods = 1
-
+        prices = [None] * len(self.products)
+        
         if self.current_state is None:
-            prices = [None] * len(self.products)
+            
             for firm in self.firms:
                 action = firm.get_action(None, 0)
                 for i in range(len(firm.products)):
                     prices[firm.products[i].index] = action[i]
 
-            prices = tuple(prices)
+            p = tuple(prices)
 
-            self.current_state = self.state_space[prices]
+            self.current_state = self.state_space[p]
             
             states.append(self.current_state)
 
@@ -123,16 +128,14 @@ class Market():
         period = start_period
         while period < num_periods+start_period and not converged:
 
-            prices = [None] * number_of_products
-
             for firm in self.firms:
                 action = firm.get_action(self.current_state, period)
                 for i in range(len(firm.products)):
                     prices[firm.products[i].index] = action[i]
 
-            prices = tuple(prices)
+            p = tuple(prices)
 
-            new_state = self.state_space[prices]
+            new_state = self.state_space[p]
 
             update_to_best = False
             for i in range(len(self.firms)):
@@ -190,6 +193,10 @@ class Market():
         
 
         # update state space to calculate new firm profits
+        owner_structure = [[product.index for product in firm.products] for firm in self.firms]
+        self.TrueNash = lib.Newton(self.MC, self.A, self.MC, self.demand_function.fun, owner_structure=owner_structure)
+        P = np.array(self.get_true_nash_prices())
+        self.TrueNashProfits = lib.Profit(P, self.A, self.MC, self.demand_function.fun)
         self.set_state_space()
 
         
@@ -208,23 +215,25 @@ class Market():
         '''
         Gives Nash profits
         '''
-        P = np.array(self.get_nash_prices())
-        return lib.Profit(P, self.A, self.MC, self.demand_function.fun) 
-    
+        if self.NashProfits is None:
+            P = np.array(self.get_nash_prices())
+            self.NashProfits = lib.Profit(P, self.A, self.MC, self.demand_function.fun)
+        return self.NashProfits
+
     def get_true_nash_prices(self):
         '''
         Gives true Nash prices
         '''
-        owner_structure = [[product.index for product in firm.products] for firm in self.firms]
-        return lib.Newton(self.MC, self.A, self.MC, self.demand_function.fun, owner_structure=owner_structure)
-
+        if self.TrueNash is None:
+            owner_structure = [[product.index for product in firm.products] for firm in self.firms]
+            self.TrueNash = lib.Newton(self.MC, self.A, self.MC, self.demand_function.fun, owner_structure=owner_structure)
+        return self.TrueNash
 
     def get_true_nash_profits(self):
-        P = np.array(self.get_true_nash_prices())
-        return lib.Profit(P, self.A, self.MC, self.demand_function.fun) 
-    
-
-
+        if self.TrueNashProfits is None:
+            P = np.array(self.get_true_nash_prices())
+            self.TrueNashProfits = lib.Profit(P, self.A, self.MC, self.demand_function.fun)
+        return self.TrueNashProfits
 
     def get_monopoly_prices(self):
         '''
@@ -238,8 +247,11 @@ class Market():
         '''
         Gives monopoly profits
         '''
-        P = np.array(self.get_monopoly_prices())
-        return lib.Profit(P, self.A, self.MC, self.demand_function.fun)
+        if self.MonoProfits is None:
+            P = np.array(self.get_monopoly_prices())
+            self.MonoProfits = lib.Profit(P, self.A, self.MC, self.demand_function.fun)
+
+        return self.MonoProfits
 
 
  

@@ -17,8 +17,8 @@ def main():
     # Start
     sessions = 100
     iterations = 10**7
-    numb_firms = 2
-    numb_products = (3, 2)
+    numb_firms = 3
+    numb_products = (2, 1, 1)
     parallel=True
     savedData = True
 
