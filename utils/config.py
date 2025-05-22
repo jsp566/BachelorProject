@@ -59,7 +59,7 @@ defaultconfig = {# Simulation config
                  "numb_products": 1,
                  "strategy": Qlearning.Qlearning,
                  # Strategy config 
-                 "exploration_rate": Calvani_Exploration_Rate(),
+                 "exploration_rate": Calvani_Exploration_Rate,
                  "exploration_rate_params": (4 * 10**-6,), # Exploration rate parameters 
                  "discount_factor": 0.95, 
                  "learning_rate": 0.15, 
@@ -134,8 +134,12 @@ def fix_config(config):
     config['numb_products'] = list_creator(config['numb_products'], config['numb_firms'])
 
     config['strategy'] = list_creator(config['strategy'], config['numb_firms'])
-    config['exploration_rate'] = list_creator(config['exploration_rate'], config['numb_firms'])
     
+    if type(config['exploration_rate']) == tuple:
+        assert len(config['exploration_rate']) == config['numb_firms'], 'List must be of length numb_firms'
+    else:
+        config['exploration_rate'] = tuple([config['exploration_rate']() for _ in range( config['numb_firms'])])
+
     if type(config['exploration_rate_params']) != tuple:
         config['exploration_rate_params'] = tuple([(config['exploration_rate_params'],) * numb for numb in config['numb_firms']])
     else:
@@ -157,6 +161,7 @@ def fix_config(config):
     else:
         if type(config['marginal_cost'][0]) != tuple:
             config['marginal_cost'] = (config['marginal_cost'],) * config['numb_firms']
+    
     for i in range(config['numb_firms']):
         exploration_rate = config['exploration_rate'][i].set(config['exploration_rate_params'][i])
         # check exploration rate is callable

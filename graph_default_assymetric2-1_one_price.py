@@ -9,7 +9,6 @@ import pickle
 import itertools
 import Classes.Strategies.Qlearning_one_price
 
-
 filename =  basename(__file__).replace('.py', '')
 
 
@@ -18,12 +17,12 @@ def main():
     # Start
     sessions = 100
     iterations = 10**7
-    numb_firms = 3
-    numb_products = (2, 2, 1)
+    numb_firms = 2
+    numb_products = (2, 1)
+    strategy = Classes.Strategies.Qlearning_one_price.Qlearning
     parallel=True
     savedData = True
-    strategy = Classes.Strategies.Qlearning_one_price.Qlearning
-    
+
 
     new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms, numb_products=numb_products, strategy=strategy)
 

@@ -34,8 +34,11 @@ def fix_config(config):
     config['numb_products'] = list_creator(config['numb_products'], config['numb_firms'])
 
     config['strategy'] = list_creator(config['strategy'], config['numb_firms'])
-    config['exploration_rate'] = list_creator(config['exploration_rate'], config['numb_firms'])
-    
+    if type(config['exploration_rate']) == tuple:
+        assert len(config['exploration_rate']) == config['numb_firms'], 'List must be of length numb_firms'
+    else:
+        config['exploration_rate'] = tuple([config['exploration_rate']() for _ in range( config['numb_firms'])])
+
     if type(config['exploration_rate_params']) != tuple:
         config['exploration_rate_params'] = tuple([(config['exploration_rate_params'],) * numb for numb in config['numb_firms']])
     else:
@@ -215,7 +218,7 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
         
         inputparams = [(i, config, config['iterations'], config['start_period'], config['convergence'], filename) for i in range(config['sessions'])]
 
-        with Pool(processes=cpu_count()) as pool:
+        with Pool(processes=8) as pool:
             pool.starmap(session, inputparams)
     else:
         for i in range(config['sessions']):

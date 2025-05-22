@@ -15,11 +15,11 @@ filename =  basename(__file__).replace('.py', '')
 
 def main():
     # Start
-    sessions = 1
-    iterations = 10**6
+    sessions = 100
+    iterations = 10**7
     numb_firms = 2
     numb_products = (2, 2)
-    parallel=False
+    parallel=True
     savedData = True
 
     new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms, numb_products=numb_products)

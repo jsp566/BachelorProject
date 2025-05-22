@@ -7,7 +7,7 @@ from os.path import basename
 import os
 import pickle
 import itertools
-
+import Classes.Strategies.Qlearning_one_price
 
 filename =  basename(__file__).replace('.py', '')
 
@@ -21,8 +21,10 @@ def main():
     numb_products = (3, 2)
     parallel=True
     savedData = True
+    strategy = Classes.Strategies.Qlearning_one_price.Qlearning
+    
 
-    new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms, numb_products=numb_products)
+    new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms, numb_products=numb_products, strategy=strategy)
 
     market= SIMULATOR.setup(new_config)
     SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData)
