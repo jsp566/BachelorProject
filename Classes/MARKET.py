@@ -57,16 +57,17 @@ class Market():
         self.next_product_index += 1
 
         
-    def set_priceranges(self, num_prices, include_NE_and_Mono=True, extra=0.1):
+    def set_priceranges(self, num_prices, include_NE_and_Mono=True, extra=0.1, true_nash=False):
         '''
         Takes number of prices
         Sets price ranges for products
         '''
         self.A = np.array([product.quality for product in self.products])
         self.MC = np.array([product.marginal_cost for product in self.products])
-        self.Nash = lib.Newton(self.MC, self.A, self.MC, self.demand_function.fun)
-        self.Mono = lib.Monopoly_Prices(self.MC, self.A, self.MC, self.demand_function.fun)
-        priceranges = lib.Make_Price_Ranges(self.Nash, self.Mono, num_prices, include_NE_and_Mono, extra)
+        if true_nash:
+            priceranges = lib.Make_Price_Ranges(self.get_true_nash_prices(), self.get_monopoly_prices(), num_prices, include_NE_and_Mono, extra)
+        else:
+            priceranges = lib.Make_Price_Ranges(self.get_nash_prices(), self.get_monopoly_prices(), num_prices, include_NE_and_Mono, extra)
 
     
         for i in range(len(self.products)):

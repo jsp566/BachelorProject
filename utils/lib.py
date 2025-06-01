@@ -124,6 +124,7 @@ def Make_Price_Ranges(Nash, Mono, num_p, include_NE_and_Mono=True, extra=0.1):
     return price_ranges
 
 def get_collusion_quotient(average: np.array, nash: np.array, monopoly:np.array):
+
     return (average- nash)/(monopoly-nash)
 
 

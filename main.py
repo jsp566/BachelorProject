@@ -19,9 +19,35 @@ def execute_scripts(scripts):
             print(e)
 
 def main():
-    scripts = ['graph_default_assymetric2-2.py','graph_default_assymetric2-2_half_price.py','graph_default_assymetric2-2_one_price.py','graph_default_assymetric2-1_one_price.py','graph_default_assymetric2-1-1.py','graph_default_assymetric3-1.py','graph_default_assymetric2-1-1-1.py','graph_default_assymetric2-2-1.py','graph_default_assymetric3-1-1.py','graph_default_assymetric3-2.py','graph_default_assymetric4-1.py']
-    #scripts = ['graph_default_4_firms.py','graph_default_5_firms.py']
-    #scripts = ['graph_default_mono.py', 'graph_default.py','graph_default_3_firms.py','graph_default_assymetric.py', 'graph_merger.py', 'graph_default_2x2.py']
+    scripts = [
+            #'graph_default_2_firms.py',
+            #'graph_default_3_firms.py',
+            #'graph_default_4_firms.py',
+            #'graph_default_assymetric2-1-1_one_price.py',
+            #'graph_default_assymetric2-1.py',
+            #'graph_default_assymetric2-1_one_price.py',
+            #'graph_default_assymetric2-1_one_price_true_nash.py',
+            #'graph_default_assymetric2-2.py',
+            #'graph_default_assymetric2-2_half_price.py',
+            #'graph_default_assymetric2-2_one_price.py',
+            #'graph_default_assymetric3-1_one_price.py',
+            #'graph_default_mono_0_init_no_convergence_one_price.py',
+            #'graph_default_mono_0_init_no_convergence.py',
+            #'graph_default_mono_no_convergence_one_price.py',
+            #'graph_default_mono_no_convergence.py',
+            #'graph_default_mono_no_exploration.py',
+            #'graph_default_mono.py',
+            #'graph_discount_factor.py',
+            #'graph_discount_factor_multifirm.py',
+            #'graph_discount_factor_multiproduct.py',
+            #'graph_discount_factor_together.py',
+            #'graph_firms_boxplot.py',
+            #'graph_firms_more_boxplot.py',
+            #'graph_heatmap_alpha_beta.py',
+            #'graph_merger.py',
+            'graph_mu.py',
+            'graph_default_5_firms.py'
+    ]
     execute_scripts(scripts)
 
 if __name__ == "__main__":

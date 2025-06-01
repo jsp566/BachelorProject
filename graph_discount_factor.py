@@ -28,7 +28,7 @@ def main():
         "discount_factor": discount_factors,
     }
 
-    SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData, variations=variations)
+    #SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData, variations=variations)
     
     average_collusion_quotient = [] #List to store average collusion quotients
     for gamma in discount_factors:
@@ -42,10 +42,14 @@ def main():
         average_collusion_quotient.append(np.mean(gammacollusion_quotients))
 
     #plot
+    save_dir = os.path.join(os.getcwd(), 'Output', 'Graphs', filename)
+    os.makedirs(save_dir, exist_ok=True)
+    plt.figure(figsize=(10,5))
     plt.plot(discount_factors, average_collusion_quotient)
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Discount factor')
-    plt.savefig(config.create_filepath(filename))
+    plt.subplots_adjust(left=0.2, right=0.8, top=0.95)
+    plt.savefig(os.path.join(save_dir, filename + "_collusion_quotients.png"))
 
 
 if __name__ == "__main__":

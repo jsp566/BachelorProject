@@ -83,9 +83,11 @@ def setup(config):
         for j in range(config['numb_products'][i]):
             product = PRODUCT.Product(config['marginal_cost'][i][j], config['quality'][i][j])
             firm.add_product(product)
-
-    market.set_priceranges(config['numb_prices'], config['include_NE_and_Mono'], config['extra'])
-
+    
+    if 'true_nash' in config and config['true_nash']:
+        market.set_priceranges(config['numb_prices'], config['include_NE_and_Mono'], config['extra'], True)
+    else:
+        market.set_priceranges(config['numb_prices'], config['include_NE_and_Mono'], config['extra'])
     return market
 
 
@@ -122,14 +124,19 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
         try:
             with open(os.path.join(output_dir, filename, '_config.pkl'), 'rb') as f:
                 old_config = pickle.load(f)
+                fix_config(old_config)
             
             with open(os.path.join(output_dir, filename, '_variations.pkl'), 'rb') as f:
                 old_variations = pickle.load(f)
         
             same = True
             if old_config != config:
+
+                print(f"{datetime.now()} Old config: {old_config}")
+                print(f"{datetime.now()} New config: {config}")
                 print(f"Configurations do not match, running simulation")
                 same = False
+                input("Press enter to continue")
 
             if list(old_variations.keys()) != list(variations.keys()):
                 print(f"Variations do not match, running simulation")
@@ -206,12 +213,14 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
         try:
             with open(os.path.join(output_dir, filename, '_config.pkl'), 'rb') as f:
                 old_config = pickle.load(f)
+                fix_config(old_config)
             
             if old_config == config:
                 print(f"{datetime.now()} Configurations match, skipping simulation")
                 return
         except:
             print(f"{datetime.now()} No files to compare")
+
     os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
     print(f"{datetime.now()} Simulating sessions")
     if parallel:

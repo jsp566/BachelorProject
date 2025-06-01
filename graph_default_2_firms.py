@@ -7,7 +7,7 @@ from os.path import basename
 import os
 import pickle
 import itertools
-
+import graph_maker
 
 filename =  basename(__file__).replace('.py', '')
 
@@ -26,13 +26,14 @@ def main():
     market= SIMULATOR.setup(new_config)
     SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData)
     
+    states = graph_maker.make_graphs(filename, new_config, market)
+
 
     # State frequency
+    save_dir = os.path.join(os.getcwd(), 'Output', 'Graphs', filename)
     state_frec = {state: 0 for state in market.state_space}
 
-    for i in range(sessions):
-        with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, str(i) + ".pkl"), 'rb') as f:
-            result = pickle.load(f)
+    for result in states:
         for state in result[-100000:]:
             state_frec[state.p] += 1
 
@@ -61,7 +62,7 @@ def main():
     closest_nash_0 = lib.find_closest(nash_prices[0], market.firms[0].action_space)
     closest_mono_0 = lib.find_closest(monopoly_prices[0], market.firms[0].action_space)
  
-
+    plt.figure(figsize=(10,5))
     plt.imshow(heatmap, cmap='hot_r', interpolation='nearest', origin='lower', extent=[market.firms[0].action_space[0][0], market.firms[0].action_space[-1][0], market.firms[1].action_space[0][0], market.firms[1].action_space[-1][0]])
     plt.text(closest_nash_0[0], closest_nash_0[0], 'N', color='blue', fontsize=12, fontweight='bold', ha='center', va='center')
     plt.text(closest_mono_0[0], closest_mono_0[0], 'M', color='green', fontsize=12, fontweight='bold', ha='center', va='center')
@@ -69,67 +70,11 @@ def main():
 
     plt.ylabel('Firm 1 price')
     plt.xlabel('Firm 2 price')
-    plt.savefig(config.create_filepath(filename + "_state_frec"))
+    plt.subplots_adjust(left=0.2, right=0.8, top=0.95)
+    plt.savefig(os.path.join(save_dir, filename + "_state_frec.png"))
 
     plt.clf()
 
-    # Collusion Quotient:
-    lengths = []
-    collusion_quotients = []
-    for i in range(sessions):
-        with open(os.path.join(os.getcwd(), 'Output', 'Data', filename, str(i) + ".pkl"), 'rb') as f:
-            result = pickle.load(f)
-        lengths.append(len(result))
-        collusion_quotients.append([state.collussion_quotient for state in result])
-    
-
-    plt.hist(lengths, bins=100)
-    plt.xlabel('Length of session')
-    plt.ylabel('Frequency')
-    plt.title('Length of session')
-    plt.savefig(config.create_filepath(filename + "_lengths"))
-
-    plt.clf()
-
-
-    min_length = min(lengths)
-    max_length = max(lengths)
-
-
-    for cq in collusion_quotients:
-        if len(cq) < max_length:
-            cq.extend([np.mean(cq[-100:], axis=0)]*(max_length - len(cq)))
-    
-    
-    collusion_quotients = np.array(collusion_quotients)
-
-    average_collusion_quotient = np.mean(collusion_quotients, axis=(0,2))
-
-    plt.plot(range(min_length), average_collusion_quotient[:min_length])
-    plt.ylabel('Collusion Quotient')
-    plt.xlabel('Period')
-    plt.savefig(config.create_filepath(filename + "_collusion_quotient"))
-
-    plt.clf()
-
-    period = range(len(average_collusion_quotient))
-    plt.plot(period, average_collusion_quotient)
-    plt.ylabel('Collusion Quotient')
-    plt.xlabel('Period')
-    plt.savefig(config.create_filepath(filename + "_collusion_quotient_full"))
-
-    plt.clf()
-
-    # Moving average
-    ma100=  lib.moving_average(average_collusion_quotient, 100)
-    repetitions = np.linspace(0, len(ma100), len(ma100))
-
-    plt.plot(repetitions, ma100)
-    plt.ylabel('Collusion Quotient')
-    plt.xlabel('Period')
-    
-
-    plt.savefig(config.create_filepath(filename + "_ma100"))
 
 
 

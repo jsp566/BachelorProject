@@ -54,20 +54,27 @@ def main():
 
         firms += 1
 
+    save_dir = os.path.join(os.getcwd(), 'Output', 'Graphs', filename)
+    os.makedirs(save_dir, exist_ok=True)
+    plt.figure(figsize=(10,5))
     plt.boxplot(collusion_quotients_list, showmeans=True)
     plt.xticks(range(1, len(ticks) + 1), ticks)
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Number of firms')
-    
-    plt.savefig(config.create_filepath(filename + "_boxplot"))
+    plt.subplots_adjust(left=0.2, right=0.8, top=0.95)
+    plt.savefig(os.path.join(save_dir, filename + "_collusion_quotients_boxplot.png"))
     plt.clf()
 
+    plt.figure(figsize=(10,5))
     plt.boxplot(lengths_list)
     plt.xticks(range(1, len(ticks) + 1), ticks)
     plt.ylabel('Length of session')
     plt.xlabel('Number of firms')
-    plt.savefig(config.create_filepath(filename + "_lengths_boxplot"))
+    plt.subplots_adjust(left=0.2, right=0.8, top=0.95)
+    plt.savefig(os.path.join(save_dir, filename + "_lengths_boxplot.png"))
     plt.clf()
+
+    
 if __name__ == "__main__":
     config.profile_main(main,filename)
     

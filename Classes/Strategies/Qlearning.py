@@ -59,11 +59,13 @@ class Qlearning():
             action = random.choice(list(self.Q[state].keys()))
             
         else:
-            maxval, actions = self.Q_values[state].peekitem(-1)
-            action = random.choice(actions)
+            action = self.best_action(state)
 
         return action
-        
+    
+    def best_action(self, state):
+        maxval, actions = self.Q_values[state].peekitem(-1)
+        return random.choice(actions)
 
     def update_strategy(self, state, action, next_state, profit):
         '''
