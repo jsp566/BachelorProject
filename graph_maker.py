@@ -5,6 +5,9 @@ import utils.lib as lib
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 from datetime import datetime
+import Classes.SIMULATOR as SIMULATOR
+from multiprocessing import Pool, cpu_count
+import random
 
 def averaging(states, max_length, width, fun):
     results = np.zeros((max_length, width)) 
@@ -17,9 +20,62 @@ def averaging(states, max_length, width, fun):
     return results
 
 
+def best_actions(file_index, config, foldername, states=None):
+    if states is None:
+        with open(os.path.join(os.getcwd(), 'Output', 'Data', foldername, str(file_index) + ".pkl"), 'rb') as f:
+            states = pickle.load(f)
+    market = SIMULATOR.setup(config)
+    states = [market.state_space[state.p] for state in states]
+
+    prices = [None] * len(market.products)
+
+    for firm in market.firms:
+        action = firm.strategy.best_action(states[0].p)
+        for i in range(len(firm.products)):
+            prices[firm.products[i].index] = action[i]
+
+    p = tuple(prices)
+    current_state = market.state_space[p]
+
+    best_actions = [current_state]
+
+    for i in range(1, len(states)):
+        for firm in market.firms:
+            action = firm.strategy.best_action(states[i-1].p)
+            for j in range(len(firm.products)):
+                prices[firm.products[j].index] = action[j]
+
+        p = tuple(prices)
+        current_state = market.state_space[p]
+
+        best_actions.append(current_state)
+
+        for j, firm in enumerate(market.firms):
+
+            firm.strategy.update_strategy(states[i-1], states[i].actions[j], states[i], states[i].firm_profits[j])
+
+    if foldername:
+        filename = str(file_index) + ".pkl"
+        with open(os.path.join(os.getcwd(), 'Output', 'Data Best Actions', foldername, filename), 'wb') as f:
+            pickle.dump(best_actions, f)
+
+
+        
+def make_best_actions_data(foldername, config, states=None):
+    best_action_dir = os.path.join(os.getcwd(), 'Output', 'Data Best Actions')
+    os.makedirs(best_action_dir, exist_ok=True)
+    dirname = os.path.join(best_action_dir, foldername)
+    os.makedirs(dirname, exist_ok=True)
+    inputparams = [(i, config, foldername, states) for i in range(config['sessions'])]
+
+    with Pool(processes=cpu_count()) as pool:
+        pool.starmap(best_actions, inputparams)
+
 def make_graphs(foldername, config, market, states=None, merger=False):
     save_dir = os.path.join(os.getcwd(), 'Output', 'Graphs', foldername)
     os.makedirs(save_dir, exist_ok=True)
+
+    make_best_actions_data(foldername, config, states)
     
     multi_product = any([f > 1 for f in config['numb_products']]) and config['numb_firms'] > 1
     true_nash_cq = lib.get_collusion_quotient(market.get_true_nash_profits(), market.get_nash_profits(), market.get_monopoly_profits())
@@ -33,11 +89,17 @@ def make_graphs(foldername, config, market, states=None, merger=False):
     if states is None:
         
         states = []
+        best_action_states = []
         for i in range(config['sessions']):
             with open(os.path.join(os.getcwd(), 'Output', 'Data', foldername, str(i) + ".pkl"), 'rb') as f:
                 result = pickle.load(f)
         
             states.append(result)
+
+            with open(os.path.join(os.getcwd(), 'Output', 'Data Best Actions', foldername, str(i) + ".pkl"), 'rb') as f:
+                result = pickle.load(f)
+
+            best_action_states.append(result)
 
     print(f"{datetime.now()} Making graphs for {foldername}...")
     lengths = [len(state) for state in states]
@@ -66,6 +128,22 @@ def make_graphs(foldername, config, market, states=None, merger=False):
     plt.savefig(os.path.join(save_dir, foldername + "_collusion_quotient_avg.png"))
 
     plt.clf()
+    best_action_collusion_quotients = averaging(best_action_states, max_length, sum(config['numb_products']), fun)
+
+    best_action_average_collusion_quotient = np.mean(best_action_collusion_quotients, axis=0)
+    best_action_ma100=  lib.moving_average(best_action_average_collusion_quotient, 100)
+    plt.figure(figsize=(10,5))
+    plt.plot(range(len(ma100)), ma100, label='Avg CQ', color='blue', alpha=0.75)
+    plt.plot(range(len(best_action_ma100)), best_action_ma100, label='Best Action CQ', color='orange', alpha=0.75)
+    plt.ylabel('Collusion Quotient')
+    plt.xlabel('Period')
+    plt.legend(bbox_to_anchor=(1.01, 1), loc="upper left")
+    plt.subplots_adjust(left=0.2, right=0.8, top=0.95)
+    plt.savefig(os.path.join(save_dir, foldername + "_collusion_quotient_avg_best_action.png"))
+
+    plt.clf()
+    return
+
     plt.figure(figsize=(10,5))
     # Moving average cq for each product
     for i in range(len(collusion_quotients)):

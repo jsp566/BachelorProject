@@ -73,7 +73,7 @@ class Qlearning():
         Updates Q values
         '''
         next_state_max_val, actions = self.Q_values[next_state.p].peekitem(-1)
-
+        
         new_Q_val = (1 - self.learning_rate) * self.Q[state.p][action] + self.learning_rate * (profit + self.discount_factor * next_state_max_val)
 
         old_Q_val = self.Q[state.p][action]

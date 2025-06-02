@@ -26,7 +26,8 @@ def main():
     save_dir = os.path.join(os.getcwd(), 'Output', 'Graphs', filename)
     os.makedirs(save_dir, exist_ok=True)
     plt.figure(figsize=(10,5))
-    for name in ['', '_multifirm', '_multiproduct']:
+    labels = ['2 firms', '3 firms', '2-1 products']
+    for i, name in enumerate(['', '_multifirm', '_multiproduct']):
         new_filename = f"graph_discount_factor{name}"
         average_collusion_quotient = [] #List to store average collusion quotients
         for gamma in discount_factors:
@@ -38,7 +39,7 @@ def main():
                 collussion_quotients = [state.collussion_quotient for state in result[-100000:]]
                 gammacollusion_quotients.append(np.mean(collussion_quotients))
             average_collusion_quotient.append(np.mean(gammacollusion_quotients))
-        plt.plot(discount_factors, average_collusion_quotient, label=name.replace('_', ' ').strip())
+        plt.plot(discount_factors, average_collusion_quotient, label=labels[i])
 
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Discount factor')

@@ -16,9 +16,9 @@ filename =  basename(__file__).replace('.py', '')
 def new_session(i, market, iterations, start_period = 1, convergence = None, foldername = None, variation = None):
     new_market = deepcopy(market)
     
-    before = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
+    before, best_actions_before = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
     new_market.merge(0,1)
-    after = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
+    after, best_actions_after = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
     if foldername:
         filename = str(i) + ".pkl"
         if variation:
@@ -27,6 +27,9 @@ def new_session(i, market, iterations, start_period = 1, convergence = None, fol
             
         with open(os.path.join(os.getcwd(), 'Output', 'Data', foldername, filename), 'wb') as f:
             pickle.dump(before + after, f)
+
+        with open(os.path.join(os.getcwd(), 'Output', 'Data Best Actions', foldername, filename), 'wb') as f:
+            pickle.dump(best_actions_before + best_actions_after, f)
     return
 
 

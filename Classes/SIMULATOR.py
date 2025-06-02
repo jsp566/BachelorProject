@@ -93,7 +93,7 @@ def setup(config):
 
 def session(i, config, iterations, start_period = 1, convergence = None, foldername = None, variation = None):
     new_market = setup(config)
-    states = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
+    states, best_action_states = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
 
     if foldername:
         filename = str(i) + ".pkl"
@@ -104,6 +104,9 @@ def session(i, config, iterations, start_period = 1, convergence = None, foldern
 
         with open(os.path.join(os.getcwd(), 'Output', 'Data', foldername, filename), 'wb') as f:
             pickle.dump(states, f)
+        
+        with open(os.path.join(os.getcwd(), 'Output', 'Data Best Actions', foldername, filename), 'wb') as f:
+            pickle.dump(best_action_states, f)
     return
 
     
@@ -118,7 +121,7 @@ def simulate(config):
 def simulate_variations(config, variations, filename = None, parallel = True, savedData = False, session = session):
     fix_config(config)
     output_dir = os.path.join(os.getcwd(), 'Output', 'Data')
-    
+    best_action_dir = os.path.join(os.getcwd(), 'Output', 'Data Best Actions')
 
     if savedData:
         try:
@@ -156,7 +159,7 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
             print("No files to compare")
             print(f"Error: {e}")    
     os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
-    
+    os.makedirs(os.path.join(best_action_dir, filename), exist_ok=True)
     # simulate for all combinations of variations
 
     combinations = list(itertools.product(*[[(key, value) for value in variations[key]] for key in sorted(variations.keys())]))
@@ -204,7 +207,8 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
 def simulate_sessions(config, filename = None, parallel = True, savedData = False, session = session, variations = None):
     fix_config(config)
     output_dir = os.path.join(os.getcwd(), 'Output', 'Data')
-    
+    best_action_dir = os.path.join(os.getcwd(), 'Output', 'Data Best Actions')
+
 
     if variations:
         return simulate_variations(config, variations, filename=filename, parallel=parallel, savedData=savedData, session=session)
@@ -222,6 +226,7 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
             print(f"{datetime.now()} No files to compare")
 
     os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
+    os.makedirs(os.path.join(best_action_dir, filename), exist_ok=True)
     print(f"{datetime.now()} Simulating sessions")
     if parallel:
         

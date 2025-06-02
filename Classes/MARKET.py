@@ -4,6 +4,7 @@ import utils.lib as lib
 import numpy as np
 import Classes.STATE as STATE
 from datetime import datetime
+import random
 
 class Market():
     '''
@@ -108,12 +109,12 @@ class Market():
         '''
 
         states = []
+        best_action_states = []
         converged = False
         similar_periods = 1
         prices = [None] * len(self.products)
         
         if self.current_state is None:
-            
             for firm in self.firms:
                 action = firm.get_action(None, 0)
                 for i in range(len(firm.products)):
@@ -122,8 +123,13 @@ class Market():
             p = tuple(prices)
 
             self.current_state = self.state_space[p]
-            
             states.append(self.current_state)
+
+            for firm in self.firms:
+                action = firm.get_best_action(self.current_state.p)
+                for i in range(len(firm.products)):
+                    prices[firm.products[i].index] = action[i]
+            best_action_states.append(self.state_space[tuple(prices)])
 
         number_of_products = len(self.products)
         period = start_period
@@ -137,6 +143,12 @@ class Market():
             p = tuple(prices)
 
             new_state = self.state_space[p]
+
+            for firm in self.firms:
+                action = firm.get_best_action(self.current_state.p)
+                for i in range(len(firm.products)):
+                    prices[firm.products[i].index] = action[i]
+            best_action_states.append(self.state_space[tuple(prices)])
 
             update_to_best = False
             for i in range(len(self.firms)):
@@ -157,7 +169,7 @@ class Market():
                     
 
 
-        return states
+        return states, best_action_states
 
     def reset(self):
         '''

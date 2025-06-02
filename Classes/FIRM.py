@@ -43,6 +43,15 @@ class Firm():
         self.prev_action = action
     
         return action
+    
+    def get_best_action(self, state):
+        '''
+        Takes state and market
+        Using strategy
+        Sets prices for own products
+        '''
+        action = self.strategy.best_action(state)
+        return action
 
     def update_strategy(self, state, next_state, profit):
         '''
