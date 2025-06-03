@@ -7,7 +7,7 @@ from os.path import basename
 import pickle
 import os
 from copy import deepcopy
-import graph_maker
+import utils.graph_maker as graph_maker
 
 
 filename =  basename(__file__).replace('.py', '')

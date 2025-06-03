@@ -7,7 +7,7 @@ from os.path import basename
 import os
 import pickle
 import itertools
-import graph_maker
+import utils.graph_maker as graph_maker
 import Classes.Strategies.Qlearning_one_price
 
 

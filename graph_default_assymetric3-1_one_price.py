@@ -10,7 +10,7 @@ import itertools
 from datetime import datetime
 from copy import deepcopy
 import Classes.Strategies.Qlearning_one_price
-import graph_maker
+import utils.graph_maker as graph_maker
 
 
 filename =  basename(__file__).replace('.py', '')
