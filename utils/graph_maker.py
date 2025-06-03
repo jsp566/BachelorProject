@@ -83,7 +83,7 @@ def make_graphs(foldername, config, market, states=None, merger=False):
     save_dir = os.path.join(os.getcwd(), 'Output', 'Graphs', foldername)
     os.makedirs(save_dir, exist_ok=True)
 
-    make_best_actions_data(foldername, config, states)
+    #make_best_actions_data(foldername, config, states)
     
     multi_product = any([f > 1 for f in config['numb_products']]) and config['numb_firms'] > 1
     true_nash_cq = lib.get_collusion_quotient(market.get_true_nash_profits(), market.get_nash_profits(), market.get_monopoly_profits())
@@ -150,7 +150,7 @@ def make_graphs(foldername, config, market, states=None, merger=False):
     plt.savefig(os.path.join(save_dir, foldername + "_collusion_quotient_avg_best_action.png"))
 
     plt.clf()
-    return
+    #return
 
     plt.figure(figsize=(10,5))
     # Moving average cq for each product
