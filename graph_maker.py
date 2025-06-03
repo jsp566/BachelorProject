@@ -71,6 +71,14 @@ def make_best_actions_data(foldername, config, states=None):
     with Pool(processes=cpu_count()) as pool:
         pool.starmap(best_actions, inputparams)
 
+def get_states(foldername, config):
+    states = []
+    for i in range(config['sessions']):
+        with open(os.path.join(os.getcwd(), 'Output', 'Data', foldername, str(i) + ".pkl"), 'rb') as f:
+            result = pickle.load(f)
+        states.append(result)
+    return states
+
 def make_graphs(foldername, config, market, states=None, merger=False):
     save_dir = os.path.join(os.getcwd(), 'Output', 'Graphs', foldername)
     os.makedirs(save_dir, exist_ok=True)

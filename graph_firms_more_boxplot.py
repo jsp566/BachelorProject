@@ -8,7 +8,7 @@ import os
 import pickle
 
 
-filename =  basename(__file__)
+filename =  basename(__file__).replace('.py', '')
 
 
 def main():
@@ -53,7 +53,7 @@ def main():
     plt.ylabel('Collusion Quotient')
     plt.xlabel('Number of products')
     plt.subplots_adjust(left=0.2, right=0.8, top=0.95)
-    plt.savefig(os.path.join(save_dir, filename + "_collusion_quotients_boxplot.png"))
+    plt.savefig(os.path.join(save_dir, filename + "_collusion_quotients.png"))
     plt.clf()
 
     plt.figure(figsize=(10,5))
@@ -62,7 +62,7 @@ def main():
     plt.ylabel('Length of session')
     plt.xlabel('Number of products')
     plt.subplots_adjust(left=0.2, right=0.8, top=0.95)
-    plt.savefig(os.path.join(save_dir, filename + "_lengths_boxplot.png"))
+    plt.savefig(os.path.join(save_dir, filename + "_lengths.png"))
     plt.clf()
 
     

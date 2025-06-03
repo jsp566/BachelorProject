@@ -25,9 +25,10 @@ def main():
 
     market= SIMULATOR.setup(new_config)
     SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData)
-    
+
     states = graph_maker.make_graphs(filename, new_config, market)
 
+    
 
     # State frequency
     save_dir = os.path.join(os.getcwd(), 'Output', 'Graphs', filename)
@@ -64,8 +65,8 @@ def main():
  
     plt.figure(figsize=(10,5))
     plt.imshow(heatmap, cmap='hot_r', interpolation='nearest', origin='lower', extent=[market.firms[0].action_space[0][0], market.firms[0].action_space[-1][0], market.firms[1].action_space[0][0], market.firms[1].action_space[-1][0]])
-    plt.text(closest_nash_0[0], closest_nash_0[0], 'N', color='blue', fontsize=12, fontweight='bold', ha='center', va='center')
-    plt.text(closest_mono_0[0], closest_mono_0[0], 'M', color='green', fontsize=12, fontweight='bold', ha='center', va='center')
+    plt.text(closest_nash_0[0], closest_nash_0[0], 'N', color='blue', fontsize=12, fontweight='bold', ha='left', va='bottom')
+    plt.text(closest_mono_0[0], closest_mono_0[0], 'M', color='green', fontsize=12, fontweight='bold', ha='right', va='top')
     plt.colorbar()
 
     plt.ylabel('Firm 1 price')
