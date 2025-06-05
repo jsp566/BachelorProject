@@ -13,8 +13,8 @@ import utils.graph_maker as graph_maker
 filename =  basename(__file__).replace('.py', '')
 
 
-def new_session(i, market, iterations, start_period = 1, convergence = None, foldername = None, variation = None):
-    new_market = deepcopy(market)
+def new_session(i, config, iterations, start_period = 1, convergence = None, foldername = None, variation = None):
+    new_market = SIMULATOR.setup(config)
     
     before, best_actions_before = new_market.simulate(iterations, start_period=start_period, convergence=convergence)
     new_market.merge(0,1)
