@@ -1,3 +1,7 @@
 __pycache__
 test*
 test*.*
+*.pkl
+/Output/Data
+/Output/Profiles
+/Output/Data Best Actions
