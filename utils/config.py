@@ -99,7 +99,11 @@ def profile_main(main, filename):
     profiler = cProfile.Profile()
     print(f"{datetime.now()} Profiling {filename}")
     profiler.enable()
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(f"{datetime.now()} Error during profiling: {e}")
+        raise e
     profiler.disable()
     print(f"{datetime.now()} Profiling {filename} completed")
 

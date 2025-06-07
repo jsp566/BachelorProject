@@ -57,7 +57,7 @@ def main():
 
     print("Getting mergers periods data")
     mergerperiods = [next(i for i, state in enumerate(result) if len(state.firm_profits) < numb_firms) for result in states]
-    plt.hist(mergerperiods, bins=100)
+    plt.hist(mergerperiods, bins=25)
     plt.xlabel('Periods until merger')
     plt.ylabel('Frequency')
     plt.title('Periods until merger')
@@ -65,7 +65,7 @@ def main():
 
     plt.clf()
 
-    plt.hist([lengths[i] - mergerperiods[i] for i in range(len(mergerperiods))], bins=100)
+    plt.hist([lengths[i] - mergerperiods[i] for i in range(len(mergerperiods))], bins=25)
     plt.xlabel('Periods after merger')
     plt.ylabel('Frequency')
     plt.title('Periods after merger')

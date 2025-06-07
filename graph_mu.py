@@ -15,7 +15,7 @@ filename =  basename(__file__).replace('.py', '')
 def main():
 
     # Start
-    demand_function_params = [(0.01,), (0.25,), (0.75,)]
+    demand_function_params = [(0.01,), (0.25,), (0.5,), (0.75,)]
     sessions = 100
     iterations = 10**7
     numb_firms = 2

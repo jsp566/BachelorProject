@@ -107,6 +107,9 @@ def session(i, config, iterations, start_period = 1, convergence = None, foldern
         
         with open(os.path.join(os.getcwd(), 'Output', 'Data Best Actions', foldername, filename), 'wb') as f:
             pickle.dump(best_action_states, f)
+        
+        with open(os.path.join(os.getcwd(), 'Output', 'Market', foldername, filename), 'wb') as f:
+            pickle.dump(new_market, f)
     return
 
     
@@ -122,6 +125,7 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
     fix_config(config)
     output_dir = os.path.join(os.getcwd(), 'Output', 'Data')
     best_action_dir = os.path.join(os.getcwd(), 'Output', 'Data Best Actions')
+    market_dir = os.path.join(os.getcwd(), 'Output', 'Market')
 
     if savedData:
         try:
@@ -160,6 +164,7 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
             print(f"Error: {e}")    
     os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
     os.makedirs(os.path.join(best_action_dir, filename), exist_ok=True)
+    os.makedirs(os.path.join(market_dir, filename), exist_ok=True)
     # simulate for all combinations of variations
 
     combinations = list(itertools.product(*[[(key, value) for value in variations[key]] for key in sorted(variations.keys())]))
@@ -208,6 +213,7 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
     fix_config(config)
     output_dir = os.path.join(os.getcwd(), 'Output', 'Data')
     best_action_dir = os.path.join(os.getcwd(), 'Output', 'Data Best Actions')
+    market_dir = os.path.join(os.getcwd(), 'Output', 'Market')
 
 
     if variations:
@@ -227,6 +233,7 @@ def simulate_sessions(config, filename = None, parallel = True, savedData = Fals
 
     os.makedirs(os.path.join(output_dir, filename), exist_ok=True)
     os.makedirs(os.path.join(best_action_dir, filename), exist_ok=True)
+    os.makedirs(os.path.join(market_dir, filename), exist_ok=True)
     print(f"{datetime.now()} Simulating sessions")
     if parallel:
         
