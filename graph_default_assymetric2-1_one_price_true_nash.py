@@ -22,7 +22,7 @@ def main():
     numb_products = (2, 1)
     strategy = Classes.Strategies.Qlearning_one_price.Qlearning
     parallel=True
-    savedData = True
+    savedData = False
 
 
     new_config = config.create_config(sessions=sessions, iterations=iterations, numb_firms=numb_firms, numb_products=numb_products, strategy=strategy)

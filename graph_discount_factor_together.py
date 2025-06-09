@@ -28,12 +28,12 @@ def main():
 
 
     
-    labels = ['2 firms', '3 firms', '2-1 products']
+    labels = ['2 firms', '3 firms', '2-1 products', '2-1 products (1P)']
 
     collusion_quotients_list = []
     lengths_list = []
 
-    for j, name in enumerate(['', '_multifirm', '_multiproduct']):
+    for j, name in enumerate(['', '_multifirm', '_multiproduct','_multiproduct_one_price']):
         new_filename = f"graph_discount_factor{name}"
         average_collusion_quotient = [] #List to store average collusion quotients
         average_length = []

@@ -25,7 +25,7 @@ def main():
     SIMULATOR.fix_config(new_config)
     market= SIMULATOR.setup(new_config)
     SIMULATOR.simulate_sessions(new_config, filename=filename, parallel=parallel, savedData=savedData)
-    graph_maker.make_best_actions_data(filename, new_config, market)
+    # graph_maker.make_best_actions_data(filename, new_config)
     states = graph_maker.make_graphs(filename, new_config, market)
 
     # Special graph

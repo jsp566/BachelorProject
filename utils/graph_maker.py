@@ -127,15 +127,6 @@ def best_actions(file_index, config, foldername, states=None):
 
 
         
-def make_best_actions_data(foldername, config, states=None):
-    best_action_dir = os.path.join(os.getcwd(), 'Output', 'Data Best Actions')
-    os.makedirs(best_action_dir, exist_ok=True)
-    dirname = os.path.join(best_action_dir, foldername)
-    os.makedirs(dirname, exist_ok=True)
-    inputparams = [(i, config, foldername, states) for i in range(config['sessions'])]
-
-    with Pool(processes=8) as pool:
-        pool.starmap(best_actions, inputparams)
 
 def get_states(foldername, config):
     states = []
@@ -154,7 +145,11 @@ def make_graphs(foldername, config, market, states=None, merger=False):
     multi_product = any([f > 1 for f in config['numb_products']]) and config['numb_firms'] > 1
     true_nash_cq = lib.get_collusion_quotient(market.get_true_nash_profits(), market.get_nash_profits(), market.get_monopoly_profits())
     true_nash_prices = market.get_true_nash_prices()
+    nash_prices = market.get_nash_prices()
     monopoly_prices = market.get_monopoly_prices()
+    true_nash_profits = market.get_true_nash_profits()
+    nash_profits = market.get_nash_profits()
+    monopoly_profits = market.get_monopoly_profits()
 
     line_colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
     best_action_data_exists = True
@@ -301,9 +296,12 @@ def make_graphs(foldername, config, market, states=None, merger=False):
     avg_prices = np.mean(prices, axis=0)
     ma100=  lib.moving_average(avg_prices, 100)
 
-    plt.plot(range(len(ma100)), ma100)
+    plt.plot(range(len(ma100)), ma100, alpha = 0.75, label='Avg Price', color='blue')
+    plt.axhline(y=np.mean(monopoly_prices), linestyle='--', alpha = 0.75, label='Monopoly Price', color='black')
+    plt.axhline(y=np.mean(nash_prices), linestyle='--', alpha = 0.75, label='Fully Competitive\nNash Price', color='Green')
     plt.ylabel('Prices')
     plt.xlabel('Period')
+    plt.legend(bbox_to_anchor=(1.01, 1), loc="upper left")
     plt.subplots_adjust(left=0.2, right=0.8, top=0.95)
     plt.savefig(os.path.join(save_dir, foldername + "_prices_avg.png"))
 
@@ -333,20 +331,21 @@ def make_graphs(foldername, config, market, states=None, merger=False):
     for i in range(len(data)):
         plt.plot(range(len(data[i])), data[i], alpha = 0.75, label=labels[i], color=colors[i])
     
-    
-    if multi_product:
-        data = []
-        labels = []
-        colors = []
-        for i in range(len(true_nash_prices)):
-            data.append(true_nash_prices[i])
-            labels.append(f'Nash Product {i+1}')
-            colors.append(line_colors[i])
-        data, labels, colors = combine_data(data, labels, colors)
-        for i in range(len(data)):
-            plt.axhline(y=data[i], linestyle='--', alpha = 0.75, label=labels[i], color=colors[i])
+
+    data = []
+    labels = []
+    colors = []
+    for i in range(len(true_nash_prices)):
+        data.append(true_nash_prices[i])
+        labels.append(f'Nash Product {i+1}')
+        colors.append(line_colors[i])
+    data, labels, colors = combine_data(data, labels, colors)
+    for i in range(len(data)):
+        plt.axhline(y=data[i], linestyle='--', alpha = 0.75, label=labels[i], color=colors[i])
 
     plt.axhline(y=np.mean(monopoly_prices), linestyle='--', alpha = 0.75, label='Monopoly Price', color='black')
+    if multi_product:
+        plt.axhline(y=np.mean(nash_prices), linestyle='--', alpha = 0.75, label='Fully Competitive\nNash Price', color='Green')
     plt.ylabel('Prices')
     plt.xlabel('Period')
     plt.legend(bbox_to_anchor=(1.01, 1), loc="upper left")
@@ -365,6 +364,7 @@ def make_graphs(foldername, config, market, states=None, merger=False):
         ma100=  lib.moving_average(avg_profits, 100)
 
         plt.plot(range(len(ma100)), ma100)
+
         plt.ylabel('Profits')
         plt.xlabel('Period')
         plt.subplots_adjust(left=0.2, right=0.8, top=0.95)
@@ -385,7 +385,12 @@ def make_graphs(foldername, config, market, states=None, merger=False):
         plt.savefig(os.path.join(save_dir, foldername + "_profits_firms.png"))
         plt.clf()
 
-    if best_action_data_exists:        
+    if best_action_data_exists:
+        fun = lambda s: s.collussion_quotient
+        collusion_quotients = averaging(states, max_length, sum(config['numb_products']), fun)
+
+        average_collusion_quotient = np.mean(collusion_quotients, axis=0)
+        ma100=  lib.moving_average(average_collusion_quotient, 100)
         best_action_collusion_quotients = averaging(best_action_states, max_length, sum(config['numb_products']), fun)
         best_action_average_collusion_quotient = np.mean(best_action_collusion_quotients, axis=0)
         best_action_ma100=  lib.moving_average(best_action_average_collusion_quotient, 100)
@@ -461,7 +466,7 @@ def make_graphs(foldername, config, market, states=None, merger=False):
         plt.xlabel('Period')
         plt.legend(bbox_to_anchor=(1.01, 1), loc="upper left")
         plt.subplots_adjust(left=0.2, right=0.8, top=0.95)
-        plt.savefig(os.path.join(save_dir, foldername + "_collusion_quotient_products.png"))
+        plt.savefig(os.path.join(save_dir, foldername + "_collusion_quotient_products_best_action.png"))
         
         
         plt.clf()
