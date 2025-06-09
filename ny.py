@@ -26,13 +26,12 @@ market= SIMULATOR.setup(new_config)
 
 priceranges = lib.Make_Price_Ranges(market.Nash, market.Mono, 15, include_NE_and_Mono=False, extra=0.1)
 
-priceranges = priceranges[0]  # Assuming priceranges is a list of lists and we want the first one
+priceranges = priceranges[0] 
 print(priceranges)
 
 average_p = priceranges[9]
 
 
-#calculate the profit when one firm sets average_p and the other firm set all of the prices in priceranges
 def calculate_profit(average_p, priceranges):
     profits = []
     for price in priceranges:
