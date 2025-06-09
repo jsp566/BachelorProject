@@ -133,4 +133,4 @@ def moving_average(x, w):
 
 def find_closest(value, action_space):
     """Finds the closest value in the given sorted action space."""
-    return min(action_space, key=lambda x: abs(x - value))
+    return min(action_space, key=lambda x: sum(abs(x - value)))

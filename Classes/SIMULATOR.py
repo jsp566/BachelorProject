@@ -139,11 +139,9 @@ def simulate_variations(config, variations, filename = None, parallel = True, sa
             same = True
             if old_config != config:
 
-                print(f"{datetime.now()} Old config: {old_config}")
-                print(f"{datetime.now()} New config: {config}")
                 print(f"Configurations do not match, running simulation")
                 same = False
-                input("Press enter to continue")
+                
 
             if list(old_variations.keys()) != list(variations.keys()):
                 print(f"Variations do not match, running simulation")

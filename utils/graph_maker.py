@@ -125,7 +125,54 @@ def best_actions(file_index, config, foldername, states=None):
         with open(os.path.join(os.getcwd(), 'Output', 'Data Best Actions', foldername, filename), 'wb') as f:
             pickle.dump(best_actions, f)
 
+def make_state_frequency_graph(foldername, config, market, states=None):
+    save_dir = os.path.join(os.getcwd(), 'Output', 'Graphs', foldername)
+    if states is None:
+        states = get_states(foldername, config)
 
+    state_frec = {}
+
+    for result in states:
+        for state in result[-100000:]:
+            state_frec[state.actions] = state_frec.get(state.actions, 0) + 1
+
+    heatmap = np.zeros((len(list(market.firms[0].strategy.Q.items())[0][1].keys()), len(list(market.firms[1].strategy.Q.items())[0][1].keys())))
+
+    # Make indexes for heatmap
+    indexes = {}
+    first_firm_actions = sorted(list(market.firms[0].strategy.Q.items())[0][1].keys())
+    second_firm_actions = sorted(list(market.firms[1].strategy.Q.items())[0][1].keys())
+
+
+    for state in state_frec:
+        index1 = first_firm_actions.index(state[0])
+        index2 = second_firm_actions.index(state[1])
+        indexes[state] = (index1, index2)
+
+    for state, frec in state_frec.items():
+        index1, index2 = indexes[state]
+        heatmap[index1, index2] = frec
+
+    heatmap = heatmap/np.sum(heatmap)
+
+    monopoly_prices = market.get_monopoly_prices()
+    nash_prices = market.get_nash_prices()
+
+    closest_nash_0 = lib.find_closest(nash_prices, market.state_space)
+    closest_mono_0 = lib.find_closest(monopoly_prices, market.state_space)
+
+    plt.figure(figsize=(10,5))
+    plt.imshow(heatmap, cmap='hot_r', interpolation='nearest', origin='lower', extent=[np.mean(first_firm_actions[0]), np.mean(first_firm_actions[-1]), np.mean(second_firm_actions[0]), np.mean(second_firm_actions[-1])])
+    plt.text(np.mean([closest_nash_0[product.index] for product in market.firms[0].products]), np.mean([closest_nash_0[product.index] for product in market.firms[1].products]), 'N', color='blue', fontsize=12, fontweight='bold', ha='left', va='bottom')
+    plt.text(np.mean([closest_mono_0[product.index] for product in market.firms[0].products]), np.mean([closest_mono_0[product.index] for product in market.firms[1].products]), 'M', color='green', fontsize=12, fontweight='bold', ha='right', va='top')
+    plt.colorbar()
+
+    plt.ylabel('Firm 1 price')
+    plt.xlabel('Firm 2 price')
+    plt.subplots_adjust(left=0.2, right=0.8, top=0.95)
+    plt.savefig(os.path.join(save_dir, foldername + "_state_frec.png"))
+
+    plt.clf()
         
 
 def get_states(foldername, config):
@@ -186,6 +233,9 @@ def make_graphs(foldername, config, market, states=None, merger=False):
     plt.savefig(os.path.join(save_dir, foldername + "_lengths.png"))
 
     plt.clf()
+
+    if config['numb_firms'] == 2:
+        make_state_frequency_graph(foldername, config, market, states)
 
     min_length = min(lengths)
     max_length = max(lengths)
@@ -345,7 +395,7 @@ def make_graphs(foldername, config, market, states=None, merger=False):
 
     plt.axhline(y=np.mean(monopoly_prices), linestyle='--', alpha = 0.75, label='Monopoly Price', color='black')
     if multi_product:
-        plt.axhline(y=np.mean(nash_prices), linestyle='--', alpha = 0.75, label='Fully Competitive\nNash Price', color='Green')
+        plt.axhline(y=np.mean(nash_prices), linestyle=':', alpha = 0.75, label='Fully Competitive\nNash Price', color='Black')
     plt.ylabel('Prices')
     plt.xlabel('Period')
     plt.legend(bbox_to_anchor=(1.01, 1), loc="upper left")
