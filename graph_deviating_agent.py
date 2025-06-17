@@ -65,24 +65,24 @@ def main():
     os.makedirs(save_dir, exist_ok=True)
 
     input_combinations = [
-        #('2_firms',None),
-        #('assymetric2-1_one_price',0),
+        ('2_firms',None),
+        ('assymetric2-1_one_price',0),
         ('assymetric2-1_one_price',1),
-        #('assymetric2-2_one_price',None),
+        ('assymetric2-2_one_price',None),
         ('3_firms',None),
 
-        #('assymetric3-1_one_price',0),
-        #('assymetric3-1_one_price',1),
-        #('assymetric2-1-1_one_price',0),
-        #('assymetric2-1-1_one_price',[1,2]),
+        ('assymetric3-1_one_price',0),
+        ('assymetric3-1_one_price',1),
+        ('assymetric2-1-1_one_price',0),
+        ('assymetric2-1-1_one_price',[1,2]),
 
         ('assymetric2-1_one_price_true_nash',0),
         ('assymetric2-1_one_price_true_nash',1),
-        #('assymetric2-2_one_price_true_nash',None),
-        #('assymetric3-1_one_price_true_nash',0),
-        #('assymetric3-1_one_price_true_nash',1),
-        #('assymetric2-1-1_one_price_true_nash',0),
-        #('assymetric2-1-1_one_price_true_nash',[1,2]),
+        ('assymetric2-2_one_price_true_nash',None),
+        ('assymetric3-1_one_price_true_nash',0),
+        ('assymetric3-1_one_price_true_nash',1),
+        ('assymetric2-1-1_one_price_true_nash',0),
+        ('assymetric2-1-1_one_price_true_nash',[1,2]),
 
     ]
     # Make table

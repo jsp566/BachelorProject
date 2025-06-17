@@ -27,7 +27,8 @@ def main():
             #'graph_default_2_firms_big_dif_qual.py',
             #'graph_default_assymetric2-1-1_one_price_true_nash.py',
             #'result_table.py',
-            'graph_default_assymetric2-1_one_price_true_nash.py',            
+            #'graph_default_assymetric2-1_one_price_true_nash.py',
+            #'graph_firms_more_boxplot.py',            
             'graph_nash.py',
             'graph_deviating_agent.py',
             #'graph_default_mono.py',
@@ -57,7 +58,7 @@ def main():
             #'graph_discount_factor_together.py',
             #'graph_mu.py',
             #'graph_firms_boxplot.py',
-            #'graph_firms_more_boxplot.py',
+            
             #'graph_heatmap_alpha_beta.py',
     ]
     execute_scripts(scripts)

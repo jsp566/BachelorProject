@@ -24,7 +24,8 @@ def list_creator(inputlist, numb):
 
 
 def fix_config(config):
-    share = config['demand_function'].set(config['demand_function_params'])
+    config['demand_function'].set(config['demand_function_params'])
+    share = config['demand_function']
     # check demand function is callable
     assert callable(share), 'Demand function must be callable'
     # check numb firms is int

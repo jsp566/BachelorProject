@@ -23,27 +23,9 @@ def main():
     ticks = []
     file_exists = True
     filenames = [
-        '2_firms',
-        
-        
-        
-        'assymetric2-1_one_price_true_nash',
-        'assymetric2-1_one_price',
-        'assymetric2-1',
-        
-        
-        'assymetric2-2_one_price',
-        'assymetric2-2_half_price',
         'assymetric2-2',
-        
-        
-        'assymetric2-2_one_price_true_nash',
-        'assymetric3-1_one_price_true_nash',
-        'assymetric3-1_one_price',
-        
-        'assymetric2-1-1_one_price_true_nash',
-        'assymetric2-1-1_one_price',
-        '3_firms',
+        'assymetric2-2_half_price',
+        'assymetric2-2_one_price',
     ]
     for name in filenames:
         new_filename = f"graph_default_{name}"
@@ -62,7 +44,7 @@ def main():
 
         collusion_quotients = np.transpose(collusion_quotients)
         lengths = np.transpose(lengths)
-        ticks.append(name.replace('_', ' ').replace('one price', '\n(Price Level)').replace('half price', '\n(0.5P)').replace('assymetric', '').replace('2 firms', '1-1').replace('3 firms', '1-1-1').replace('true nash', 'TN'))
+        ticks.append(name.replace('_', ' ').replace('one price', '\n(Price Level)').replace('half price', '\n(One firm uses Price Level)').replace('assymetric', '').replace('2 firms', '1-1').replace('3 firms', '1-1-1').replace('true nash', 'TN'))
         collusion_quotients_list.append(collusion_quotients)
         lengths_list.append(lengths)
 
@@ -74,7 +56,7 @@ def main():
     plt.boxplot(collusion_quotients_list, showmeans=True)
     plt.xticks(range(1, len(ticks) + 1), ticks)
     plt.ylabel('Collusion Quotient')
-    plt.xlabel('Number of products')
+    plt.xlabel('Product distribution')
     plt.subplots_adjust(left=0.1, right=0.9, top=0.95)
     plt.savefig(os.path.join(save_dir, filename + "_collusion_quotients.png"))
     plt.clf()

@@ -15,6 +15,8 @@ filename = basename(__file__).replace('.py', '')
 def main():
     # Start
     alphas = np.linspace(0.0, 0.25, 10, endpoint=False) #SET Alpha values
+    print(f"Alpha values: {alphas}")
+    input("Press Enter to continue...")  # Wait for user input to proceed
     betas = np.linspace(0.0, 2*10**-5, 10, endpoint=False) #SET Beta values
     sessions = 100
     iterations = 10**7

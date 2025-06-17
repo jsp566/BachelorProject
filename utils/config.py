@@ -18,6 +18,7 @@ class Share():
         return self
 
     def __call__(self, P, A):
+        #print(f"Demand function called with P: {P}, A: {A}, mu: {self.mu}")
         numer = np.exp((A-P)/self.mu)
         denom = 1 + np.sum(numer)
         result = numer/denom
@@ -128,7 +129,8 @@ def list_creator(inputlist, numb):
         return (inputlist,) * numb
 
 def fix_config(config):
-    share = config['demand_function'].set(config['demand_function_params'])
+    config['demand_function'].set(config['demand_function_params'])
+    share = config['demand_function']
     # check demand function is callable
     assert callable(share), 'Demand function must be callable'
     # check numb firms is int
