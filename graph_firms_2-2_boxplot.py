@@ -23,9 +23,11 @@ def main():
     ticks = []
     file_exists = True
     filenames = [
-        'assymetric2-2',
-        'assymetric2-2_half_price',
+        '2_firms',
         'assymetric2-2_one_price',
+        'assymetric2-2_half_price',
+        'assymetric2-2',
+        '3_firms'
     ]
     for name in filenames:
         new_filename = f"graph_default_{name}"
